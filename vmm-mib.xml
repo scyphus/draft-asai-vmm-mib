@@ -1487,7 +1487,8 @@ vmRunning NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `running'."
+            `running' from some other state.  The other state is
+            indicated by the included value of vmOperState."
     ::= { vmNotifications 1 }
 
 vmShutdown NOTIFICATION-TYPE
@@ -1501,7 +1502,8 @@ vmShutdown NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `shutdown'."
+            `shutdown' from some other state.  The other state is
+            indicated by the included value of vmOperState."
     ::= { vmNotifications 2 }
 
 vmPaused NOTIFICATION-TYPE
@@ -1515,7 +1517,8 @@ vmPaused NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `paused'."
+            `paused' from some other state.  The other state is
+            indicated by the included value of vmOperState."
     ::= { vmNotifications 3 }
 
 vmSuspended NOTIFICATION-TYPE
@@ -1529,7 +1532,8 @@ vmSuspended NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `suspended'."
+            `suspended' from some other state.  The other state is
+            indicated by the included value of vmOperState."
     ::= { vmNotifications 4 }
 
 vmCrashed NOTIFICATION-TYPE
@@ -1542,7 +1546,9 @@ vmCrashed NOTIFICATION-TYPE
     STATUS       current
     DESCRIPTION
             "This notification is generated when a virtual machine
-            has been crashed."
+            has been crashed.  The previos state of the virtual
+            machine is indicated by the included value of
+            vmOperState."
     ::= { vmNotifications 5 }
 
 vmDeleted NOTIFICATION-TYPE
@@ -1555,7 +1561,9 @@ vmDeleted NOTIFICATION-TYPE
     STATUS       current
     DESCRIPTION
             "This notification is generated when a virtual machine
-            has been deleted."
+            has been deleted. The previos state of the virtual
+            machine is indicated by the included value of
+            vmOperState."
     ::= { vmNotifications 6 }
 
 -- Compliance definitions:
