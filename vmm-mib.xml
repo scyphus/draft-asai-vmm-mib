@@ -354,11 +354,11 @@
         <figure><artwork><![CDATA[
 --vmMIB (1.3.6.1.2.1.yyy)
   +--vmNotifications(0)
-  |  +--vmRunning(1) [vmName, vmUUID, vmOperState, vmPersistent]
-  |  +--vmShutdown(2) [vmName, vmUUID, vmOperState, vmPersistent]
-  |  +--vmPaused(3) [vmName, vmUUID, vmOperState, vmPersistent]
-  |  +--vmSuspended(4) [vmName, vmUUID, vmOperState, vmPersistent]
-  |  +--vmCrashed(5) [vmName, vmUUID, vmOperState, vmPersistent]
+  |  +--vmRunning(1) [vmName, vmUUID, vmOperState]
+  |  +--vmShutdown(2) [vmName, vmUUID, vmOperState]
+  |  +--vmPaused(3) [vmName, vmUUID, vmOperState]
+  |  +--vmSuspended(4) [vmName, vmUUID, vmOperState]
+  |  +--vmCrashed(5) [vmName, vmUUID, vmOperState]
   |  +--vmDeleted(6) [vmName, vmUUID, vmOperState, vmPersistent]
   +--vmObjects(1)
   |  +vmHypervisor(1)
@@ -1480,8 +1480,7 @@ vmRunning NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState,
-                    vmPersistent
+                    vmOperState
                  }
     STATUS       current
     DESCRIPTION
@@ -1495,8 +1494,7 @@ vmShutdown NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState,
-                    vmPersistent
+                    vmOperState
                  }
     STATUS       current
     DESCRIPTION
@@ -1510,8 +1508,7 @@ vmPaused NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState,
-                    vmPersistent
+                    vmOperState
                  }
     STATUS       current
     DESCRIPTION
@@ -1525,8 +1522,7 @@ vmSuspended NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState,
-                    vmPersistent
+                    vmOperState
                  }
     STATUS       current
     DESCRIPTION
@@ -1540,8 +1536,7 @@ vmCrashed NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState,
-                    vmPersistent
+                    vmOperState
                  }
     STATUS       current
     DESCRIPTION
