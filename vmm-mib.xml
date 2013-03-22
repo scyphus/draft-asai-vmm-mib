@@ -284,7 +284,7 @@
       <section anchor="overview" title="Overview of the MIB Mobule">
         <t>The MIB module is organized into a group of scalars and tables.  The
         scalars below `hypervisor' provide basic information about the
-        hypervisor.  The `vm' lists the virtual machines (guests)
+        hypervisor.  The `vmTable' lists the virtual machines (guests)
         that are known to the hypervisor.
         The `vmCpuTable' and 'vmCpuAffinityTable'
         provide the mapping of virtual CPUs and their affinity
