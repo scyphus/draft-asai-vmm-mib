@@ -1,6 +1,3 @@
-* Add description about notification
-  - vmOperState = `previous' state of a VM
-
 * Change to refer to an RFC (to be published soon?) for UUIDorZero
 <http://datatracker.ietf.org/doc/draft-ietf-eman-rfc4133bis/>
 
