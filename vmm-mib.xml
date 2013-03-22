@@ -354,11 +354,11 @@
         <figure><artwork><![CDATA[
 --vmMIB (1.3.6.1.2.1.yyy)
   +--vmNotifications(0)
-  |  +--vmRunning(1) [vmName, vmUUID, vmOperState]
-  |  +--vmShutdown(2) [vmName, vmUUID, vmOperState]
-  |  +--vmPaused(3) [vmName, vmUUID, vmOperState]
-  |  +--vmSuspended(4) [vmName, vmUUID, vmOperState]
-  |  +--vmCrashed(5) [vmName, vmUUID, vmOperState]
+  |  +--vmRunning(1) [vmName, vmUUID, vmOperState, vmPersistent]
+  |  +--vmShutdown(2) [vmName, vmUUID, vmOperState, vmPersistent]
+  |  +--vmPaused(3) [vmName, vmUUID, vmOperState, vmPersistent]
+  |  +--vmSuspended(4) [vmName, vmUUID, vmOperState, vmPersistent]
+  |  +--vmCrashed(5) [vmName, vmUUID, vmOperState, vmPersistent]
   +--vmObjects(1)
   |  +vmHypervisor(1)
   |  |  +-- r-n SnmpAdminString    vmHvSoftware(1)
@@ -465,7 +465,7 @@ IMPORTS
         FROM IF-MIB;
 
 vmMIB MODULE-IDENTITY
-    LAST-UPDATED "201303200000Z"        -- 20 March 2013
+    LAST-UPDATED "201303220000Z"        -- 22 March 2013
     ORGANIZATION "IETF Operations and Management Area Working Group"
     CONTACT-INFO
             "
@@ -505,6 +505,27 @@ vmMIB MODULE-IDENTITY
             Chiyoda-ku, Tokyo  101-0054
             JP
             Email: keiichi@iijlab.net
+
+            Tina Tsou
+            Huawei Technologies (USA)
+            2330 Central Expressway
+            Santa Clara  CA 95050
+            USA
+            Email: tina.tsou.zouting@huawei.com
+
+            Cathy Zhou
+            Huawei Technologies
+            Bantian, Longgang District
+            Shenzhen  518129
+            P.R. China
+            Email: cathyzhou@huawei.com
+
+            Hiroshi Esaki
+            The University of Tokyo
+            7-3-1 Hongo
+            Bunkyo-ku, Tokyo  113-8656
+            JP
+            Email: hiroshi@wide.ad.jp
             "
 
     DESCRIPTION
@@ -523,7 +544,7 @@ vmMIB MODULE-IDENTITY
             IETF Trust's Legal Provisions Relating to IETF Documents
             (http://trustee.ietf.org/license-info)."
 
-    REVISION "201303200000Z"        -- 20 March 2013
+    REVISION "201303220000Z"        -- 22 March 2013
     DESCRIPTION
             "The original version of this MIB, published as
             RFCXXXX."
@@ -1458,7 +1479,8 @@ vmRunning NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState
+                    vmOperState,
+                    vmPersistent
                  }
     STATUS       current
     DESCRIPTION
@@ -1471,7 +1493,8 @@ vmShutdown NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState
+                    vmOperState,
+                    vmPersistent
                  }
     STATUS       current
     DESCRIPTION
@@ -1484,7 +1507,8 @@ vmPaused NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState
+                    vmOperState,
+                    vmPersistent
                  }
     STATUS       current
     DESCRIPTION
@@ -1497,7 +1521,8 @@ vmSuspended NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState
+                    vmOperState,
+                    vmPersistent
                  }
     STATUS       current
     DESCRIPTION
@@ -1510,7 +1535,8 @@ vmCrashed NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
                     vmUUID,
-                    vmOperState
+                    vmOperState,
+                    vmPersistent
                  }
     STATUS       current
     DESCRIPTION
