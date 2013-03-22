@@ -592,12 +592,12 @@ VirtualMachineAdminState ::= TEXTUAL-CONVENTION
                           machine indicating the virtual machine
                           should be brought online.
 
-            suspend(2)    The administrative state of the virtual
+            suspended(2)  The administrative state of the virtual
                           machine where its memory and CPU execution
                           state has been saved to persistent store
                           and will be restored at next running(1).
 
-            pause(3)      The administrative state indicating the
+            paused(3)     The administrative state indicating the
                           virtual machine is resident in memory but
                           is no longer scheduled to execute by the
                           hypervisor.
