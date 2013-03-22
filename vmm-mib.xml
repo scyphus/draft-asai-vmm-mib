@@ -1488,9 +1488,9 @@ vmPaused NOTIFICATION-TYPE
                  }
     STATUS       current
     DESCRIPTION
-            "This notification is generated when a virtual machine
-            has been paused and the process has reached a stable
-            state (i.e., `paused')."
+            "This notification is generated when the operational
+            state of a virtual machine has been changed to
+            `paused'."
     ::= { vmNotifications 3 }
 
 vmSuspended NOTIFICATION-TYPE
@@ -1501,9 +1501,9 @@ vmSuspended NOTIFICATION-TYPE
                  }
     STATUS       current
     DESCRIPTION
-            "This notification is generated when a virtual machine
-            has been suspended and the process has reached a stable
-            state (i.e., `suspended')."
+            "This notification is generated when the operational
+            state of a virtual machine has been changed to
+            `suspended'."
     ::= { vmNotifications 4 }
 
 vmCrashed NOTIFICATION-TYPE
