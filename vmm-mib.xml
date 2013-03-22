@@ -83,10 +83,10 @@
       <organization abbrev="IIJ Innovation Institute Inc.">IIJ Innovation Institute Inc.</organization>
       <address>
         <postal>
-          <street>1-105 Kanda-Jinbocho</street>
+          <street>3-13 Kanda-Nishikicho</street>
           <city>Chiyoda-ku</city>
           <region>Tokyo</region>
-          <code>101-0051</code>
+          <code>101-0054</code>
           <country>JP</country>
         </postal>
         <email>keiichi@iijlab.net</email>
@@ -501,8 +501,8 @@ vmMIB MODULE-IDENTITY
 
             Keiichi Shima
             IIJ Innovation Institute Inc.
-            1-105 Kanda-Jinbocho
-            Chiyoda-ku, Tokyo  101-0051
+            3-13 Kanda-Nishikicho
+            Chiyoda-ku, Tokyo  101-0054
             JP
             Email: keiichi@iijlab.net
             "
