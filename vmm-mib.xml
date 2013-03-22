@@ -281,7 +281,7 @@
             only if vmStorageSourceType is `unknown', `other', or `sparse'.-->
         </t>
     </section>
-      <section anchor="overview" title="Overview of the MIB Mobule">
+      <section anchor="overview" title="Overview of the MIB Module">
         <t>The MIB module is organized into a group of scalars and tables.  The
         scalars below `hypervisor' provide basic information about the
         hypervisor.  The `vmTable' lists the virtual machines (guests)
@@ -391,7 +391,7 @@
   |  |     +-- rwn Integer32            vmMinMem(14)
   |  |     +-- rwn Integer32            vmMaxMem(15)
   |  |     +-- r-n TimeTicks            vmUpTime(16)
-  |  |     +-- r-n Couter64             vmCpuTime(17)
+  |  |     +-- r-n Counter64            vmCpuTime(17)
   |  +--vmCpuTable(5)
   |  |  +--vmCpuEntry(1) [vmIndex, vmCpuIndex]
   |  |     +-- --- VirtualMachineCpuIndex
@@ -410,7 +410,7 @@
   |  |     +-- --- VirtualMachineStorageIndex
   |  |     |                            vmStorageIndex(2)
   |  |     +-- r-n Integer32            vmStorageParent(3)
-  |  |     +-- r-n VritualMachineStorageSourceType
+  |  |     +-- r-n VirtualMachineStorageSourceType
   |  |     |                            vmStorageSourceType(4)
   |  |     +-- r-n SnmpAdminString      vmStorageSourceTypeString(5)
   |  |     +-- r-n SnmpAdminString      vmStorageResourceID(6)
@@ -427,9 +427,9 @@
   |  +--vmNetworkTable(8)
   |     +--vmNetworkEntry(1) [vmIndex, vmNetworkIndex]
   |        +-- --- VirtualMachineNetworkIndex
-  |        |                            vmNetworIndex(1)
+  |        |                            vmNetworkIndex(1)
   |        +-- r-n InterfaceIndexOrZero vmNetworIfIndex(2)
-  |        +-- r-n InterfaceIndexOrZero vmNetworParent(3)
+  |        +-- r-n InterfaceIndexOrZero vmNetworkParent(3)
   |        +-- r-n SnmpAdminString      vmNetworkModel(4)
   |        +-- r-n PhysAddress          vmNetworkPhysAddress(5)
   +--vmConformance(2)
@@ -838,7 +838,7 @@ vmHvSoftware OBJECT-TYPE
     DESCRIPTION
             "A textual description of the hypervisor software.  This
             value should not include its version, and it should be
-            included in `hvVersion'."
+            included in `vmHvVersion'."
     ::= { vmHypervisor 1 }
 
 vmHvVersion OBJECT-TYPE
@@ -899,7 +899,7 @@ vmTableLastChange  OBJECT-TYPE
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The value of hvUpTime at the time of the last creation
+            "The value of vmHvUpTime at the time of the last creation
             or deletion of an entry in the vmTable."
     ::= { vmObjects 3 }
 
@@ -1050,7 +1050,7 @@ vmMaxCpuNumber OBJECT-TYPE
             "The maximum number of virtual CPUs that are assigned to
             the virtual machine when it is in a power-on state.  The
             value -1 indicates that there is no limit.  Changes to
-            this object may not persist accross restarts of the
+            this object may not persist across restarts of the
             hypervisor."
     ::= { vmEntry 11 }
 
