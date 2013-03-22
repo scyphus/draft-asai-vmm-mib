@@ -325,12 +325,12 @@
                   | shuttingdown  |--------->|  shutdown   |
                   |               |          | !vmShutdown |
                   + - - - - - - - +          +-------------+
-                                       !vmCreated ^     |
-                                                  |     v !vmDeleted
-+ - - - - - - +   +-------------+       + - - - - - - +
-|   blocked   |   |   crashed   |       |  preparing  |
-|             |   |  !vmCrashed |       |             |
-+ - - - - - - +   +-------------+       + - - - - - - +
+                                                 ^      |
+                                                 |      v !vmDeleted
++ - - - - - - +   +-------------+     + - - - - - - +  (Deleted from
+|   blocked   |   |   crashed   |     |  preparing  |   vmTable)
+|             |   |  !vmCrashed |     |             |
++ - - - - - - +   +-------------+     + - - - - - - +
 ]]></artwork>
           <postamble>The state transition of a virtual machine</postamble>
         </figure>
@@ -359,8 +359,7 @@
   |  +--vmPaused(3) [vmName, vmUUID, vmOperState, vmPersistent]
   |  +--vmSuspended(4) [vmName, vmUUID, vmOperState, vmPersistent]
   |  +--vmCrashed(5) [vmName, vmUUID, vmOperState, vmPersistent]
-  |  +--vmCreated(6) [vmName, vmUUID, vmOperState, vmPersistent]
-  |  +--vmDeleted(7) [vmName, vmUUID, vmOperState, vmPersistent]
+  |  +--vmDeleted(6) [vmName, vmUUID, vmOperState, vmPersistent]
   +--vmObjects(1)
   |  +vmHypervisor(1)
   |  |  +-- r-n SnmpAdminString    vmHvSoftware(1)
@@ -1546,19 +1545,6 @@ vmCrashed NOTIFICATION-TYPE
             has been crashed."
     ::= { vmNotifications 5 }
 
-vmCreated NOTIFICATION-TYPE
-    OBJECTS      {
-                    vmName,
-                    vmUUID,
-                    vmOperState,
-                    vmPersistent
-                 }
-    STATUS       current
-    DESCRIPTION
-            "This notification is generated when a virtual machine
-            has been created."
-    ::= { vmNotifications 6 }
-
 vmDeleted NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
@@ -1570,7 +1556,7 @@ vmDeleted NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when a virtual machine
             has been deleted."
-    ::= { vmNotifications 7 }
+    ::= { vmNotifications 6 }
 
 -- Compliance definitions:
 vmGroups       OBJECT IDENTIFIER ::= { vmConformance 1 }
@@ -1752,7 +1738,6 @@ vmNotificationGroup NOTIFICATION-GROUP
         vmPaused,
         vmSuspended,
         vmCrashed,
-        vmCreated,
         vmDeleted
     }
     STATUS       current
