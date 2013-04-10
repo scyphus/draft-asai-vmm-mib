@@ -133,7 +133,7 @@
       </address>
     </author>
 
-    <date month="March" year="2013" />
+    <date month="April" year="2013" />
 
     <!-- Meta-data Declarations -->
     <area>Operations and Management</area>
@@ -1848,6 +1848,7 @@ END
 
     <section anchor="issues" title="Issues">
       <section title="Issues on vmNotifications">
+        <t>
         <list style="symbols">
           <t>Issue 1-1) Scalability issue on notifications:
           The number of virtual machines managed by a bunch of
@@ -1886,6 +1887,7 @@ END
           Is this simple and reasonable?
           </t>
         </list>
+        </t>
       </section>
     </section>
 
