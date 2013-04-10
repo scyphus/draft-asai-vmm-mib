@@ -1846,10 +1846,48 @@ END
       &RFC3410;
     </references>
 
-<!--
-    <section anchor="app-additional" title="Additional Stuff">
-      <t>This becomes an Appendix.</t>
+    <section anchor="issues" title="Issues">
+      <section title="Issues on vmNotifications">
+        <list style="symbols">
+          <t>Issue 1-1) Scalability issue on notifications:
+          The number of virtual machines managed by a bunch of
+          hypervisors in a datacenter possibly
+          becomes several thousands or more.
+          If these virtual machines frequently change their
+          administrative state, many notifications could be trapped.
+          Since an SNMP manager has to handle SNMP traps of these
+          notifications, there exists a scalability issue
+          on handling them.
+          Should we add some `vmXXXNotificationEnable' object
+          to disable traps for each notification?
+          Or any other ideas?
+          </t>
+          <t>Issue 1-2) vmDeleted:
+          Is `vmDeleted' required?
+          If the virtual machine is not persistent on the hypervisor,
+          its entry will disappear when it has shutdown.
+          `vmShutdown' can trap the event of shutdown of a virtual
+          machine. So do we remove `vmDeleted' and change `vmShutdown'
+          to carry `vmPersistent' in order to distinguish
+          ``just shutdown'' and ``shutdown and automatically deleted''?
+          </t>
+          <t>Issue 1-3) vmOperState carried with each notification:
+          In our current proposal,
+          each notification corresponds to the new operational state
+          of a virtual machine, and `vmOperState' indicates
+          the old operational state.
+          For example,
+          when a virtual machine is switched on,
+          the operational state is changed to running
+          from shutdown.
+          In this case, vmRunning with shutdown vmOperState
+          is be generated when the operational
+          state of a virtual machine is about to enter running state.
+          Is this simple and reasonable?
+          </t>
+        </list>
+      </section>
     </section>
--->
+
   </back>
 </rfc>
