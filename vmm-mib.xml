@@ -456,7 +456,7 @@ IMPORTS
         FROM SNMPv2-SMI
     OBJECT-GROUP, MODULE-COMPLIANCE, NOTIFICATION-GROUP
         FROM SNMPv2-CONF
-    TEXTUAL-CONVENTION, PhysAddress
+    TEXTUAL-CONVENTION, PhysAddress, TruthValue
         FROM SNMPv2-TC
     SnmpAdminString
         FROM SNMP-FRAMEWORK-MIB
@@ -823,6 +823,23 @@ VirtualMachineNetworkIndex ::= TEXTUAL-CONVENTION
             of the virtual machine to the next re-initialization."
      SYNTAX      Integer32 (1..2147483647)
 
+VirtualMachineList ::= TEXTUAL-CONVENTION
+    DISPLAY-HINT "1x"
+    STATUS       current
+    DESCRIPTION
+            "Each octet within this value specifies a set of eight
+            Virtual Machine vmIndex, with the first octet specifying
+            Virtual Machine 1 through 8, the second octet specifying
+            Virtual Machine 9 through 16, etc.  Within each octet,
+            the most significant bit represents the lowest numbered
+            vmIndex, and the least significant bit represents the
+            highest numbered vmIndex.  Thus, each Virtual Machine of
+            the host is represented by a single bit within the value
+            of this object.  If that bit has a value of '1', then
+            that Virtual Machine is included in the set of Virtual
+            Machines; the Virtual Machine is not included if its bit
+            has a value of '0'."
+    SYNTAX      OCTET STRING
 
 -- The hypervisor group
 --
@@ -948,7 +965,11 @@ vmIndex OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "A unique value, greater than zero, identifying the
-            virtual machine."
+            virtual machine. The value assigned to a given Virtual
+            machine may not persist across a reboot. A command
+            generator must use the vmUUID to identify a given
+            Virtual Machine of interest. (mrm -note- same design as
+            IF-MIB/ifIndex)"
     ::= { vmEntry 1 }
 
 vmName OBJECT-TYPE
@@ -965,7 +986,10 @@ vmUUID OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "The virtual machine's 128-bit UUID or the zero-length
-            string when a UUID is not available."
+            string when a UUID is not available. The UUID if set
+            must uniquely identify a VM from all other Virtual
+            Machines in an administrative region. (*mrm -note-
+            explain case when this value may be empty."
     ::= { vmEntry 3 }
 
 vmOSType OBJECT-TYPE
@@ -1476,6 +1500,26 @@ vmNetworkPhysAddress OBJECT-TYPE
 
 
 -- Notification definitions:
+
+vmBulkNotificationsEnabled OBJECT-TYPE
+    SYNTAX       TruthValue
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+            "Indicates if notification generator will send
+            notifications per VM or per set of VMs."
+    ::= { vmObjects 100 }
+
+vmAffectedVMs OBJECT-TYPE
+    SYNTAX       VirtualMachineList
+    MAX-ACCESS   accessible-for-notify
+    STATUS       current
+    DESCRIPTION
+            "A complete list of Virtual Machines whose state has
+            changed.  This object is the only object sent with bulk
+            notifications."
+    ::= { vmObjects 101 }
+
 vmRunning NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
@@ -1489,6 +1533,19 @@ vmRunning NOTIFICATION-TYPE
             `running' from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 1 }
+
+vmsRunning NOTIFICATION-TYPE
+    OBJECTS      {
+                    vmAffectedVMs
+                 }
+    STATUS       current
+    DESCRIPTION
+            "This notification is generated when the operational
+            state of one or more virtual machine has been changed to
+            `running' from a all prior states except for 'running.'
+            Management stations are encouraged to subsequently
+            poll the subset of VMs of interest for vmOperState."
+    ::= { vmNotifications 10 }
 
 vmShutdown NOTIFICATION-TYPE
     OBJECTS      {
@@ -1504,6 +1561,19 @@ vmShutdown NOTIFICATION-TYPE
             indicated by the included value of vmOperState."
     ::= { vmNotifications 2 }
 
+vmsShutdown NOTIFICATION-TYPE
+    OBJECTS      {
+                   vmAffectedVMs
+                 }
+    STATUS       current
+    DESCRIPTION
+            "This notification is generated when the operational
+            state of one or more virtual machine has been changed to
+            `shutdown' from a state other than `shutdown`.
+            Management stations are encouraged to subsequently poll
+            the subset of VMs of interest for vmOperState."
+    ::= { vmNotifications 20 }
+
 vmPaused NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
@@ -1517,6 +1587,19 @@ vmPaused NOTIFICATION-TYPE
             `paused' from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 3 }
+
+vmsPaused NOTIFICATION-TYPE
+    OBJECTS      {
+                    vmAffectedVMs
+                 }
+    STATUS       current
+    DESCRIPTION
+            "This notification is generated when the operational
+            state of one or more virtual machines have been changed
+            to `paused' from a state other than `paused.`
+            Management stations are encouraged to subsequently poll
+            the subset of VMs of interest for vmOperState."
+    ::= { vmNotifications 30 }
 
 vmSuspended NOTIFICATION-TYPE
     OBJECTS      {
@@ -1532,6 +1615,19 @@ vmSuspended NOTIFICATION-TYPE
             indicated by the included value of vmOperState."
     ::= { vmNotifications 4 }
 
+vmsSuspended NOTIFICATION-TYPE
+    OBJECTS      {
+                    vmAffectedVMs
+                 }
+    STATUS       current
+    DESCRIPTION
+            "This notification is generated when the operational
+            state of one or more virtual machines have been changed
+            to `suspended' from a state other than 'suspended.'
+            Management stations are encouraged to subsequently poll
+            the subset of VMs of interest for vmOperState."
+    ::= { vmNotifications 40 }
+
 vmCrashed NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
@@ -1546,6 +1642,18 @@ vmCrashed NOTIFICATION-TYPE
             vmOperState."
     ::= { vmNotifications 5 }
 
+vmsCrashed NOTIFICATION-TYPE
+    OBJECTS      {
+                    vmAffectedVMs
+                 }
+    STATUS       current
+    DESCRIPTION
+            "This notification is generated when one or more virtual
+            machines have been crashed.  Management stations are
+            encouraged to subsequently poll the subset of VMs of
+            interest for vmOperState."
+    ::= { vmNotifications 50 }
+
 vmDeleted NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
@@ -1556,10 +1664,22 @@ vmDeleted NOTIFICATION-TYPE
     STATUS       current
     DESCRIPTION
             "This notification is generated when a virtual machine
-            has been deleted. The previos state of the virtual
+            has been deleted. The prior state of the virtual
             machine is indicated by the included value of
             vmOperState."
     ::= { vmNotifications 6 }
+
+vmsDeleted NOTIFICATION-TYPE
+    OBJECTS      {
+                    vmAffectedVMs
+                 }
+    STATUS       current
+    DESCRIPTION
+            "This notification is generated when one or more virtual
+            machines have been deleted.  Management stations are
+            encouraged to subsequently poll the subset of VMs of
+            interest for vmOperState."
+    ::= { vmNotifications 60 }
 
 -- Compliance definitions:
 vmGroups       OBJECT IDENTIFIER ::= { vmConformance 1 }
@@ -1580,6 +1700,16 @@ vmFullCompliances MODULE-COMPLIANCE
         vmNetworkGroup,
         vmNotificationGroup
     }
+    GROUP vmBulkNotificationsVariablesGroup
+    DESCRIPTION
+            "Necessary only if vmNotificationOptionalGroup is
+            implemented."
+    GROUP  vmNotificationOptionalGroup
+    DESCRIPTION
+            "Support for bulk notifications is optional.  If not
+            implemented then vmBulkNotificationsEnabled must report
+            false(2)."
+
     ::= { vmCompliances 1 }
 
 vmReadOnlyCompliances MODULE-COMPLIANCE
@@ -1641,7 +1771,8 @@ vmHypervisorGroup OBJECT-GROUP
         vmHvObjectID,
         vmHvUpTime,
         vmNumber,
-        vmTableLastChange
+        vmTableLastChange,
+        vmBulkNotificationsEnabled
     }
     STATUS       current
     DESCRIPTION
@@ -1748,6 +1879,32 @@ vmNotificationGroup NOTIFICATION-GROUP
             "A collection of notifications for virtual machines
             controlled by a hypervisor."
     ::= { vmGroups 7 }
+
+vmBulkNotificationsVariablesGroup OBJECT-GROUP
+OBJECTS {
+    vmAffectedVMs
+}
+STATUS       current
+DESCRIPTION
+    "The variables used in vmNotificationOptionalGroup
+     virtual network interfaces controlled by a hypervisor."
+ ::= { vmGroups 8 }
+
+vmNotificationOptionalGroup NOTIFICATION-GROUP
+ NOTIFICATIONS {
+        vmsRunning,
+        vmsShutdown,
+        vmsPaused,
+        vmsSuspended,
+        vmsCrashed,
+        vmsDeleted
+    }
+    STATUS       current
+    DESCRIPTION
+       "A collection of notifications for bulk notification
+        of changes to virtual machine state (vmOperState) as
+        reported by a given hypervisor."
+    ::= { vmGroups 9 }
 
 END
       ]]></artwork></figure>
