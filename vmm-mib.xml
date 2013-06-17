@@ -356,11 +356,17 @@
 --vmMIB (1.3.6.1.2.1.yyy)
   +--vmNotifications(0)
   |  +--vmRunning(1) [vmName, vmUUID, vmOperState]
+  |  +--vmsRunning(10) [vmAffectedVMs]
   |  +--vmShutdown(2) [vmName, vmUUID, vmOperState]
+  |  +--vmsShutdown(20) [vmAffectedVMs]
   |  +--vmPaused(3) [vmName, vmUUID, vmOperState]
+  |  +--vmsPaused(30) [vmAffectedVMs]
   |  +--vmSuspended(4) [vmName, vmUUID, vmOperState]
+  |  +--vmsSuspended(40) [vmAffectedVMs]
   |  +--vmCrashed(5) [vmName, vmUUID, vmOperState]
+  |  +--vmsCrashed(50) [vmAffectedVMs]
   |  +--vmDeleted(6) [vmName, vmUUID, vmOperState, vmPersistent]
+  |  +--vmsDeleted(60) [vmAffectedVMs]
   +--vmObjects(1)
   |  +vmHypervisor(1)
   |  |  +-- r-n SnmpAdminString    vmHvSoftware(1)
