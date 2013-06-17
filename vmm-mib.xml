@@ -1884,17 +1884,17 @@ vmNotificationGroup NOTIFICATION-GROUP
     ::= { vmGroups 7 }
 
 vmBulkNotificationsVariablesGroup OBJECT-GROUP
-OBJECTS {
-    vmAffectedVMs
-}
-STATUS       current
-DESCRIPTION
-    "The variables used in vmNotificationOptionalGroup
-     virtual network interfaces controlled by a hypervisor."
- ::= { vmGroups 8 }
+    OBJECTS {
+        vmAffectedVMs
+    }
+    STATUS       current
+    DESCRIPTION
+            "The variables used in vmNotificationOptionalGroup
+            virtual network interfaces controlled by a hypervisor."
+    ::= { vmGroups 8 }
 
 vmNotificationOptionalGroup NOTIFICATION-GROUP
- NOTIFICATIONS {
+    NOTIFICATIONS {
         vmsRunning,
         vmsShutdown,
         vmsPaused,
@@ -1904,9 +1904,9 @@ vmNotificationOptionalGroup NOTIFICATION-GROUP
     }
     STATUS       current
     DESCRIPTION
-       "A collection of notifications for bulk notification
-        of changes to virtual machine state (vmOperState) as
-        reported by a given hypervisor."
+            "A collection of notifications for bulk notification of
+            changes to virtual machine state (vmOperState) as
+            reported by a given hypervisor."
     ::= { vmGroups 9 }
 
 END
