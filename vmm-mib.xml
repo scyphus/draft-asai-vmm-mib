@@ -2012,6 +2012,7 @@ END
       &RFC3410;
     </references>
 
+    <!--
     <section anchor="issues" title="Issues">
       <section title="Issues on vmNotifications">
         <t>
@@ -2056,6 +2057,6 @@ END
         </t>
       </section>
     </section>
-
+    -->
   </back>
 </rfc>
