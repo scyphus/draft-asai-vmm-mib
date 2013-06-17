@@ -368,7 +368,7 @@
   |  +--vmDeleted(11) [vmName, vmUUID, vmOperState, vmPersistent]
   |  +--vmsDeleted(12) [vmAffectedVMs]
   +--vmObjects(1)
-  |  +vmHypervisor(1)
+  |  +--vmHypervisor(1)
   |  |  +-- r-n SnmpAdminString    vmHvSoftware(1)
   |  |  +-- r-n SnmpAdminString    vmHvVersion(2)
   |  |  +-- r-n OBJECT IDENTIFIER  vmHvObjectID(3)
@@ -431,13 +431,15 @@
   |  |     +-- r-n Counter64            vmStorageReadIOs(13)
   |  |     +-- r-n Counter64            vmStorageWriteIOs(14)
   |  +--vmNetworkTable(8)
-  |     +--vmNetworkEntry(1) [vmIndex, vmNetworkIndex]
-  |        +-- --- VirtualMachineNetworkIndex
-  |        |                            vmNetworkIndex(1)
-  |        +-- r-n InterfaceIndexOrZero vmNetworIfIndex(2)
-  |        +-- r-n InterfaceIndexOrZero vmNetworkParent(3)
-  |        +-- r-n SnmpAdminString      vmNetworkModel(4)
-  |        +-- r-n PhysAddress          vmNetworkPhysAddress(5)
+  |  |  +--vmNetworkEntry(1) [vmIndex, vmNetworkIndex]
+  |  |     +-- --- VirtualMachineNetworkIndex
+  |  |     |                            vmNetworkIndex(1)
+  |  |     +-- r-n InterfaceIndexOrZero vmNetworIfIndex(2)
+  |  |     +-- r-n InterfaceIndexOrZero vmNetworkParent(3)
+  |  |     +-- r-n SnmpAdminString      vmNetworkModel(4)
+  |  |     +-- r-n PhysAddress          vmNetworkPhysAddress(5)
+  |  +-- r-n TruthValue           vmBulkNotificationsEnabled(9)
+  |  +-- --n VirtualMachineList   vmAffectedVMs(10)
   +--vmConformance(2)
      +--vmCompliances(1)
      |  +--vmFullCompliances(1)
@@ -1517,7 +1519,7 @@ vmBulkNotificationsEnabled OBJECT-TYPE
     DESCRIPTION
             "Indicates if notification generator will send
             notifications per VM or per set of VMs."
-    ::= { vmObjects 100 }
+    ::= { vmObjects 9 }
 
 vmAffectedVMs OBJECT-TYPE
     SYNTAX       VirtualMachineList
@@ -1527,7 +1529,7 @@ vmAffectedVMs OBJECT-TYPE
             "A complete list of Virtual Machines whose state has
             changed.  This object is the only object sent with bulk
             notifications."
-    ::= { vmObjects 101 }
+    ::= { vmObjects 10 }
 
 vmRunning NOTIFICATION-TYPE
     OBJECTS      {
