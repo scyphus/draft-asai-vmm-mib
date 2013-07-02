@@ -466,8 +466,8 @@
   |  |     +-- r-n InterfaceIndexOrZero vmNetworkParent(3)
   |  |     +-- r-n SnmpAdminString      vmNetworkModel(4)
   |  |     +-- r-n PhysAddress          vmNetworkPhysAddress(5)
-  |  +-- r-n TruthValue           vmPerVMNotificationsEnabled(9)
-  |  +-- r-n TruthValue           vmBulkNotificationsEnabled(10)
+  |  +-- rwn TruthValue           vmPerVMNotificationsEnabled(9)
+  |  +-- rwn TruthValue           vmBulkNotificationsEnabled(10)
   |  +-- --n VirtualMachineList   vmAffectedVMs(11)
   +--vmConformance(2)
      +--vmCompliances(1)
@@ -1542,7 +1542,7 @@ vmNetworkPhysAddress OBJECT-TYPE
 
 vmPerVMNotificationsEnabled OBJECT-TYPE
     SYNTAX       TruthValue
-    MAX-ACCESS   read-only
+    MAX-ACCESS   read-write
     STATUS       current
     DESCRIPTION
             "Indicates if notification generator will send
@@ -1551,7 +1551,7 @@ vmPerVMNotificationsEnabled OBJECT-TYPE
 
 vmBulkNotificationsEnabled OBJECT-TYPE
     SYNTAX       TruthValue
-    MAX-ACCESS   read-only
+    MAX-ACCESS   read-write
     STATUS       current
     DESCRIPTION
             "Indicates if notification generator will send
@@ -1814,6 +1814,16 @@ vmReadOnlyCompliances MODULE-COMPLIANCE
     MIN-ACCESS   read-only
     DESCRIPTION
             "Write access is not required."
+
+    OBJECT vmPerVMNotificationsEnabled
+    MIN-ACCESS   read-only
+    DESCRIPTION
+            "Write access is not required."
+
+    OBJECT vmBulkNotificationsEnabled
+    MIN-ACCESS   read-only
+    DESCRIPTION
+            "Write access is not required."
     ::= { vmCompliances 2 }
 
 vmHypervisorGroup OBJECT-GROUP
@@ -1973,7 +1983,7 @@ END
       Descriptor        OBJECT IDENTIFIER value
       ----------        -----------------------
 
-      vm-mib            { mib-2 TBD }
+      vmMIB             { mib-2 TBD }
       ]]></artwork></figure>
     </section>
     <!--<xref target="RFC4122" /> UUID,
@@ -2037,6 +2047,18 @@ END
       (users) that have legitimate rights to indeed GET or SET
       (change/create/delete) them.</t>
     </section>
+
+    <section anchor="Acknowledgements" title="Acknowledgements">
+      <t>The authors like to thank
+      Randy Presuhn and David Black
+      for providing helpful comments during
+      the development of this specification.</t>
+      <t>Juergen Schoenwaelder was partly funded by Flamingo, a Network of
+      Excellence project (ICT-318488) supported by the European
+      Commission under its Seventh Framework Programme.</t>
+    </section>
+
+
   </middle>
 
   <back>
