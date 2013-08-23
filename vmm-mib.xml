@@ -1475,8 +1475,8 @@ vmNetworkEntry OBJECT-TYPE
     MAX-ACCESS   not-accessible
     STATUS       current
     DESCRIPTION
-            "An entry for one virtual storage device attached to the
-            virtual machine."
+            "An entry for one virtual network interfaces attached to
+            the virtual machine."
     INDEX { vmIndex, vmNetworkIndex }
     ::= { vmNetworkTable 1 }
 
