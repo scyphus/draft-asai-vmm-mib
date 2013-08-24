@@ -413,7 +413,7 @@
   |  |     |                            vmAdminState(5)
   |  |     +-- r-n VirtualMachineOperState
   |  |     |                            vmOperState(6)
-  |  |     +-- rwn VirtualMachineAutoStart
+  |  |     +-- r-n VirtualMachineAutoStart
   |  |     |                            vmAutoStart(7)
   |  |     +-- r-n VirtualMachinePersistent
   |  |     |                            vmPersistent(8)
@@ -674,9 +674,8 @@ VirtualMachineOperState ::= TEXTUAL-CONVENTION
 
             preparing(3)   The virtual machine is currently in the
                            process of preparation, e.g., allocating
-                           and initializing virtual storage are
-                           after creating (defining) virtual
-                           machine.
+                           and initializing virtual storage after
+                           creating (defining) virtual machine.
 
             running(4)     The virtual machine is currently running.
 
@@ -1066,7 +1065,7 @@ vmOperState OBJECT-TYPE
 
 vmAutoStart OBJECT-TYPE
     SYNTAX       VirtualMachineAutoStart
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The autostart configuration of the virtual machine."
@@ -2021,7 +2020,7 @@ END
 
       <t>It is recommended that attention be specifically given to
       implementing the MAX-ACCESS clause in a number of objects, including
-      vmAdminState, vmAutoStart, vmMinCpuNumber, vmMaxCpuNumber,
+      vmAdminState, vmMinCpuNumber, vmMaxCpuNumber,
       vmMinMem, vmMaxMem, and vmCpuAffinity
       in scenarios that DO NOT use SNMPv3 strong
       security (i.e. authentication and encryption). Extreme caution must
