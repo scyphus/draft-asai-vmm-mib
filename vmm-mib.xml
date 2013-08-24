@@ -1784,11 +1784,6 @@ vmReadOnlyCompliances MODULE-COMPLIANCE
     DESCRIPTION
             "Write access is not required."
 
-    OBJECT vmAutoStart
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
     OBJECT vmMinCpuNumber
     MIN-ACCESS   read-only
     DESCRIPTION
