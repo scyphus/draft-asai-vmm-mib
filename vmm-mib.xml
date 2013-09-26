@@ -2052,36 +2052,6 @@ END
       Commission under its Seventh Framework Programme.</t>
     </section>
 
-    <section anchor="Appendix" title="Appendix">
-      <section anchor="State_Transition_Table" title="State Transition Table">
-	<texttable title="State transition table">
-	  <ttcol align="center">State</ttcol>
-	  <ttcol align="center">Action</ttcol>
-	  <ttcol align="center">Next state</ttcol>
-	  <ttcol align="center">Notification</ttcol>
-	  <c>suspended</c> <c>running</c> <c>resuming</c> <c>vmResuming | vmBulkResuming</c>
-	  <c>suspending</c> <c>(suspend operation completed)</c> <c>suspended</c> <c>vmSuspended | vmBulkShutdown</c>
-	  <c>running</c> <c>suspended</c> <c>suspending</c> <c>vmSuspending | vmBulkSuspending</c>
-	  <c></c> <c>shutdown</c> <c>shuttingdown</c> <c>vmShuttingdown | vmBulkShuttingdown</c>
-	  <c></c> <c>destroy</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
-	  <c></c> <c>(migration to other hypervisor operation initiated)</c> <c>migrating</c> <c>vmMigrating | vmBulkMingrating</c>
-	  <c>resuming</c> <c>(resume opeartion completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
-	  <c>paused</c> <c>running</c> <c>running</c> <c>vmRunning</c>
-	  <c>shuttingdown</c> <c>(shutdown operation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
-	  <c>shutdown</c> <c>running</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
-	  <c></c> <c>(migration to other hypervisor operation initiated)</c> <c>migrating</c> <c>vmMigrating | vmBulkMigrating</c>
-	  <c></c> <c>(deletion operation completed)</c> <c>(no state)</c> <c>vmDeleted | vmBulkDeleted</c>
-	  <c>migrating</c> <c>(migration operation from other hypervisor completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
-	  <c></c> <c>(migration to other hypervisor operation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
-	  <c>preparing</c> <c>(preparation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
-	  <c>blocked</c> <c>(blocking operation completed)</c> <c>(previous state)</c> <c>-</c>
-	  <c>crashed</c> <c>-</c> <c>-</c> <c>-</c>
-	  <c>(any)</c> <c>(blocking operation initiated)</c> <c>blocked</c> <c>vmBlocked | vmBulkBlocked</c>
-	  <c></c> <c>(crashed)</c> <c>crashed</c> <c>vmCrashed | vmBulkCrashed</c>
-	</texttable>
-      </section>
-    </section>
-
   </middle>
 
   <back>
@@ -2150,5 +2120,35 @@ END
       </section>
     </section>
     -->
+
+    <section anchor="State_TransitionTable" title="State Transition Table">
+      <texttable title="State transition table">
+	<ttcol align="center">State</ttcol>
+	<ttcol align="center">Action or (Event)</ttcol>
+	<ttcol align="center">Next state</ttcol>
+	<ttcol align="center">Notification</ttcol>
+	<c>suspended</c> <c>running</c> <c>resuming</c> <c>vmResuming | vmBulkResuming</c>
+	<c>suspending</c> <c>(suspend operation completed)</c> <c>suspended</c> <c>vmSuspended | vmBulkShutdown</c>
+	<c>running</c> <c>suspended</c> <c>suspending</c> <c>vmSuspending | vmBulkSuspending</c>
+	<c></c> <c>shutdown</c> <c>shuttingdown</c> <c>vmShuttingdown | vmBulkShuttingdown</c>
+	<c></c> <c>destroy</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
+	<c></c> <c>(migration to other hypervisor operation initiated)</c> <c>migrating</c> <c>vmMigrating | vmBulkMingrating</c>
+	<c>resuming</c> <c>(resume opeartion completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
+	<c>paused</c> <c>running</c> <c>running</c> <c>vmRunning</c>
+	<c>shuttingdown</c> <c>(shutdown operation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
+	<c>shutdown</c> <c>running</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
+	<c></c> <c>(migration to other hypervisor operation initiated)</c> <c>migrating</c> <c>vmMigrating | vmBulkMigrating</c>
+	<c></c> <c>(deletion operation completed)</c> <c>(no state)</c> <c>vmDeleted | vmBulkDeleted</c>
+	<c>migrating</c> <c>(migration operation from other hypervisor completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
+	<c></c> <c>(migration to other hypervisor operation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
+	<c>preparing</c> <c>(preparation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
+	<c>blocked</c> <c>(blocking operation completed)</c> <c>(previous state)</c> <c>-</c>
+	<c>crashed</c> <c>-</c> <c>-</c> <c>-</c>
+	<c>(any)</c> <c>(blocking operation initiated)</c> <c>blocked</c> <c>vmBlocked | vmBulkBlocked</c>
+	<c></c> <c>(crashed)</c> <c>crashed</c> <c>vmCrashed | vmBulkCrashed</c>
+	<c>(no state)</c> <c>(migrate from other hypervisor initiated)</c> <c>migrating</c> <c>-</c>
+	<c></c> <c>(preparation initiated)</c> <c>preparing</c> <c>-</c>
+      </texttable>
+    </section>
   </back>
 </rfc>
