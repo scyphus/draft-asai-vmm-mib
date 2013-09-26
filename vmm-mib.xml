@@ -2249,7 +2249,7 @@ END
 	<c></c> <c>destroy</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
 	<c></c> <c>(migration to other hypervisor initiated)</c> <c>migrating</c> <c>vmMigrating | vmBulkMingrating</c>
 	<c>resuming</c> <c>(resume opeartion completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
-	<c>paused</c> <c>running</c> <c>running</c> <c>vmRunning</c>
+	<c>paused</c> <c>running</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
 	<c>shuttingdown</c> <c>(shutdown operation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
 	<c>shutdown</c> <c>running</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
 	<c></c> <c>(if this state entry is created by a migration operation (*)</c> <c>migrating</c> <c>vmMigrating | vmBulkMigrating</c>
