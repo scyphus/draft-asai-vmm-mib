@@ -2052,6 +2052,37 @@ END
       Commission under its Seventh Framework Programme.</t>
     </section>
 
+    <section anchor="Appendix" title="Appendix">
+      <section anchor="State_Transition_Table" title="State Transition Table">
+	<texttable title="State transition table">
+	  <ttcol align="center">State</ttcol>
+	  <ttcol align="center">Action</ttcol>
+	  <ttcol align="center">Next state</ttcol>
+	  <ttcol align="center">Notification</ttcol>
+	  <c>suspended</c>    <c>running</c>   <c>resuming</c>     <c>-</c>
+	  <c>suspending</c>   <c>-</c>         <c>suspended</c>    <c>vmSuspended | vmBulkShutdown</c>
+	  <c>running</c>      <c>suspended</c> <c>suspending</c>   <c>-</c>
+          <c></c>             <c>shutdown</c>  <c>shuttingdown</c> <c>-</c>
+
+          <c></c>             <c>destroy</c>   <c>shutdown</c>     <c>vmShutdown | vmBulkShutdown</c>
+          <c></c>             <c>-</c>         <c>migrating</c>    <c>-</c>
+	  <c>resuming</c>     <c>-</c>         <c>running</c>      <c>vmRunning | vmBulkRunning</c>
+	  <c>paused</c>       <c>running</c>   <c>running</c>      <c>vmRunning</c>
+	  <c>shuttingdown</c> <c>-</c>         <c>shutdown</c>     <c>vmShutdown | vmBulkShutdown</c>
+	  <c>shutdown</c>     <c>running</c>   <c>running</c>      <c>vmRunning | vmBulkRunning</c>
+          <c></c>             <c>-</c>         <c>migrating</c>    <c>-</c>
+
+          <c></c>             <c>-</c>         <c>(no state)</c>   <c>vmDeleted | vmBulkDeleted</c>
+	  <c>migrating</c>    <c>-</c>         <c>running</c>      <c>vmRunning | vmBulkRunning</c>
+          <c></c>             <c>-</c>         <c>shutdown</c>     <c>vmShutdown | vmBulkShutdown</c>
+	  <c>preparing</c>    <c>-</c>         <c>shutdown</c>     <c>vmShutdown | vmBulkShutdown</c>
+	  <c>blocked</c>      <c>-</c>         <c>(prev. state)</c> <c>-</c>
+	  <c>crashed</c>      <c>-</c>         <c>-</c>            <c>-</c>
+	  <c>(any)</c>        <c>-</c>         <c>blocked</c>      <c>-</c>
+          <c></c>             <c>-</c>         <c>crashed</c>      <c>vmCrashed | vmBulkCrashed</c>
+	</texttable>
+      </section>
+    </section>
 
   </middle>
 
