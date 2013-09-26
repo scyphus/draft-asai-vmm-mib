@@ -2132,22 +2132,22 @@ END
 	<c>running</c> <c>suspended</c> <c>suspending</c> <c>-</c>
 	<c></c> <c>shutdown</c> <c>shuttingdown</c> <c>-</c>
 	<c></c> <c>destroy</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
-	<c></c> <c>(migration to other hypervisor initiated)</c> <c>migrating</c> <c>-</c>
+	<c></c> <c>(migrate to other hypervisor initiated)</c> <c>migrating</c> <c>-</c>
 	<c>resuming</c> <c>(resume operation completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
 	<c>paused</c> <c>running</c> <c>running</c> <c>vmRunning</c>
 	<c>shuttingdown</c> <c>(shutdown operation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
 	<c>shutdown</c> <c>running</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
-	<c></c> <c>(migrate to other hypervisor initiated)</c> <c>migrating</c> <c>-</c>
+	<c></c> <c>(if this state entry is created by a migration operation (*))</c> <c>migrating</c> <c>-</c>
 	<c></c> <c>(delete operation completed)</c> <c>(no state)</c> <c>vmDeleted | vmBulkDeleted</c>
-	<c>migrating</c> <c>(migrate from other hypervisor completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
-	<c></c> <c>(migrate to other hypervisor completed)</c> <c>shutdown</c>     <c>vmShutdown | vmBulkShutdown</c>
+	<c>migrating</c> <c>(migration from other hypervisor completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
+	<c></c> <c>(migration to other hypervisor completed)</c> <c>shutdown</c>     <c>vmShutdown | vmBulkShutdown</c>
 	<c>preparing</c> <c>(preparation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
 	<c>blocked</c> <c>(blocking operation completed)</c> <c>(previous state)</c> <c>-</c>
 	<c>crashed</c> <c>-</c> <c>-</c> <c>-</c>
 	<c>(any)</c> <c>(blocking operation initiated)</c> <c>blocked</c> <c>-</c>
 	<c></c> <c>(crashed)</c> <c>crashed</c> <c>vmCrashed | vmBulkCrashed</c>
-	<c>(no state)</c> <c>(migrate from other hypervisor initiated)</c> <c>migrating</c> <c>-</c>
-	<c></c> <c>(preparation initiated)</c> <c>preparing</c> <c>-</c>
+	<c>(no state)</c> <c>(preparation initiated)</c> <c>preparing</c> <c>-</c>
+	<c></c> <c>(migration from other hypervisor initiated)</c> <c>shutdown (*)</c> <c>vmShutdown</c>
       </texttable>
     </section>
   </back>
