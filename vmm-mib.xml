@@ -2236,7 +2236,7 @@ END
     </section>
     -->
 
-    <section anchor="State_TransitionTable" title="State Transition Table">
+    <section anchor="State_Transition_Table" title="State Transition Table">
       <texttable title="State transition table">
 	<ttcol align="center">State</ttcol>
 	<ttcol align="center">Action or (Event)</ttcol>
