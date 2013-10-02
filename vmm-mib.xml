@@ -1099,7 +1099,7 @@ vmMinCpuNumber OBJECT-TYPE
             the virtual machine when it is in a power-on state.  The
             value -1 indicates that there is no hard boundary for
             the minimum number of virtual CPUs.  Changes to this
-            object may not persist across restarts of the
+            object must not persist across restarts of the
             hypervisor."
     ::= { vmEntry 10 }
 
@@ -1111,7 +1111,7 @@ vmMaxCpuNumber OBJECT-TYPE
             "The maximum number of virtual CPUs that are assigned to
             the virtual machine when it is in a power-on state.  The
             value -1 indicates that there is no limit.  Changes to
-            this object may not persist across restarts of the
+            this object must not persist across restarts of the
             hypervisor."
     ::= { vmEntry 11 }
 
@@ -1144,7 +1144,7 @@ vmMinMem OBJECT-TYPE
             "The minimum memory size defined to the virtual machine
             in the unit designated by vmMemUnit.  The value -1
             indicates that there is no hard boundary for the minimum
-            memory size.  Changes to this object may not persist
+            memory size.  Changes to this object must not persist
             across the restart of the hypervisor."
     ::= { vmEntry 14 }
 
@@ -1156,7 +1156,7 @@ vmMaxMem OBJECT-TYPE
             "The maximum memory size defined to the virtual machine
             in the unit designated by vmMemUnit.  The value -1
             indicates that there is no limit.  Changes to this
-            object may not persist across the restart of the
+            object must not persist across the restart of the
             hypervisor."
     ::= { vmEntry 15 }
 
