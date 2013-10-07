@@ -136,7 +136,7 @@
       </address>
     </author>
 
-    <date month="July" year="2013" />
+    <date month="October" year="2013" />
 
     <!-- Meta-data Declarations -->
     <area>Operations and Management</area>
@@ -1175,8 +1175,8 @@ vmUpTime OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "The time (in centi-seconds) since the administrative
-            state of the virtual machine was last changed to power
-            on."
+            state of the virtual machine was last changed from
+            shutdown(4) to running(1)."
     ::= { vmEntry 16 }
 
 vmCpuTime OBJECT-TYPE
