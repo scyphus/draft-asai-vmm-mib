@@ -292,9 +292,10 @@
         scalars below `hypervisor' provide basic information about the
         hypervisor.  The `vmTable' lists the virtual machines (guests)
         that are known to the hypervisor.
-        The `vmCpuTable' and 'vmCpuAffinityTable'
-        provide the mapping of virtual CPUs and their affinity
-        to virtual machines.
+        The `vmCpuTable' provides the mapping table of virtual CPUs
+        to virtual machines, including CPU time used by each virtual CPU.
+        The 'vmCpuAffinityTable' provides the affinity of
+        each virtual CPU to a physical CPU.
         The `vmStorageTable' and the `vmNetworkTable' provide
         the mapping of logical storage areas and network
         interfaces to virtual machines.
