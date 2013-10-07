@@ -175,6 +175,8 @@
       Xen hypervisor, a MIB module for managing virtual machines controlled
       by the VMware hypervisor, and a MIB module using the libvirt
       programming interface to access different hypervisors.
+      However, this MIB module attempts to generalize
+      the managed objects to support other hypervisors.
       </t>
       <section title="Requirements Language">
         <t>The key words &quot;MUST&quot;, &quot;MUST NOT&quot;,
