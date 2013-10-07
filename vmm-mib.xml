@@ -875,16 +875,16 @@ VirtualMachineList ::= TEXTUAL-CONVENTION
     STATUS       current
     DESCRIPTION
             "Each octet within this value specifies a set of eight
-            Virtual Machine vmIndex, with the first octet specifying
-            Virtual Machine 1 through 8, the second octet specifying
-            Virtual Machine 9 through 16, etc.  Within each octet,
+            virtual machine vmIndex, with the first octet specifying
+            virtual machine 1 through 8, the second octet specifying
+            virtual machine 9 through 16, etc.  Within each octet,
             the most significant bit represents the lowest numbered
             vmIndex, and the least significant bit represents the
-            highest numbered vmIndex.  Thus, each Virtual Machine of
+            highest numbered vmIndex.  Thus, each virtual machine of
             the host is represented by a single bit within the value
             of this object.  If that bit has a value of '1', then
-            that Virtual Machine is included in the set of Virtual
-            Machines; the Virtual Machine is not included if its bit
+            that virtual machine is included in the set of virtual
+            machines; the virtual machine is not included if its bit
             has a value of '0'."
     SYNTAX      OCTET STRING
 
@@ -1012,10 +1012,10 @@ vmIndex OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "A unique value, greater than zero, identifying the
-            virtual machine. The value assigned to a given Virtual
-            machine may not persist across a reboot. A command
-            generator must use the vmUUID to identify a given
-            Virtual Machine of interest."
+            virtual machine. The value assigned to a given virtual
+            machine may not persist across re-initialization of the
+            hypervisor.  A command generator must use the vmUUID to
+            identify a given virtual machine of interest."
     ::= { vmEntry 1 }
 
 vmName OBJECT-TYPE
@@ -1033,8 +1033,8 @@ vmUUID OBJECT-TYPE
     DESCRIPTION
             "The virtual machine's 128-bit UUID or the zero-length
             string when a UUID is not available. The UUID if set
-            must uniquely identify a VM from all other Virtual
-            Machines in an administrative region. (*mrm -note-
+            must uniquely identify a VM from all other virtual
+            machines in an administrative region. (*mrm -note-
             explain case when this value may be empty."
     ::= { vmEntry 3 }
 
@@ -1153,7 +1153,7 @@ vmMinMem OBJECT-TYPE
             in the unit designated by vmMemUnit.  The value -1
             indicates that there is no hard boundary for the minimum
             memory size.  Changes to this object must not persist
-            across the restart of the hypervisor."
+            across restarts of the hypervisor."
     ::= { vmEntry 14 }
 
 vmMaxMem OBJECT-TYPE
@@ -1164,7 +1164,7 @@ vmMaxMem OBJECT-TYPE
             "The maximum memory size defined to the virtual machine
             in the unit designated by vmMemUnit.  The value -1
             indicates that there is no limit.  Changes to this
-            object must not persist across the restart of the
+            object must not persist across restarts of the
             hypervisor."
     ::= { vmEntry 15 }
 
@@ -1570,7 +1570,7 @@ vmAffectedVMs OBJECT-TYPE
     MAX-ACCESS   accessible-for-notify
     STATUS       current
     DESCRIPTION
-            "A complete list of Virtual Machines whose state has
+            "A complete list of virtual machines whose state has
             changed.  This object is the only object sent with bulk
             notifications."
     ::= { vmObjects 11 }
