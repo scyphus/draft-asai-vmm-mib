@@ -29,7 +29,7 @@
 
 <!--ipr="noDerivativeWorks2026", full2026, trust200902-->
 <!-- trust200902, noDerivativeWorks2026 -->
-<rfc docName="draft-asai-vmm-mib-04" ipr="trust200902" category="std">
+<rfc docName="draft-asai-vmm-mib-05" ipr="trust200902" category="std">
 
   <front>
     <title abbrev="Virtual Machine Monitoring MIB">
