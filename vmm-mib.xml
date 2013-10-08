@@ -1197,7 +1197,12 @@ vmCpuTime OBJECT-TYPE
     DESCRIPTION
             "The total CPU time used in microsecond.  If the number
             of virtual CPUs is larger than 1, vmCpuTime may exceed
-            real time."
+            real time.
+
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the management system, restarts
+            of the hypervisor, and administrative state
+            (vmAdminState) changes of the virtual machine."
     ::= { vmEntry 17 }
 
 -- The virtual CPU on each virtual machines
@@ -1241,7 +1246,12 @@ vmCpuCoreTime OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "The total CPU time used by this virtual CPU in
-            microsecond."
+            microsecond.
+
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the management system, restarts
+            of the hypervisor, and administrative state
+            (vmAdminState) changes of the virtual machine."
     ::= { vmCpuEntry 2 }
 
 -- The virtual CPU affinity on each virtual machines
@@ -1466,7 +1476,12 @@ vmStorageReadIOs OBJECT-TYPE
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The number of read I/O requests."
+            "The number of read I/O requests.
+
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the management system, restarts
+            of the hypervisor, and administrative state
+            (vmAdminState) changes of the virtual machine."
     ::= { vmStorageEntry 13 }
 
 vmStorageWriteIOs OBJECT-TYPE
@@ -1474,7 +1489,12 @@ vmStorageWriteIOs OBJECT-TYPE
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The number of write I/O requests."
+            "The number of write I/O requests.
+
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the management system, restarts
+            of the hypervisor, and administrative state
+            (vmAdminState) changes of the virtual machine."
     ::= { vmStorageEntry 14 }
 
 -- The virtual network interfaces on each virtual machine.
