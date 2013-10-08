@@ -304,8 +304,8 @@
         such as management IP addresses of a virtual machine
         may be included in entLogicalTable of
         <xref target="RFC4133">ENTITY-MIB</xref>.
-        They are excluded from this MIB module to generalize this MIB module
-        because they are specific to hypervisors.
+        Note that they are excluded from this MIB module to generalize
+        this MIB module because they are specific to hypervisors.
         </t>
         <figure align="center" anchor="vm-state"
                 title="State transition of a virtual machine">
