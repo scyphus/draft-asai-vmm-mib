@@ -353,7 +353,7 @@
         and an operational state model for virtual machines.
         Events causing transitions between major operational states
         will cause the generation of notifications.
-        Per-VM notifications (vmRunning, vmShutdown,
+        Per virtual machine (per-VM) notifications (vmRunning, vmShutdown,
         vmPaused, vmSuspended, vmCrashed, vmDeleted) are generated
         if vmPerVMNotificationsEnabled is true(1).
         Bulk notifications (vmBulkRunning, vmBulkShutdown,
@@ -435,11 +435,11 @@
   |  |     |                            vmAutoStart(7)
   |  |     +-- r-n VirtualMachinePersistent
   |  |     |                            vmPersistent(8)
-  |  |     +-- r-n Integer32            vmCurCpuNumber(9)
+  |  |     +-- rwn Integer32            vmCurCpuNumber(9)
   |  |     +-- rwn Integer32            vmMinCpuNumber(10)
   |  |     +-- rwn Integer32            vmMaxCpuNumber(11)
   |  |     +-- r-n Integer32            vmMemUnit(12)
-  |  |     +-- r-n Integer32            vmCurMem(13)
+  |  |     +-- rwn Integer32            vmCurMem(13)
   |  |     +-- rwn Integer32            vmMinMem(14)
   |  |     +-- rwn Integer32            vmMaxMem(15)
   |  |     +-- r-n TimeTicks            vmUpTime(16)
@@ -524,7 +524,7 @@ IMPORTS
         FROM IF-MIB;
 
 vmMIB MODULE-IDENTITY
-    LAST-UPDATED "201307020000Z"        -- 2 July 2013
+    LAST-UPDATED "201310080000Z"        -- 8 October 2013
     ORGANIZATION "IETF Operations and Management Area Working Group"
     CONTACT-INFO
             "
@@ -603,7 +603,7 @@ vmMIB MODULE-IDENTITY
             IETF Trust's Legal Provisions Relating to IETF Documents
             (http://trustee.ietf.org/license-info)."
 
-    REVISION "201307020000Z"        -- 2 July 2013
+    REVISION "201310080000Z"        -- 8 October 2013
     DESCRIPTION
             "The original version of this MIB, published as
             RFCXXXX."
@@ -648,7 +648,8 @@ VirtualMachineAdminState ::= TEXTUAL-CONVENTION
 
             running(1)    The administrative state of the virtual
                           machine indicating the virtual machine
-                          should be brought online.
+                          is currently online or should be brought
+                          online.
 
             suspended(2)  The administrative state of the virtual
                           machine where its memory and CPU execution
@@ -662,14 +663,15 @@ VirtualMachineAdminState ::= TEXTUAL-CONVENTION
 
             shutdown(4)   The administrative state of the virtual
                           machine indicating the virtual machine
-                          should be taken shuttingdown.
+                          is currently offline or should be taken
+                          shutting down.
 
             destroy(5)    The administrative state of the virtual
                           machine indicating the virtual machine
                           should be forcibly shutdown.  After the
                           destroy operation, the administrative
                           state should be automatically changed to
-                          shutdown."
+                          shutdown(4)."
     SYNTAX       INTEGER {
                     running(1),
                     suspend(2),
@@ -683,45 +685,84 @@ VirtualMachineOperState ::= TEXTUAL-CONVENTION
     DESCRIPTION
             "The operational state of a virtual machine:
 
-            unknown(1)     The state is unknown, e.g., because the
+            unknown(1)     The operational state of the virtual
+                           machine is unknown, e.g., because the
                            implementation failed to obtain the state
                            from the hypervisor.
 
-            other(2)       The state has been obtained but it is not
-                           a known state.
+            other(2)       The operational state of the virtual
+                           machine indicating that an operational
+                           state is obtained from the hypervisor but
+                           it is not a state defined in this MIB
+                           module.
 
-            preparing(3)   The virtual machine is currently in the
-                           process of preparation, e.g., allocating
-                           and initializing virtual storage after
-                           creating (defining) virtual machine.
+            preparing(3)   The operational state of the virtual
+                           machine indicating the virtual machine is
+                           currently in the process of preparation,
+                           e.g., allocating and initializing virtual
+                           storage after creating (defining) virtual
+                           machine.
 
-            running(4)     The virtual machine is currently running.
+            running(4)     The operational state of the virtual
+                           machine indicating the virtual machine is
+                           currently executed but it is not in the
+                           process of preparing(3), suspending(6),
+                           resuming(8), migrating(10), and
+                           shuttingdown(11).
 
-            blocked(5)     The virtual machine is currently blocked.
+            blocked(5)     The operational state of the virtual
+                           machine indicating the execution of the
+                           virtual machine is currently blocked,
+                           e.g., waiting for some action of the
+                           hypervisor to finish.  This is a
+                           transient state from/to other states.
 
-            suspending(6)  The virtual machine is currently in the
-                           process of suspending.
+            suspending(6)  The operational state of the virtual
+                           machine indicating the virtual machine is
+                           currently in the process of suspending
+                           to save its memory and CPU execution
+                           state to persistent store.  This is a
+                           transient state from running(4) to
+                           suspended(7).
 
-            suspended(7)   The virtual machine is currently
-                           suspended.
+            suspended(7)   The operational state of the virtual
+                           machine indicating the virtual machine is
+                           currently suspended, which means the
 
-            resuming(8)    The virtual machine is currently in the
-                           process of resuming.  This is a transient
-                           state from suspended state to running
-                           state.
+            resuming(8)    The operational state of the virtual
+                           machine indicating the virtual machine is
+                           currently in the process of resuming
+                           to restore its memory and CPU execution
+                           state from persistent store.  This is a
+                           transient state from suspended(7) to
+                           running(4).
 
-            paused(9)      The virtual machine is currently paused.
+            paused(9)      The operational state of the virtual
+                           machine indicating the virtual machine is
+                           resident in memory but no longer
+                           scheduled to execute by the hypervisor.
 
-            migrating(10)  The virtual machine is currently
-                           migrating.
+            migrating(10)  The operational state of the virtual
+                           machine indicating the virtual machine is
+                           currently in the process of migration
+                           from/to another hypervisor.
 
             shuttingdown(11)
-                           The virtual machine is currently in the
-                           process of shutting down.
+                           The operational state of the virtual
+                           machine indicating the virtual machine is
+                           currently in the process of shutting
+                           down.  This is a transient state from
+                           running(4) to shutdown(12).
 
-            shutdown(12)   The virtual machine is down.
+            shutdown(12)   The operational state of the virtual
+                           machine indicating the virtual machine is
+                           down, and CPU execution is no longer
+                           scheduled by the hypervisor and its
+                           memory is not resident in the hypervisor.
 
-            crashed(13)    The virtual machine has crashed."
+            crashed(13)    The operational state of the virtual
+                           machine indicating the virtual machine
+                           has crashed."
     SYNTAX       INTEGER {
                     unknown(1),
                     other(2),
@@ -746,7 +787,7 @@ VirtualMachineAutoStart ::= TEXTUAL-CONVENTION
             unknown(1)     The autostart configuration is unknown,
                            e.g., because the implementation failed
                            to obtain the autostart configuration
-                           from the hypervisor. (read-only)
+                           from the hypervisor.
 
             enable(2)      The autostart configuration of the
                            virtual machine is enabled.
@@ -774,8 +815,8 @@ VirtualMachinePersistent ::= TEXTUAL-CONVENTION
             persistent(2)  The virtual machine is persistent.
 
             transient(3)   The virtual machine is transient, i.e.,
-                           the virtual machine does not exist after
-                           its power-off."
+                           the virtual machine will not exist after
+                           its shutting down."
     SYNTAX       INTEGER {
                     unknown(1),
                     persistent(2),
@@ -786,22 +827,23 @@ VirtualMachineCpuIndex ::= TEXTUAL-CONVENTION
     DISPLAY-HINT "d"
     STATUS       current
     DESCRIPTION
-            "A unique value, greater than zero, identifying a
-            virtual CPU assigned to a virtual machine.  The value
-            for each virtual CPU must remain constant at least from
-            one re-initialization of the virtual machine to the next
-            re-initialization."
+            "A unique value for each virtual machine, greater than
+            zero, identifying a virtual CPU assigned to a virtual
+            machine.  The value for each virtual CPU must remain
+            constant at least from one re-initialization of the
+            hypervisor to the next re-initialization."
      SYNTAX      Integer32 (1..2147483647)
 
 VirtualMachineStorageIndex ::= TEXTUAL-CONVENTION
     DISPLAY-HINT "d"
     STATUS       current
     DESCRIPTION
-            "A unique value, greater than zero, identifying a
-            virtual storage device allocated to a virtual machine.
-            The value for each virtual storage device must remain
-            constant at least from one re-initialization of the
-            virtual machine to the next re-initialization."
+            "A unique value for each virtual machine, greater than
+            zero, identifying a virtual storage device allocated to
+            a virtual machine.  The value for each virtual storage
+            device must remain constant at least from one
+            re-initialization of the hypervisor to the next
+            re-initialization."
      SYNTAX      Integer32 (1..2147483647)
 
 VirtualMachineStorageSourceType ::= TEXTUAL-CONVENTION
@@ -873,11 +915,12 @@ VirtualMachineNetworkIndex ::= TEXTUAL-CONVENTION
     DISPLAY-HINT "d"
     STATUS       current
     DESCRIPTION
-            "A unique value, greater than zero, identifying a
-            virtual network interface allocated to a virtual
-            machine.  The value for each virtual network interface
-            must remain constant at least from one re-initialization
-            of the virtual machine to the next re-initialization."
+            "A unique value for each virtual machine, greater than
+            zero, identifying a virtual network interface allocated
+            to the virtual machine.  The value for each virtual
+            network interface must remain constant at least from one
+            re-initialization of the hypervisor to the next
+            re-initialization."
      SYNTAX      Integer32 (1..2147483647)
 
 VirtualMachineList ::= TEXTUAL-CONVENTION
@@ -1042,10 +1085,11 @@ vmUUID OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "The virtual machine's 128-bit UUID or the zero-length
-            string when a UUID is not available. The UUID if set
-            must uniquely identify a VM from all other virtual
-            machines in an administrative region. (*mrm -note-
-            explain case when this value may be empty."
+            string when a UUID is not available.  The UUID if set
+            must uniquely identify a virtual machine from all other
+            virtual machines in an administrative region.  A
+            zero-length octet string is returned if no UUID
+            information is known."
     ::= { vmEntry 3 }
 
 vmOSType OBJECT-TYPE
@@ -1070,7 +1114,7 @@ vmAdminState OBJECT-TYPE
             "The administrative power state of the virtual machine.
             Note that a virtual machine is supposed to be resumed
             when vmAdminState of the virtual machine is changed from
-            pause(3) to on(1)."
+            suspended(2) or paused(3) to running(1)."
     ::= { vmEntry 5 }
 
 vmOperState OBJECT-TYPE
@@ -1078,7 +1122,7 @@ vmOperState OBJECT-TYPE
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The current operational state of the virtual machine."
+            "The operational state of the virtual machine."
     ::= { vmEntry 6 }
 
 vmAutoStart OBJECT-TYPE
@@ -1086,7 +1130,10 @@ vmAutoStart OBJECT-TYPE
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The autostart configuration of the virtual machine."
+            "The autostart configuration of the virtual machine.  If
+            this value is enable(2), the virtual machine
+            automatically starts at the next initialization of the
+            hypervisor."
     ::= { vmEntry 7 }
 
 vmPersistent OBJECT-TYPE
@@ -1096,16 +1143,17 @@ vmPersistent OBJECT-TYPE
     DESCRIPTION
             "This value indicates whether the virtual machine has a
             persistent configuration which means the virtual machine
-            will still exist after shutting down."
+            will still exist after its shutdown."
     ::= { vmEntry 8 }
 
 vmCurCpuNumber OBJECT-TYPE
     SYNTAX       Integer32 (0..2147483647)
-    MAX-ACCESS   read-only
+    MAX-ACCESS   read-write
     STATUS       current
     DESCRIPTION
             "The number of virtual CPUs currently assigned to the
-            virtual machine."
+            virtual machine.  Changes to this object MUST NOT
+            persist across re-initialization of the hypervisor."
     ::= { vmEntry 9 }
 
 vmMinCpuNumber OBJECT-TYPE
@@ -1117,7 +1165,7 @@ vmMinCpuNumber OBJECT-TYPE
             the virtual machine when it is in a power-on state.  The
             value -1 indicates that there is no hard boundary for
             the minimum number of virtual CPUs.  Changes to this
-            object MUST NOT persist across restarts of the
+            object MUST NOT persist across re-initialization of the
             hypervisor."
     ::= { vmEntry 10 }
 
@@ -1129,8 +1177,8 @@ vmMaxCpuNumber OBJECT-TYPE
             "The maximum number of virtual CPUs that are assigned to
             the virtual machine when it is in a power-on state.  The
             value -1 indicates that there is no limit.  Changes to
-            this object MUST NOT persist across restarts of the
-            hypervisor."
+            this object MUST NOT persist across re-initialization of
+            the hypervisor."
     ::= { vmEntry 11 }
 
 vmMemUnit OBJECT-TYPE
@@ -1146,12 +1194,13 @@ vmMemUnit OBJECT-TYPE
 
 vmCurMem OBJECT-TYPE
     SYNTAX       Integer32 (0..2147483647)
-    MAX-ACCESS   read-only
+    MAX-ACCESS   read-write
     STATUS       current
     DESCRIPTION
             "The current memory size currently allocated to the
             virtual memory module in the unit designated by
-            vmMemUnit."
+            vmMemUnit.  Changes to this object MUST NOT persist
+            across re-initialization of the hypervisor."
     ::= { vmEntry 13 }
 
 vmMinMem OBJECT-TYPE
@@ -1163,7 +1212,7 @@ vmMinMem OBJECT-TYPE
             in the unit designated by vmMemUnit.  The value -1
             indicates that there is no hard boundary for the minimum
             memory size.  Changes to this object MUST NOT persist
-            across restarts of the hypervisor."
+            across re-initialization of the hypervisor."
     ::= { vmEntry 14 }
 
 vmMaxMem OBJECT-TYPE
@@ -1174,7 +1223,7 @@ vmMaxMem OBJECT-TYPE
             "The maximum memory size defined to the virtual machine
             in the unit designated by vmMemUnit.  The value -1
             indicates that there is no limit.  Changes to this
-            object MUST NOT persist across restarts of the
+            object MUST NOT persist across re-initialization of the
             hypervisor."
     ::= { vmEntry 15 }
 
@@ -1200,9 +1249,9 @@ vmCpuTime OBJECT-TYPE
             real time.
 
             Discontinuities in the value of this counter can occur
-            at re-initialization of the management system, restarts
-            of the hypervisor, and administrative state
-            (vmAdminState) changes of the virtual machine."
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
     ::= { vmEntry 17 }
 
 -- The virtual CPU on each virtual machines
@@ -1249,9 +1298,9 @@ vmCpuCoreTime OBJECT-TYPE
             microsecond.
 
             Discontinuities in the value of this counter can occur
-            at re-initialization of the management system, restarts
-            of the hypervisor, and administrative state
-            (vmAdminState) changes of the virtual machine."
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
     ::= { vmCpuEntry 2 }
 
 -- The virtual CPU affinity on each virtual machines
@@ -1479,9 +1528,9 @@ vmStorageReadIOs OBJECT-TYPE
             "The number of read I/O requests.
 
             Discontinuities in the value of this counter can occur
-            at re-initialization of the management system, restarts
-            of the hypervisor, and administrative state
-            (vmAdminState) changes of the virtual machine."
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
     ::= { vmStorageEntry 13 }
 
 vmStorageWriteIOs OBJECT-TYPE
@@ -1492,9 +1541,9 @@ vmStorageWriteIOs OBJECT-TYPE
             "The number of write I/O requests.
 
             Discontinuities in the value of this counter can occur
-            at re-initialization of the management system, restarts
-            of the hypervisor, and administrative state
-            (vmAdminState) changes of the virtual machine."
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
     ::= { vmStorageEntry 14 }
 
 -- The virtual network interfaces on each virtual machine.
@@ -1929,12 +1978,22 @@ vmReadOnlyCompliances MODULE-COMPLIANCE
     DESCRIPTION
             "Write access is not required."
 
+    OBJECT vmCurCpuNumber
+    MIN-ACCESS   read-only
+    DESCRIPTION
+            "Write access is not required."
+
     OBJECT vmMinCpuNumber
     MIN-ACCESS   read-only
     DESCRIPTION
             "Write access is not required."
 
     OBJECT vmMaxCpuNumber
+    MIN-ACCESS   read-only
+    DESCRIPTION
+            "Write access is not required."
+
+    OBJECT vmCurMem
     MIN-ACCESS   read-only
     DESCRIPTION
             "Write access is not required."
