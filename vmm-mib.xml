@@ -13,6 +13,8 @@
 <!ENTITY RFC3418 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3418.xml">
 <!ENTITY RFC4122 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4122.xml">
 <!ENTITY RFC4133 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4133.xml">
+<!ENTITY RFC4188 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4188.xml">
+<!ENTITY RFC4363 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4363.xml">
 <!ENTITY RFC6933 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6933.xml">
 ]>
 
@@ -209,6 +211,20 @@
     <section title="Managed Objects for Virtual Machines Controlled by a
                     Hypervisor"><!--on Virtualization Environment-->
       <section title="Managed Objects on Virtualization Environment">
+        <t>On the common implementations of hypervisor softwares,
+        a hypervisor allocates virtual resources
+        such as virtual CPUs, virtual memory, virtual storage devices,
+        and virtual network interfaces to virtual machines
+        from physical resources.
+        This document defines objects related to
+        system and software information of a hypervisor,
+        the list of virtual machines controlled by the hypervisor,
+        and virtual resources allocated by the hypervisor
+        to virtual machines.
+        This document specifies four specific types
+        of virtual resources that are common to general hypervisors;
+        CPUs (processors), memory, network interfaces, and storage devices.
+        </t>
         <figure align="center" anchor="environment"
                 title="An example of a virtualization environment">
           <artwork align="center"><![CDATA[
@@ -232,39 +248,13 @@
 | Hypervisor                                                       |
 +------------------------------------------------------------------+
 ]]></artwork>
-          <postamble>A hypervisor allocates resources
-          as virtual devices such as virtual CPU, virtual memory,
-          virtual storage, and virtual network interface
-          to multiple virtual machines controlled by the hypervisor
-          from physical resources.</postamble>
+          <postamble>A hypervisor allocates virtual resources
+          such as virtual CPUs, virtual memory,
+          virtual storage devices, and virtual network interfaces
+          to virtual machines from physical resources.</postamble>
         </figure>
-
-        <t>On the common implementations of hypervisor softwares,
-        a hypervisor allocates resources as virtual devices
-        such as virtual CPUs, virtual memory, virtual storage, and
-        virtual network interface to multiple virtual machines
-        controlled by the hypervisor from physical resources.
-        This document defines objects related to
-        system and software information of a hypervisor,
-        the list of virtual machines controlled by the hypervisor,
-        and virtual resources allocated by the hypervisor
-        to virtual machines.
-        As shown in <xref target="environment" />,
-        the virtual resource objects are defined as virtual devices.
-        Consequently, this document specifies four specific types
-        of virtual devices;
-        CPUs (processors), memory, network interfaces, and storage devices.
-        Note that physical resources are managed in
-        <xref target="RFC2790">HOST-RESOURCES-MIB</xref>.
-        In case that each virtual resource device object has
-        a corresponding parent physical device managed in HOST-RESOURCES-MIB,
-        the object of the virtual resource device
-        contains a pointer to the physical device.
-        The objects related to virtual network interfaces
-        are mapped to the objects managed in
-        <xref target="RFC2863">IF-MIB</xref>.
-        </t>
-        <t>The objects defined in this document are managed at
+        <t>As shown in <xref target="environment" />,
+        the objects defined in this document are managed at
         a hypervisor and an SNMP agent is launched at the hypervisor
         to provide access to the objects.
         The objects are managed
@@ -287,7 +277,26 @@
         <!--potentially take different values
             only if vmStorageSourceType is `unknown', `other', or `sparse'.-->
         </t>
-    </section>
+        <t>The other objects related to virtual machines
+        such as management IP addresses of a virtual machine
+        are not included in this MIB module
+        because this MIB module defines the objects
+        common to general hypervisors
+        but they are specific to some hypervisors.
+        They may be included in the entLogicalTable of
+        <xref target="RFC4133">ENTITY-MIB</xref>.
+        The objects related to virtual switches
+        are not also included in this MIB module
+        though virtual switches shall be placed on a hypervisor.
+        This is because the virtual network interfaces are
+        the lowest abstraction of network resources allocated
+        to a virtual machine.
+        Instead of including the objects related to virtual switches,
+        for example, <xref target="RFC4188">BRIDGE-MIB</xref>
+        and <xref target="RFC4363">Q-BRIDGE-MIB</xref> could be used.
+        </t>
+
+      </section>
       <section anchor="overview" title="Overview of the MIB Module">
         <t>The MIB module is organized into a group of scalars and tables.  The
         scalars below `hypervisor' provide basic information about the
@@ -297,16 +306,26 @@
         to virtual machines, including CPU time used by each virtual CPU.
         The 'vmCpuAffinityTable' provides the affinity of
         each virtual CPU to a physical CPU.
-        The `vmStorageTable' and the `vmNetworkTable' provide
-        the mapping of logical storage areas and network
-        interfaces to virtual machines.
-        The other objects related to hypervisor or virtual machines
-        such as management IP addresses of a virtual machine
-        may be included in entLogicalTable of
-        <xref target="RFC4133">ENTITY-MIB</xref>.
-        Note that they are excluded from this MIB module to generalize
-        this MIB module because they are specific to hypervisors.
+        The `vmStorageTable' provides the list of virtual storage devices
+        and their mapping to virtual machines.
+        In case that an entry in the `vmStorageTable'
+        has a corresponding parent physical storage device
+        managed in `hrStorageTable' of
+        <xref target="RFC2790">HOST-RESOURCES-MIB</xref>,
+        the entry contains a pointer `vmStorageParent'
+        to the physical storage device.
+        The `vmNetworkTable' provides the list of virtual network interfaces
+        and their mapping to virtual machines.
+        Each entry in the `vmNetworkTable' also provides
+        a pointer `vmNetworIfIndex' to the corresponding entry
+        in the `ifTable' of <xref target="RFC2863">IF-MIB</xref>.
+        In case that an entry in the `vmNetworkTable'
+        has a corresponding parent physical network interface
+        managed in `ifTable' of IF-MIB,
+        the entry contains a pointer `vmNetworkParent'
+        to the physical network interface.
         </t>
+
         <figure align="center" anchor="vm-state"
                 title="State transition of a virtual machine">
           <artwork align="center"><![CDATA[
@@ -348,7 +367,7 @@
 ]]></artwork>
           <postamble>The state transition of a virtual machine</postamble>
         </figure>
-        <t>The vmAdminState' and `vmOperState'
+        <t>The `vmAdminState' and `vmOperState'
         textual conventions define an administrative state
         and an operational state model for virtual machines.
         Events causing transitions between major operational states
@@ -1640,7 +1659,7 @@ vmPerVMNotificationsEnabled OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "Indicates if notification generator will send
-            notifications per VM."
+            notifications per virtual machine."
     ::= { vmObjects 9 }
 
 vmBulkNotificationsEnabled OBJECT-TYPE
@@ -1649,7 +1668,7 @@ vmBulkNotificationsEnabled OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "Indicates if notification generator will send
-            notifications per set of VMs."
+            notifications per set of virtual machines."
     ::= { vmObjects 10 }
 
 vmAffectedVMs OBJECT-TYPE
@@ -1672,7 +1691,7 @@ vmRunning NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `running' from some other state.  The other state is
+            running(4) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 1 }
 
@@ -1686,7 +1705,7 @@ vmShutdown NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `shutdown' from some other state.  The other state is
+            shutdown(12) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 2 }
 
@@ -1700,7 +1719,7 @@ vmPaused NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `paused' from some other state.  The other state is
+            paused(9) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 3 }
 
@@ -1714,7 +1733,7 @@ vmSuspending NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `suspending' from some other state.  The other state is
+            suspending(6) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 4 }
 
@@ -1728,7 +1747,7 @@ vmSuspended NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `suspended' from some other state.  The other state is
+            suspended(7) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 5 }
 
@@ -1742,7 +1761,7 @@ vmResuming NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `resuming' from some other state.  The other state is
+            resuming(8) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 6 }
 
@@ -1756,7 +1775,7 @@ vmMigrating NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            `migrating' from some other state.  The other state is
+            migrating(10) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 7 }
 
@@ -1782,10 +1801,10 @@ vmBlocked NOTIFICATION-TYPE
                  }
     STATUS       current
     DESCRIPTION
-            "This notification is generated when a virtual machine
-            state is changed to a blocked state.  The previos state
-            of the virtual machine is indicated by the included value
-            of vmOperState."
+            "This notification is generated when the operational
+            state of a virtual machine has been changed to
+            blocked(5).  The previos state of the virtual machine is
+            indicated by the included value of vmOperState."
     ::= { vmNotifications 9 }
 
 vmDeleted NOTIFICATION-TYPE
@@ -1811,9 +1830,10 @@ vmBulkRunning NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machine has been changed to
-            `running' from a all prior states except for 'running.'
-            Management stations are encouraged to subsequently
-            poll the subset of VMs of interest for vmOperState."
+            running(4) from a all prior states except for
+            running(4).  Management stations are encouraged to
+            subsequently poll the subset of virtual machines of
+            interest for vmOperState."
     ::= { vmNotifications 11 }
 
 vmBulkShutdown NOTIFICATION-TYPE
@@ -1824,9 +1844,10 @@ vmBulkShutdown NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machine has been changed to
-            `shutdown' from a state other than `shutdown`.
+            shutdown(12) from a state other than shutdown(12).
             Management stations are encouraged to subsequently poll
-            the subset of VMs of interest for vmOperState."
+            the subset of virtual machines of interest for
+            vmOperState."
     ::= { vmNotifications 12 }
 
 vmBulkPaused NOTIFICATION-TYPE
@@ -1837,9 +1858,10 @@ vmBulkPaused NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to `paused' from a state other than `paused.`
+            to paused(9) from a state other than paused(9).
             Management stations are encouraged to subsequently poll
-            the subset of VMs of interest for vmOperState."
+            the subset of virtual machines of interest for
+            vmOperState."
     ::= { vmNotifications 13 }
 
 
@@ -1851,9 +1873,10 @@ vmBulkSuspending NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to `suspending' from a state other than 'suspended.'
+            to suspending(6) from a state other than suspending(6).
             Management stations are encouraged to subsequently poll
-            the subset of VMs of interest for vmOperState."
+            the subset of virtual machines of interest for
+            vmOperState."
     ::= { vmNotifications 14 }
 
 vmBulkSuspended NOTIFICATION-TYPE
@@ -1864,9 +1887,10 @@ vmBulkSuspended NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to `suspended' from a state other than 'suspended.'
+            to suspended(7) from a state other than suspended(7).
             Management stations are encouraged to subsequently poll
-            the subset of VMs of interest for vmOperState."
+            the subset of virtual machines of interest for
+            vmOperState."
     ::= { vmNotifications 15 }
 
 vmBulkResuming NOTIFICATION-TYPE
@@ -1877,9 +1901,10 @@ vmBulkResuming NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to `resuming' from a state other than 'suspended.'
+            to resuming(8) from a state other than resuming(8).
             Management stations are encouraged to subsequently poll
-            the subset of VMs of interest for vmOperState."
+            the subset of virtual machines of interest for
+            vmOperState."
     ::= { vmNotifications 16 }
 
 vmBulkMigrating NOTIFICATION-TYPE
@@ -1890,9 +1915,10 @@ vmBulkMigrating NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to `migrating' from a state other than 'suspended.'
+            to migrating(10) from a state other than migrating(10).
             Management stations are encouraged to subsequently poll
-            the subset of VMs of interest for vmOperState."
+            the subset of virtual machines of interest for
+            vmOperState."
     ::= { vmNotifications 17 }
 
 vmBulkCrashed NOTIFICATION-TYPE
@@ -1903,8 +1929,8 @@ vmBulkCrashed NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when one or more virtual
             machines have been crashed.  Management stations are
-            encouraged to subsequently poll the subset of VMs of
-            interest for vmOperState."
+            encouraged to subsequently poll the subset of virtual
+            machines of interest for vmOperState."
     ::= { vmNotifications 18 }
 
 vmBulkBlocked NOTIFICATION-TYPE
@@ -1913,10 +1939,12 @@ vmBulkBlocked NOTIFICATION-TYPE
                  }
     STATUS       current
     DESCRIPTION
-            "This notification is generated when one or more virtual
-            machines' states are changed to to a blocked state.
+            "This notification is generated when the operational
+            state of one or more virtual machines have been changed
+            to blocked(5) from a state other than blocked(5).
             Management stations are encouraged to subsequently poll
-            the subset of VMs of interest for vmOperState."
+            the subset of virtual machines of interest for
+            vmOperState."
     ::= { vmNotifications 19 }
 
 vmBulkDeleted NOTIFICATION-TYPE
@@ -1927,8 +1955,8 @@ vmBulkDeleted NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when one or more virtual
             machines have been deleted.  Management stations are
-            encouraged to subsequently poll the subset of VMs of
-            interest for vmOperState."
+            encouraged to subsequently poll the subset of virtual
+            machines of interest for vmOperState."
     ::= { vmNotifications 20 }
 
 -- Compliance definitions:
@@ -2139,8 +2167,12 @@ vmPerVMNotificationOptionalGroup NOTIFICATION-GROUP
         vmRunning,
         vmShutdown,
         vmPaused,
+        vmSuspending,
         vmSuspended,
+        vmResuming,
+        vmMigrating,
         vmCrashed,
+        vmBlocked,
         vmDeleted
     }
     STATUS       current
@@ -2165,8 +2197,12 @@ vmBulkNotificationOptionalGroup NOTIFICATION-GROUP
         vmBulkRunning,
         vmBulkShutdown,
         vmBulkPaused,
+        vmBulkSuspending,
         vmBulkSuspended,
+        vmBulkResuming,
+        vmBulkMigrating,
         vmBulkCrashed,
+        vmBulkBlocked,
         vmBulkDeleted
     }
     STATUS       current
@@ -2256,7 +2292,7 @@ END
 
     <section anchor="Acknowledgements" title="Acknowledgements">
       <t>The authors like to thank
-      Randy Presuhn and David Black
+      Joe Marcus Clarke, Randy Presuhn, and David Black
       for providing helpful comments during
       the development of this specification.</t>
       <t>Juergen Schoenwaelder was partly funded by Flamingo, a Network of
@@ -2282,6 +2318,8 @@ END
       &RFC3418;
       &RFC4122;
       &RFC4133;
+      &RFC4188;
+      &RFC4363;
     </references>
     <references title="Informative References">
       &RFC3410;
