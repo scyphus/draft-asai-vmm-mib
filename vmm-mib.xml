@@ -747,6 +747,9 @@ VirtualMachineOperState ::= TEXTUAL-CONVENTION
             suspended(7)   The operational state of the virtual
                            machine indicating the virtual machine is
                            currently suspended, which means the
+                           memory and CPU execution state of the
+                           virtual machine are saved to persistent
+                           store.
 
             resuming(8)    The operational state of the virtual
                            machine indicating the virtual machine is
