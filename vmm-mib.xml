@@ -1994,8 +1994,8 @@ vmBulkDeleted NOTIFICATION-TYPE
     ::= { vmNotifications 22 }
 
 -- Compliance definitions:
-vmGroups       OBJECT IDENTIFIER ::= { vmConformance 1 }
-vmCompliances  OBJECT IDENTIFIER ::= { vmConformance 2 }
+vmCompliances  OBJECT IDENTIFIER ::= { vmConformance 1 }
+vmGroups       OBJECT IDENTIFIER ::= { vmConformance 2 }
 
 vmFullCompliances MODULE-COMPLIANCE
     STATUS       current
