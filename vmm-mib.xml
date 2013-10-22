@@ -2350,12 +2350,12 @@ END
       &RFC3415;
       &RFC3418;
       &RFC4122;
-      &RFC4188;
-      &RFC4363;
       &RFC6933;
     </references>
     <references title="Informative References">
       &RFC3410;
+      &RFC4188;
+      &RFC4363;
     </references>
 
     <section anchor="State_Transition_Table" title="State Transition Table">
