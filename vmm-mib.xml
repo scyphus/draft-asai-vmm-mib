@@ -814,21 +814,21 @@ VirtualMachineAutoStart ::= TEXTUAL-CONVENTION
                            to obtain the autostart configuration
                            from the hypervisor.
 
-            enable(2)      The autostart configuration of the
+            enabled(2)     The autostart configuration of the
                            virtual machine is enabled.  The virtual
                            machine should be automatically brought
                            online at the next re-initialization of
                            the hypervisor.
 
-            disable(3)     The autostart configuration of the
+            disabled(3)    The autostart configuration of the
                            virtual machine is disabled.  The virtual
                            machine should not be automatically
                            brought online at the next
                            re-initialization of the hypervisor."
     SYNTAX      INTEGER {
                     unknown(1),
-                    enable(2),
-                    disable(3)
+                    enabled(2),
+                    disabled(3)
                 }
 
 VirtualMachinePersistent ::= TEXTUAL-CONVENTION
@@ -1994,8 +1994,8 @@ vmBulkDeleted NOTIFICATION-TYPE
     ::= { vmNotifications 22 }
 
 -- Compliance definitions:
-vmGroups       OBJECT IDENTIFIER ::= { vmConformance 1 }
-vmCompliances  OBJECT IDENTIFIER ::= { vmConformance 2 }
+vmCompliances  OBJECT IDENTIFIER ::= { vmConformance 1 }
+vmGroups       OBJECT IDENTIFIER ::= { vmConformance 2 }
 
 vmFullCompliances MODULE-COMPLIANCE
     STATUS       current
