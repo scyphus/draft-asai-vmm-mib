@@ -1,5 +1,5 @@
 TARGET = vmm-mib
-OUTPUT_TXT_NAME = draft-asai-vmm-mib-03.txt
+OUTPUT_TXT_NAME = draft-ietf-opsawg-vmm-mib-00.txt
 XML2RFC = xml2rfc
 A2PS = a2ps
 PS2PDF = ps2pdf

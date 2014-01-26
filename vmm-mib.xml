@@ -12,8 +12,8 @@
 <!ENTITY RFC3415 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3415.xml">
 <!ENTITY RFC3418 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3418.xml">
 <!ENTITY RFC4122 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4122.xml">
-<!ENTITY RFC4188 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4188.xml">
-<!ENTITY RFC4363 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4363.xml">
+<!--<!ENTITY RFC4188 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4188.xml">-->
+<!--<!ENTITY RFC4363 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4363.xml">-->
 <!ENTITY RFC6933 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6933.xml">
 ]>
 
@@ -30,7 +30,7 @@
 
 <!--ipr="noDerivativeWorks2026", full2026, trust200902-->
 <!-- trust200902, noDerivativeWorks2026 -->
-<rfc docName="draft-asai-vmm-mib-06" ipr="trust200902" category="std">
+<rfc docName="draft-ietf-opsawg-vmm-mib-00" ipr="trust200902" category="std">
 
   <front>
     <title abbrev="Virtual Machine Monitoring MIB">
@@ -71,7 +71,7 @@
       </address>
     </author>
 
-    <author fullname="Yuji Sekiya" initials="Y.S." surname="Sekiya">
+    <author fullname="Yuji Sekiya" initials="Y.S." surname="Sekiya" role="notfirstpage">
       <organization abbrev="Univ. of Tokyo">The University of Tokyo</organization>
       <address>
         <postal>
@@ -84,6 +84,7 @@
         <email>sekiya@wide.ad.jp</email>
       </address>
     </author>
+
     <author fullname="Keiichi Shima" initials="K.S." surname="Shima">
       <organization abbrev="IIJ Innovation Institute Inc.">IIJ Innovation Institute Inc.</organization>
       <address>
@@ -110,7 +111,7 @@
       </address>
     </author>
 
-    <author fullname="Cathy Zhou" initials="C.Z." surname="Zhou">
+    <author fullname="Cathy Zhou" initials="C.Z." surname="Zhou" role="notfirstpage">
       <organization abbrev="Huawei Technologies">Huawei Technologies</organization>
       <address>
         <postal>
@@ -123,7 +124,7 @@
     </author>
 
 <!--role="notfirstpage"-->
-    <author fullname="Hiroshi Esaki" initials="H.E." surname="Esaki">
+    <author fullname="Hiroshi Esaki" initials="H.E." surname="Esaki" role="notfirstpage">
       <organization abbrev="Univ. of Tokyo">The University of Tokyo</organization>
       <address>
         <postal>
@@ -138,7 +139,7 @@
       </address>
     </author>
 
-    <date month="October" year="2013" />
+    <date month="January" year="2014" />
 
     <!-- Meta-data Declarations -->
     <area>Operations and Management</area>
@@ -291,8 +292,10 @@
         the lowest abstraction of network resources allocated
         to a virtual machine.
         Instead of including the objects related to virtual switches,
-        for example, <xref target="RFC4188">BRIDGE-MIB</xref>
-        and <xref target="RFC4363">Q-BRIDGE-MIB</xref> could be used.
+        for example, IEEE8021-BRIDGE-MIB
+        <!--<xref target="RFC4188">BRIDGE-MIB</xref>-->
+        and IEEE8021-Q-BRIDGE-MIB
+        <!--<xref target="RFC4363">Q-BRIDGE-MIB</xref>--> could be used.
         </t>
 
       </section>
@@ -544,13 +547,13 @@ IMPORTS
         FROM IF-MIB;
 
 vmMIB MODULE-IDENTITY
-    LAST-UPDATED "201310210000Z"        -- 21 October 2013
+    LAST-UPDATED "201401270000Z"        -- 27 January 2014
     ORGANIZATION "IETF Operations and Management Area Working Group"
     CONTACT-INFO
             "
-            WG E-mail: (To be added after approved by WG)
+            WG E-mail: opsawg@ietf.org
             Mailing list subscription info:
-              http:// (To be added after approved by WG)
+              https://www.ietf.org/mailman/listinfo/opsawg
 
             Hirochika Asai
             The University of Tokyo
@@ -613,7 +616,7 @@ vmMIB MODULE-IDENTITY
             `yyy' is temporary one, and it must be assigned by IANA
             when this becomes an official document.
 
-            Copyright (c) 2013 IETF Trust and the persons identified
+            Copyright (c) 2014 IETF Trust and the persons identified
             as authors of the code.  All rights reserved.
 
             Redistribution and use in source and binary forms, with
@@ -623,7 +626,7 @@ vmMIB MODULE-IDENTITY
             IETF Trust's Legal Provisions Relating to IETF Documents
             (http://trustee.ietf.org/license-info)."
 
-    REVISION "201310210000Z"        -- 21 October 2013
+    REVISION "201401270000Z"        -- 27 January 2014
     DESCRIPTION
             "The original version of this MIB, published as
             RFCXXXX."
@@ -2354,8 +2357,6 @@ END
     </references>
     <references title="Informative References">
       &RFC3410;
-      &RFC4188;
-      &RFC4363;
     </references>
 
     <section anchor="State_Transition_Table" title="State Transition Table">
