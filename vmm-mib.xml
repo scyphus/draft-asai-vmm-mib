@@ -181,14 +181,12 @@
       However, this MIB module attempts to generalize
       the managed objects to support other hypervisors.
       </t>
-      <section title="Requirements Language">
-        <t>The key words &quot;MUST&quot;, &quot;MUST NOT&quot;,
-        &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
-        &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;,
-        &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this
-        document are to be interpreted as described in
-        <xref target="RFC2119">RFC 2119</xref>.</t>
-      </section>
+      <t>The key words &quot;MUST&quot;, &quot;MUST NOT&quot;,
+      &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;,
+      &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;,
+      &quot;MAY&quot;, and &quot;OPTIONAL&quot; in this
+      document are to be interpreted as described in
+      <xref target="RFC2119">RFC 2119</xref>.</t>
     </section>
 
     <section title="The Internet-Standard Management Framework">
@@ -208,9 +206,11 @@
       </t>
     </section>
 
-    <section title="Managed Objects for Virtual Machines Controlled by a
-                    Hypervisor"><!--on Virtualization Environment-->
-      <section title="Managed Objects on Virtualization Environment">
+    <!--<section title="Managed Objects for Virtual Machines Controlled by a
+                    Hypervisor">-->
+      <!--on Virtualization Environment-->
+    <!--<section title="Managed Objects on Virtualization Environment">-->
+    <section title="Overview and Objectives">
         <t>On the common implementations of hypervisor softwares,
         a hypervisor allocates virtual resources
         such as virtual CPUs, virtual memory, virtual storage devices,
@@ -298,8 +298,8 @@
         <!--<xref target="RFC4363">Q-BRIDGE-MIB</xref>--> could be used.
         </t>
 
-      </section>
-      <section anchor="overview" title="Overview of the MIB Module">
+    </section>
+    <section anchor="overview" title="Structure of the VM-MIB Module">
         <t>The MIB module is organized into a group of scalars and tables.  The
         scalars below `hypervisor' provide basic information about the
         hypervisor.  The `vmTable' lists the virtual machines (guests)
@@ -525,10 +525,14 @@
         +--vmBulkNotificationsVariablesGroup(8)
         +--vmBulkNotificationOptionalGroup(9)
         ]]></artwork></figure>
-      </section>
+    </section>
 
-      <section anchor="definition" title="Definitions">
-        <figure><artwork><![CDATA[
+    <section anchor="relationship" title="Relationship to Other MIB Modules">
+      <t></t>
+    </section>
+
+    <section anchor="definition" title="Definitions">
+      <figure><artwork><![CDATA[
 VM-MIB DEFINITIONS ::= BEGIN
 
 IMPORTS
@@ -574,13 +578,6 @@ vmMIB MODULE-IDENTITY
             Germany
             Email: j.schoenwaelder@jacobs-university.de
 
-            Yuji Sekiya
-            The University of Tokyo
-            2-11-16 Yayoi
-            Bunkyo-ku, Tokyo  113-8658
-            JP
-            Email: sekiya@wide.ad.jp
-
             Keiichi Shima
             IIJ Innovation Institute Inc.
             3-13 Kanda-Nishikicho
@@ -594,20 +591,6 @@ vmMIB MODULE-IDENTITY
             Santa Clara  CA 95050
             USA
             Email: tina.tsou.zouting@huawei.com
-
-            Cathy Zhou
-            Huawei Technologies
-            Bantian, Longgang District
-            Shenzhen  518129
-            P.R. China
-            Email: cathyzhou@huawei.com
-
-            Hiroshi Esaki
-            The University of Tokyo
-            7-3-1 Hongo
-            Bunkyo-ku, Tokyo  113-8656
-            JP
-            Email: hiroshi@wide.ad.jp
             "
 
     DESCRIPTION
@@ -2253,7 +2236,6 @@ vmBulkNotificationOptionalGroup NOTIFICATION-GROUP
 
 END
       ]]></artwork></figure>
-      </section>
     </section>
 
     <section anchor="IANA" title="IANA Considerations">

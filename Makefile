@@ -1,6 +1,7 @@
 TARGET = vmm-mib
 OUTPUT_TXT_NAME = draft-ietf-opsawg-vmm-mib-00.txt
-XML2RFC = xml2rfc
+#XML2RFC = xml2rfc
+XML2RFC = sh ~/src/xml2rfc-1.36/xml2rfc.tcl 
 A2PS = a2ps
 PS2PDF = ps2pdf
 IDNITS = idnits
