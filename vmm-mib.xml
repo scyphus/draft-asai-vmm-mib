@@ -123,7 +123,7 @@
       </address>
     </author>
 
-<!--role="notfirstpage"-->
+    <!--role="notfirstpage"-->
     <author fullname="Hiroshi Esaki" initials="H.E." surname="Esaki" role="notfirstpage">
       <organization abbrev="Univ. of Tokyo">The University of Tokyo</organization>
       <address>
@@ -139,7 +139,7 @@
       </address>
     </author>
 
-    <date month="January" year="2014" />
+    <date month="February" year="2014" />
 
     <!-- Meta-data Declarations -->
     <area>Operations and Management</area>
@@ -211,92 +211,105 @@
       <!--on Virtualization Environment-->
     <!--<section title="Managed Objects on Virtualization Environment">-->
     <section title="Overview and Objectives">
-        <t>On the common implementations of hypervisor softwares,
-        a hypervisor allocates virtual resources
-        such as virtual CPUs, virtual memory, virtual storage devices,
-        and virtual network interfaces to virtual machines
-        from physical resources.
-        This document defines objects related to
-        system and software information of a hypervisor,
-        the list of virtual machines controlled by the hypervisor,
-        and virtual resources allocated by the hypervisor
-        to virtual machines.
-        This document specifies four specific types
-        of virtual resources that are common to general hypervisors;
-        CPUs (processors), memory, network interfaces, and storage devices.
-        </t>
-        <figure align="center" anchor="environment"
-                title="An example of a virtualization environment">
-          <artwork align="center"><![CDATA[
+      <t>On the common implementations of hypervisor softwares,
+      a hypervisor allocates virtual resources
+      such as virtual CPUs, virtual memory, virtual storage devices,
+      and virtual network interfaces to virtual machines
+      from physical resources.
+      This document defines objects related to
+      system and software information of a hypervisor,
+      the list of virtual machines controlled by the hypervisor,
+      and virtual resources allocated by the hypervisor
+      to virtual machines.
+      This document specifies four specific types
+      of virtual resources that are common to general hypervisors;
+      CPUs (processors), memory, network interfaces (NICs),
+      and storage devices.
+      </t>
+      <figure align="center" anchor="environment"
+              title="An example of a virtualization environment">
+        <artwork align="center"><![CDATA[
 +------------------------------------------------------------------+
-| +-------------------------------------------+                    |
-| | Virtual machine                           |                    |
-| |                                           |                    |
-| | +---------+ +---------+ +---------+       | .........          |
-| | | Virtual | | Virtual | | Virtual |       |                    |
-| +-| CPU     |-| memory  |-| storage |... ---+                    |
-|   +---------+ +---------+ +---------+                            |
+| +-------------------------------------------------+              |
+| | Virtual machine                                 |              |
+| |                                                 |              |
+| | +---------+ +---------+ +---------+ +---------+ | .......      |
+| | | Virtual | | Virtual | | Virtual | | Virtual | |              |
+| +-| CPU     |-| memory  |-| storage |-| NIC     |-+              |
+|   +---------+ +---------+ +---------+ +---------+                |
 |            Virtual resources                                     |
 |                   ^                                              |
 |                   | Allocation using virtualization technologies |
 |                   |                                              |
-|                   +---------- Physical resources   ._____.       |
-|                       +--------+    .--------.    /       \      |
-|  +==============+     |        |   /________/|   *\_______/*     |
-+- || SNMP agent || - - |  CPU   | - | Memory |/ - | Storage | .. -+
-|  +==============+     +--------+   +--------+     \_______/      |
-| Hypervisor                                                       |
+|                   +-- Physical resources  ._____.                |
+|              +--------+    .--------.    /       \    +--^--+    |
++- - - - - - - |        | - /________/| - *\_______/* - |     | - -+
+| Hypervisor   |  CPU   |   | Memory |/   | Storage |   | NIC |    |
+|              +--------+   +--------+     \_______/    +-----+    |
+| \______________________________________________________________/ |
+|                               | |                                |
+|                               \ /                                |
+|        +-------------------------------------------------+       |
+|        || MIB Objects of physical and virtual resources ||       |
+|        +-------------------------------------------------+       |
 +------------------------------------------------------------------+
 ]]></artwork>
-          <postamble>A hypervisor allocates virtual resources
-          such as virtual CPUs, virtual memory,
-          virtual storage devices, and virtual network interfaces
-          to virtual machines from physical resources.</postamble>
-        </figure>
-        <t>As shown in <xref target="environment" />,
-        the objects defined in this document are managed at
-        a hypervisor and an SNMP agent is launched at the hypervisor
-        to provide access to the objects.
-        The objects are managed
-        from the viewpoint of the operators of hypervisors,
-        but not the operators of virtual machines; i.e.,
-        the objects do not take into account
-        the actual resource utilization on each virtual machine
-        but the resource allocation from the physical resources.
-        For example, vmNetworIfIndex indicates the virtual interface
-        associated with an interface of a virtual machine
-        at the hypervisor, and consequently, the `in' and `out' directions
-        denote `from a virtual machine to the hypervisor' and
-        `from the hypervisor to a virtual machine', respectively.
-        Moreover, vmStorageAllocatedSize denotes
-        the size allocated by the hypervisor, but not the size
-        actually used by the operating system on the virtual machine.
-        This means that vmStorageDefinedSize and vmStorageAllocatedSize
-        do not take different values
-        when the vmStorageSourceType is `block' or `raw'.
-        <!--potentially take different values
-            only if vmStorageSourceType is `unknown', `other', or `sparse'.-->
-        </t>
-        <t>The other objects related to virtual machines
-        such as management IP addresses of a virtual machine
-        are not included in this MIB module
-        because this MIB module defines the objects
-        common to general hypervisors
-        but they are specific to some hypervisors.
-        They may be included in the entLogicalTable of
-        <xref target="RFC6933">ENTITY-MIB</xref>.
-        The objects related to virtual switches
-        are not also included in this MIB module
-        though virtual switches shall be placed on a hypervisor.
-        This is because the virtual network interfaces are
-        the lowest abstraction of network resources allocated
-        to a virtual machine.
-        Instead of including the objects related to virtual switches,
-        for example, IEEE8021-BRIDGE-MIB
-        <!--<xref target="RFC4188">BRIDGE-MIB</xref>-->
-        and IEEE8021-Q-BRIDGE-MIB
-        <!--<xref target="RFC4363">Q-BRIDGE-MIB</xref>--> could be used.
-        </t>
+        <postamble>A hypervisor allocates virtual resources
+        such as virtual CPUs, virtual memory,
+        virtual storage devices, and virtual network interfaces
+        to virtual machines from physical resources.</postamble>
+      </figure>
+      <t>As shown in <xref target="environment" />,
+      the objects defined in this document are managed at
+      a hypervisor.
+
+
+      <!--and an SNMP agent is launched at the hypervisor
+      to provide access to the objects.-->
+
+
+
+
+      The objects are managed
+      from the viewpoint of the operators of hypervisors,
+      but not the operators of virtual machines; i.e.,
+      the objects do not take into account
+      the actual resource utilization on each virtual machine
+      but the resource allocation from the physical resources.
+      For example, vmNetworIfIndex indicates the virtual interface
+      associated with an interface of a virtual machine
+      at the hypervisor, and consequently, the `in' and `out' directions
+      denote `from a virtual machine to the hypervisor' and
+      `from the hypervisor to a virtual machine', respectively.
+      Moreover, vmStorageAllocatedSize denotes
+      the size allocated by the hypervisor, but not the size
+      actually used by the operating system on the virtual machine.
+      This means that vmStorageDefinedSize and vmStorageAllocatedSize
+      do not take different values
+      when the vmStorageSourceType is `block' or `raw'.
+      <!--potentially take different values
+          only if vmStorageSourceType is `unknown', `other', or `sparse'.-->
+      </t>
+      <t>The other objects related to virtual machines
+      such as management IP addresses of a virtual machine
+      are not included in this MIB module
+      because this MIB module defines the objects
+      common to general hypervisors
+      but they are specific to some hypervisors.
+      They may be included in the entLogicalTable of
+      <xref target="RFC6933">ENTITY-MIB</xref>.
+      The objects related to virtual switches
+      are not also included in this MIB module
+      though virtual switches shall be placed on a hypervisor.
+      This is because the virtual network interfaces are
+      the lowest abstraction of network resources allocated
+      to a virtual machine.
+      Instead of including the objects related to virtual switches,
+      for example, IEEE8021-BRIDGE-MIB
+      <!--<xref target="RFC4188">BRIDGE-MIB</xref>-->
+      and IEEE8021-Q-BRIDGE-MIB
+      <!--<xref target="RFC4363">Q-BRIDGE-MIB</xref>--> could be used.
+      </t>
 
     </section>
     <section anchor="overview" title="Structure of the VM-MIB Module">
@@ -551,7 +564,7 @@ IMPORTS
         FROM IF-MIB;
 
 vmMIB MODULE-IDENTITY
-    LAST-UPDATED "201401270000Z"        -- 27 January 2014
+    LAST-UPDATED "201402080000Z"        -- 8 February 2014
     ORGANIZATION "IETF Operations and Management Area Working Group"
     CONTACT-INFO
             "
@@ -609,7 +622,7 @@ vmMIB MODULE-IDENTITY
             IETF Trust's Legal Provisions Relating to IETF Documents
             (http://trustee.ietf.org/license-info)."
 
-    REVISION "201401270000Z"        -- 27 January 2014
+    REVISION "201402080000Z"        -- 8 February 2014
     DESCRIPTION
             "The original version of this MIB, published as
             RFCXXXX."
