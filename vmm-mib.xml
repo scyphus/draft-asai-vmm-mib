@@ -275,7 +275,7 @@
       the objects do not take into account
       the actual resource utilization on each virtual machine
       but the resource allocation from the physical resources.
-      For example, vmNetworIfIndex indicates the virtual interface
+      For example, vmNetworkIfIndex indicates the virtual interface
       associated with an interface of a virtual machine
       at the hypervisor, and consequently, the `in' and `out' directions
       denote `from a virtual machine to the hypervisor' and
@@ -321,7 +321,7 @@
       The `vmNetworkTable' provides the list of virtual network interfaces
       and their mapping to virtual machines.
       Each entry in the `vmNetworkTable' also provides
-      a pointer `vmNetworIfIndex' to the corresponding entry
+      a pointer `vmNetworkIfIndex' to the corresponding entry
       in the `ifTable' of <xref target="RFC2863">IF-MIB</xref>.
       In case that an entry in the `vmNetworkTable'
       has a corresponding parent physical network interface
@@ -505,7 +505,7 @@
   |  |  +--vmNetworkEntry(1) [vmIndex, vmNetworkIndex]
   |  |     +-- --- VirtualMachineNetworkIndex
   |  |     |                            vmNetworkIndex(1)
-  |  |     +-- r-n InterfaceIndexOrZero vmNetworIfIndex(2)
+  |  |     +-- r-n InterfaceIndexOrZero vmNetworkIfIndex(2)
   |  |     +-- r-n InterfaceIndexOrZero vmNetworkParent(3)
   |  |     +-- r-n SnmpAdminString      vmNetworkModel(4)
   |  |     +-- r-n PhysAddress          vmNetworkPhysAddress(5)
@@ -561,7 +561,7 @@
       are required to be contained in the `ifTable' of IF-MIB.
       The virtual network interfaces in the `ifTable' of IF-MIB
       are pointed from the `vmNetworkTable' defined in this document
-      through a pointer `vmNetworIfIndex'.
+      through a pointer `vmNetworkIfIndex'.
       In case that an entry in the `vmNetworkTable'
       has a corresponding parent physical network interface
       managed in the `ifTable' of IF-MIB,
@@ -740,8 +740,8 @@ VirtualMachineAdminState ::= TEXTUAL-CONVENTION
                           shutdown(4)."
     SYNTAX       INTEGER {
                     running(1),
-                    suspend(2),
-                    pause(3),
+                    suspended(2),
+                    paused(3),
                     shutdown(4),
                     destroy(5)
                  }
