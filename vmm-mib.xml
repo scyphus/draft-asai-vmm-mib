@@ -2307,8 +2307,14 @@ END
       have a MAX-ACCESS clause of read-write<!--and/or read-create-->. Such
       objects may be considered sensitive or vulnerable in some network
       environments.  The support for SET operations in a non-secure
-      environment without proper protection can have a negative effect on
-      hypervisor and virtual machine operations.</t>
+      environment without proper protection can
+      have a negative effect on the management system.
+      It is recommended that attention be given to these objects
+      in scenarios that DO NOT use SNMPv3 strong security,
+      i.e. authentication and encryption.
+      When SNMPv3 strong security is not used,
+      these objects should have access of read-only, not read-write.
+      </t>
 
       <t>There are a number of managed objects in this MIB that may contain
       sensitive information.  The objects in the vmHvSoftware and vmHvVersion
@@ -2330,17 +2336,6 @@ END
       possibly to even encrypt the values of these object when sending them
       over the network via SNMP.  Not all versions of SNMP provide features
       for such a secure environment.</t>
-
-      <t>It is recommended that attention be specifically given to
-      implementing the MAX-ACCESS clause in a number of objects, including
-      vmAdminState, vmMinCpuNumber, vmMaxCpuNumber,
-      vmMinMem, vmMaxMem, and vmCpuAffinity
-      in scenarios that DO NOT use SNMPv3 strong
-      security (i.e. authentication and encryption). Extreme caution must
-      be used to minimize the risk of cascading security vulnerabilities
-      when SNMPv3 strong security is not used.
-      When SNMPv3 strong security is not used,
-      these objects should have access of read-only, not read-create.</t>
 
       <t>SNMPv1 by itself is not a secure environment. Even if the network
       itself is secure (for example by using IPsec), even then, there is
