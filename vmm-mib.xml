@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY RFC2578 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2578.xml">
-<!ENTITY RFC2579 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2579.xml">
-<!ENTITY RFC2580 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2580.xml">
-<!ENTITY RFC2790 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2790.xml">
-<!ENTITY RFC2863 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2863.xml">
-<!ENTITY RFC3410 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3410.xml">
-<!ENTITY RFC3413 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3413.xml">
-<!ENTITY RFC3414 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3414.xml">
-<!ENTITY RFC3415 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3415.xml">
-<!ENTITY RFC3418 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3418.xml">
-<!ENTITY RFC4122 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4122.xml">
-<!--<!ENTITY RFC4188 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4188.xml">-->
-<!--<!ENTITY RFC4363 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4363.xml">-->
-<!ENTITY RFC6933 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6933.xml">
+<!ENTITY RFC2119 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC2578 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2578.xml">
+<!ENTITY RFC2579 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2579.xml">
+<!ENTITY RFC2580 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2580.xml">
+<!ENTITY RFC2790 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2790.xml">
+<!ENTITY RFC2863 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2863.xml">
+<!ENTITY RFC3410 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3410.xml">
+<!ENTITY RFC3413 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3413.xml">
+<!ENTITY RFC3414 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3414.xml">
+<!ENTITY RFC3415 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3415.xml">
+<!ENTITY RFC3418 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3418.xml">
+<!ENTITY RFC4122 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4122.xml">
+<!--<!ENTITY RFC4188 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4188.xml">-->
+<!--<!ENTITY RFC4363 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4363.xml">-->
+<!ENTITY RFC6933 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6933.xml">
 ]>
 
 
@@ -30,7 +30,7 @@
 
 <!--ipr="noDerivativeWorks2026", full2026, trust200902-->
 <!-- trust200902, noDerivativeWorks2026 -->
-<rfc docName="draft-ietf-opsawg-vmm-mib-00" ipr="trust200902" category="std">
+<rfc docName="draft-ietf-opsawg-vmm-mib-01" ipr="trust200902" category="std">
 
   <front>
     <title abbrev="Virtual Machine Monitoring MIB">
@@ -71,20 +71,6 @@
       </address>
     </author>
 
-    <author fullname="Yuji Sekiya" initials="Y.S." surname="Sekiya" role="notfirstpage">
-      <organization abbrev="Univ. of Tokyo">The University of Tokyo</organization>
-      <address>
-        <postal>
-          <street>2-11-16 Yayoi</street>
-          <city>Bunkyo-ku</city>
-          <region>Tokyo</region>
-          <code>113-8658</code>
-          <country>JP</country>
-        </postal>
-        <email>sekiya@wide.ad.jp</email>
-      </address>
-    </author>
-
     <author fullname="Keiichi Shima" initials="K.S." surname="Shima">
       <organization abbrev="IIJ Innovation Institute Inc.">IIJ Innovation Institute Inc.</organization>
       <address>
@@ -108,6 +94,20 @@
           <country>USA</country>
         </postal>
         <email>tina.tsou.zouting@huawei.com</email>
+      </address>
+    </author>
+
+    <author fullname="Yuji Sekiya" initials="Y.S." surname="Sekiya" role="notfirstpage">
+      <organization abbrev="Univ. of Tokyo">The University of Tokyo</organization>
+      <address>
+        <postal>
+          <street>2-11-16 Yayoi</street>
+          <city>Bunkyo-ku</city>
+          <region>Tokyo</region>
+          <code>113-8658</code>
+          <country>JP</country>
+        </postal>
+        <email>sekiya@wide.ad.jp</email>
       </address>
     </author>
 
@@ -139,7 +139,7 @@
       </address>
     </author>
 
-    <date month="February" year="2014" />
+    <date month="July" year="2014" />
 
     <!-- Meta-data Declarations -->
     <area>Operations and Management</area>
@@ -218,13 +218,13 @@
       system and software information of a hypervisor,
       the list of virtual machines controlled by the hypervisor,
       and information of virtual resources
-      allocated by the hypervisor to virtual machines.
+      allocated to virtual machines by the hypervisor.
       This document specifies four specific types
-      of virtual resources that are common to many hypervisors;
+      of virtual resources that are common to many hypervisor implementations;
       processors (CPUs), memory, network interfaces (NICs),
       and storage devices.
-      The objects are independent of the hypervisors
-      or operating systems running on virtual machines.
+      These managed objects are independent of the families
+      of hypervisors or operating systems running on virtual machines.
       </t>
 
       <figure align="center" anchor="environment"
@@ -247,9 +247,9 @@
 +- - - - - - - |        | - /________/| - *\_______/* - |     | - -+
 | Hypervisor   |  CPU   |   | Memory |/   | Storage |   | NIC |    |
 |              +--------+   +--------+     \_______/    +-----+    |
-|                    +-----------------------+                     |
-|                    ||     MIB objects     ||                     |
-|                    +-----------------------+                     |
+|  +-----------------------+                                       |
+|  ||     MIB objects     ||                                       |
+|  +-----------------------+                                       |
 +------------------------------------------------------------------+
 ]]></artwork>
         <postamble>A hypervisor allocates virtual resources
@@ -265,7 +265,7 @@
       Since the virtual resources allocated to virtual machines
       are managed by the hypervisor,
       the MIB objects are managed at a hypervisor.
-      If the objects are accessed through the SNMP,
+      In case that the objects are accessed through the SNMP,
       an SNMP agent is launched at the hypervisor
       to provide access to the objects.
       </t>
@@ -302,8 +302,8 @@
 
     </section>
     <section anchor="overview" title="Structure of the VM-MIB Module">
-      <t>The MIB module is organized into a group of scalars and tables.  The
-      scalars below `hypervisor' provide basic information about the
+      <t>The MIB module is organized into a group of scalars and tables.
+      The scalars below `vmHypervisor' provide basic information about the
       hypervisor.  The `vmTable' lists the virtual machines (guests)
       that are known to the hypervisor.
       The `vmCpuTable' provides the mapping table of virtual CPUs
@@ -325,7 +325,7 @@
       in the `ifTable' of <xref target="RFC2863">IF-MIB</xref>.
       In case that an entry in the `vmNetworkTable'
       has a corresponding parent physical network interface
-      managed in `ifTable' of IF-MIB,
+      managed in the `ifTable' of IF-MIB,
       the entry contains a pointer `vmNetworkParent'
       to the physical network interface.
       </t>
@@ -333,7 +333,6 @@
       <figure align="center" anchor="vm-state"
               title="State transition of a virtual machine">
         <artwork align="center"><![CDATA[
-*: `vmAdminState' write access
 !: Notification
 +-------------+   + - - - - - - +
 | finite      |   | transient   |
@@ -346,18 +345,18 @@
 |  suspended   |<--|  suspending   |     |   paused    |
 | !vmSuspended |   | !vmSuspending |     |  !vmPaused  |
 +--------------+   + - - - - - - - +     +-------------+
-      |                ^ *suspended         ^ *paused
+      |                ^                    ^
       |                |                    |
-      v  *running      |         *running   |
+      v                |                    |
 + - - - - - - +   +-------------+<----------+    + - - - - - - -+
 |  resuming   |-->|   running   |<-------------->|  migrating   |
 | !vmResuming |   |  !vmRunning |                | !vmMigrating |
 + - - - - - - +   +-------------+                + - - - - - - -+
-                       |      ^ *running               ^
+                       |      ^                        ^
                        |      |                        |
                        |      +-------------------+    |
                        |                          |    |
-                       v *shutdown       *destroy v    v
+                       v                          v    v
                 + - - - - - - - - +          +-------------+
                 |  shuttingdown   |--------->|  shutdown   |
                 | !vmShuttingdown |          | !vmShutdown |
@@ -452,7 +451,7 @@
   |  |     +-- r-n SnmpAdminString      vmName(2)
   |  |     +-- r-n UUIDorZero           vmUUID(3)
   |  |     +-- r-n SnmpAdminString      vmOSType(4)
-  |  |     +-- rwn VirtualMachineAdminState
+  |  |     +-- r-n VirtualMachineAdminState
   |  |     |                            vmAdminState(5)
   |  |     +-- r-n VirtualMachineOperState
   |  |     |                            vmOperState(6)
@@ -460,13 +459,13 @@
   |  |     |                            vmAutoStart(7)
   |  |     +-- r-n VirtualMachinePersistent
   |  |     |                            vmPersistent(8)
-  |  |     +-- rwn Integer32            vmCurCpuNumber(9)
-  |  |     +-- rwn Integer32            vmMinCpuNumber(10)
-  |  |     +-- rwn Integer32            vmMaxCpuNumber(11)
+  |  |     +-- r-n Integer32            vmCurCpuNumber(9)
+  |  |     +-- r-n Integer32            vmMinCpuNumber(10)
+  |  |     +-- r-n Integer32            vmMaxCpuNumber(11)
   |  |     +-- r-n Integer32            vmMemUnit(12)
-  |  |     +-- rwn Integer32            vmCurMem(13)
-  |  |     +-- rwn Integer32            vmMinMem(14)
-  |  |     +-- rwn Integer32            vmMaxMem(15)
+  |  |     +-- r-n Integer32            vmCurMem(13)
+  |  |     +-- r-n Integer32            vmMinMem(14)
+  |  |     +-- r-n Integer32            vmMaxMem(15)
   |  |     +-- r-n TimeTicks            vmUpTime(16)
   |  |     +-- r-n Counter64            vmCpuTime(17)
   |  +--vmCpuTable(5)
@@ -479,7 +478,7 @@
   |  |     |                      vmCpuIndex,
   |  |     |                      vmCpuPhysIndex]
   |  |     +-- --- Integer32            vmCpuPhysIndex(1)
-  |  |     +-- rwn Integer32            vmCpuAffinity(2)
+  |  |     +-- r-n Integer32            vmCpuAffinity(2)
   |  +--vmStorageTable(7)
   |  |  +--vmStorageEntry(1) [vmStorageVmIndex, vmStorageIndex]
   |  |     +-- --- VirtualMachineIndexOrZero
@@ -1187,13 +1186,10 @@ vmOSType OBJECT-TYPE
 
 vmAdminState OBJECT-TYPE
     SYNTAX       VirtualMachineAdminState
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The administrative power state of the virtual machine.
-            Note that a virtual machine is supposed to be resumed
-            when vmAdminState of the virtual machine is changed from
-            suspended(2) or paused(3) to running(1)."
+            "The administrative power state of the virtual machine."
     ::= { vmEntry 5 }
 
 vmOperState OBJECT-TYPE
@@ -1227,37 +1223,32 @@ vmPersistent OBJECT-TYPE
 
 vmCurCpuNumber OBJECT-TYPE
     SYNTAX       Integer32 (0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The number of virtual CPUs currently assigned to the
-            virtual machine.  Changes to this object MUST NOT
-            persist across re-initialization of the hypervisor."
+            virtual machine."
     ::= { vmEntry 9 }
 
 vmMinCpuNumber OBJECT-TYPE
     SYNTAX       Integer32 (-1|0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The minimum number of virtual CPUs that are assigned to
             the virtual machine when it is in a power-on state.  The
             value -1 indicates that there is no hard boundary for
-            the minimum number of virtual CPUs.  Changes to this
-            object MUST NOT persist across re-initialization of the
-            hypervisor."
+            the minimum number of virtual CPUs."
     ::= { vmEntry 10 }
 
 vmMaxCpuNumber OBJECT-TYPE
     SYNTAX       Integer32 (-1|0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The maximum number of virtual CPUs that are assigned to
             the virtual machine when it is in a power-on state.  The
-            value -1 indicates that there is no limit.  Changes to
-            this object MUST NOT persist across re-initialization of
-            the hypervisor."
+            value -1 indicates that there is no limit."
     ::= { vmEntry 11 }
 
 vmMemUnit OBJECT-TYPE
@@ -1273,37 +1264,33 @@ vmMemUnit OBJECT-TYPE
 
 vmCurMem OBJECT-TYPE
     SYNTAX       Integer32 (0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The current memory size currently allocated to the
             virtual memory module in the unit designated by
-            vmMemUnit.  Changes to this object MUST NOT persist
-            across re-initialization of the hypervisor."
+            vmMemUnit."
     ::= { vmEntry 13 }
 
 vmMinMem OBJECT-TYPE
     SYNTAX       Integer32 (-1|0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The minimum memory size defined to the virtual machine
             in the unit designated by vmMemUnit.  The value -1
             indicates that there is no hard boundary for the minimum
-            memory size.  Changes to this object MUST NOT persist
-            across re-initialization of the hypervisor."
+            memory size."
     ::= { vmEntry 14 }
 
 vmMaxMem OBJECT-TYPE
     SYNTAX       Integer32 (-1|0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The maximum memory size defined to the virtual machine
             in the unit designated by vmMemUnit.  The value -1
-            indicates that there is no limit.  Changes to this
-            object MUST NOT persist across re-initialization of the
-            hypervisor."
+            indicates that there is no limit."
     ::= { vmEntry 15 }
 
 
@@ -1424,7 +1411,7 @@ vmCpuAffinity OBJECT-TYPE
                     enable(1),    -- enabled
                     disable(2)    -- disabled
                  }
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The CPU affinity of this virtual CPU to the physical
@@ -1711,7 +1698,9 @@ vmPerVMNotificationsEnabled OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "Indicates if notification generator will send
-            notifications per virtual machine."
+            notifications per virtual machine.  Changes to this
+            object MUST NOT persist across re-initialization of
+            the management system, e.g., SNMP agent."
     ::= { vmObjects 9 }
 
 vmBulkNotificationsEnabled OBJECT-TYPE
@@ -1720,7 +1709,9 @@ vmBulkNotificationsEnabled OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "Indicates if notification generator will send
-            notifications per set of virtual machines."
+            notifications per set of virtual machines.  Changes to
+            this object MUST NOT persist across re-initialization of
+            the management system, e.g., SNMP agent."
     ::= { vmObjects 10 }
 
 vmAffectedVMs OBJECT-TYPE
@@ -2311,8 +2302,9 @@ END
     </section>
 
     <section anchor="Security" title="Security Considerations">
-      <t>There are a number of management objects defined in this MIB that
-      have a MAX-ACCESS clause of read-write and/or read-create. Such
+      <t>There are two objects defined in this MIB,
+      vmPerVMNotificationsEnabled and vmBulkNotificationsEnabled, that
+      have a MAX-ACCESS clause of read-write<!--and/or read-create-->. Such
       objects may be considered sensitive or vulnerable in some network
       environments.  The support for SET operations in a non-secure
       environment without proper protection can have a negative effect on
@@ -2370,7 +2362,8 @@ END
 
     <section anchor="Acknowledgements" title="Acknowledgements">
       <t>The authors like to thank
-      Joe Marcus Clarke, Randy Presuhn, and David Black
+      Joe Marcus Clarke, Randy Presuhn, David Black, Joel Jaeggli,
+      Tom Petch, Andy Bierman, and C. M. Heard
       for providing helpful comments during
       the development of this specification.</t>
       <t>Juergen Schoenwaelder was partly funded by Flamingo, a Network of
