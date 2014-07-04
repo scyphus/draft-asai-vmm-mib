@@ -574,9 +574,9 @@
       the lowest abstraction of network resources allocated
       to a virtual machine.
       Instead of including the objects related to virtual switches,
-      for example, IEEE8021-BRIDGE-MIB
+      for example, <xref target="IEEE8021-BRIDGE-MIB">IEEE8021-BRIDGE-MIB</xref>
       <!--<xref target="RFC4188">BRIDGE-MIB</xref>-->
-      and IEEE8021-Q-BRIDGE-MIB
+      and <xref target="IEEE8021-Q-BRIDGE-MIB">IEEE8021-Q-BRIDGE-MIB</xref>
       <!--<xref target="RFC4363">Q-BRIDGE-MIB</xref>--> could be used.</t>
 
       <t>The other objects related to virtual machines
@@ -610,7 +610,7 @@ IMPORTS
         FROM IF-MIB;
 
 vmMIB MODULE-IDENTITY
-    LAST-UPDATED "201402080000Z"        -- 8 February 2014
+    LAST-UPDATED "201407040000Z"        -- 4 July 2014
     ORGANIZATION "IETF Operations and Management Area Working Group"
     CONTACT-INFO
             "
@@ -668,7 +668,7 @@ vmMIB MODULE-IDENTITY
             IETF Trust's Legal Provisions Relating to IETF Documents
             (http://trustee.ietf.org/license-info)."
 
-    REVISION "201402080000Z"        -- 8 February 2014
+    REVISION "201407040000Z"        -- 4 July 2014
     DESCRIPTION
             "The original version of this MIB, published as
             RFCXXXX."
@@ -2080,46 +2080,6 @@ vmReadOnlyCompliances MODULE-COMPLIANCE
         vmNetworkGroup
     }
 
-    OBJECT vmAdminState
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmCurCpuNumber
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmMinCpuNumber
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmMaxCpuNumber
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmCurMem
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmMinMem
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmMaxMem
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmCpuAffinity
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
     OBJECT vmPerVMNotificationsEnabled
     MIN-ACCESS   read-only
     DESCRIPTION
@@ -2387,12 +2347,32 @@ END
     </references>
     <references title="Informative References">
       &RFC3410;
+
+      <reference anchor="IEEE8021-BRIDGE-MIB"
+                 target="http://www.ieee802.org/1/files/public/MIBs/IEEE8021-BRIDGE-MIB-200810150000Z.txt">
+        <front>
+          <title>IEEE8021-BRIDGE-MIB</title>
+          <author>
+            <organization>IEEE</organization>
+          </author>
+        </front>
+      </reference>
+      <reference anchor="IEEE8021-Q-BRIDGE-MIB"
+                 target="http://www.ieee802.org/1/files/public/MIBs/IEEE8021-Q-BRIDGE-MIB-200810150000Z.txt">
+        <front>
+          <title>IEEE8021-BRIDGE-MIB</title>
+          <author>
+            <organization>IEEE</organization>
+          </author>
+        </front>
+      </reference>
+
     </references>
 
     <section anchor="State_Transition_Table" title="State Transition Table">
-      <texttable title="State transition table">
+      <texttable title="State transition table for vmOperState">
 	<ttcol align="center">State</ttcol>
-	<ttcol align="center">Action or (Event)</ttcol>
+	<ttcol align="center">Change to vmAdminState at the hypervisor or (Event)</ttcol>
 	<ttcol align="center">Next state</ttcol>
 	<ttcol align="center">Notification</ttcol>
 	<c>suspended</c> <c>running</c> <c>resuming</c> <c>vmResuming | vmBulkResuming</c>
