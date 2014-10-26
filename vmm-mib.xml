@@ -500,6 +500,10 @@
   |  |     +-- r-n Integer32            vmStorageAllocatedSize(12)
   |  |     +-- r-n Counter64            vmStorageReadIOs(13)
   |  |     +-- r-n Counter64            vmStorageWriteIOs(14)
+  |  |     +-- r-n Counter64            vmStorageReadOctets(15)
+  |  |     +-- r-n Counter64            vmStorageWriteOctets(16)
+  |  |     +-- r-n Counter64            vmStorageReadLatency(17)
+  |  |     +-- r-n Counter64            vmStorageWriteLatency(18)
   |  +--vmNetworkTable(8)
   |  |  +--vmNetworkEntry(1) [vmIndex, vmNetworkIndex]
   |  |     +-- --- VirtualMachineNetworkIndex
@@ -1611,6 +1615,70 @@ vmStorageWriteIOs OBJECT-TYPE
             administrative state (vmAdminState) changes of the
             virtual machine."
     ::= { vmStorageEntry 14 }
+
+vmStorageReadOctets OBJECT-TYPE
+    SYNTAX       Counter64
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+            "The total number of bytes read from this device.
+
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
+    ::= { vmStorageEntry 15 }
+
+vmStorageWriteOctets OBJECT-TYPE
+    SYNTAX       Counter64
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+            "The total number of bytes written to this device.
+
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
+    ::= { vmStorageEntry 16 }
+
+vmStorageReadLatency OBJECT-TYPE
+    SYNTAX       Counter64
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+            "The total number of microseconds read requests have
+            been queued for this device.
+            This would typically be implemented by storing the high
+            precision system time stamp of when the request is
+            received from the virtual machine with the request, the
+            difference between this initial timestamp and the time
+            at which the requested operation has completed should be
+            converted to microseconds and accumulated.
+            Discontinuities in the value of this counter can occur at
+            re-initialization of the hypervisor, and administrative
+            state (vmAdminState) changes of the virtual machine."
+    ::= { vmStorageEntry 17 }
+
+vmStorageWriteLatency OBJECT-TYPE
+    SYNTAX       Counter64
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+            "The total number of microseconds write requests have
+            been queued for this device.
+            This would typically be implemented by storing the high
+            precision system time stamp of when the request is
+            received from the virtual machine with the request, the
+            difference between this initial timestamp and the time
+            at which the requested operation has completed should be
+            converted to microseconds and accumulated.
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
+    ::= { vmStorageEntry 18 }
+
 
 -- The virtual network interfaces on each virtual machine.
 vmNetworkTable OBJECT-TYPE
