@@ -30,7 +30,7 @@
 
 <!--ipr="noDerivativeWorks2026", full2026, trust200902-->
 <!-- trust200902, noDerivativeWorks2026 -->
-<rfc docName="draft-ietf-opsawg-vmm-mib-01" ipr="trust200902" category="std">
+<rfc docName="draft-ietf-opsawg-vmm-mib-02" ipr="trust200902" category="std">
 
   <front>
     <title abbrev="Virtual Machine Monitoring MIB">
@@ -75,10 +75,10 @@
       <organization abbrev="IIJ Innovation Institute Inc.">IIJ Innovation Institute Inc.</organization>
       <address>
         <postal>
-          <street>3-13 Kanda-Nishikicho</street>
+          <street>2-10-2 Fujimi</street>
           <city>Chiyoda-ku</city>
           <region>Tokyo</region>
-          <code>101-0054</code>
+          <code>102-0071</code>
           <country>JP</country>
         </postal>
         <email>keiichi@iijlab.net</email>
