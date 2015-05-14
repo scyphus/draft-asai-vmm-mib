@@ -173,8 +173,9 @@
       a hypervisor as well as hypervisor's hardware
       and software information.
       </t>
-      <t>The design of this MIB module has been derived from enterprise
-      specific MIB modules, namely a MIB module for managing guests of the
+      <t>The design of this MIB module has been derived from
+      product-specific MIB modules, namely a MIB module
+      for managing guests of the
       Xen hypervisor, a MIB module for managing virtual machines controlled
       by the VMware hypervisor, and a MIB module using the libvirt
       programming interface to access different hypervisors.
@@ -377,7 +378,7 @@ Notation:
 | !vmBlocked |   | !vmCrashed |     |             |
 + - - - - - -+   +------------+     + - - - - - - +
 ]]></artwork>
-        <postamble>The state transition of a virtual machine</postamble>
+        <postamble>The overview of the state transition of a virtual machine</postamble>
       </figure>
       <t>The `vmAdminState' and `vmOperState'
       textual conventions define an administrative state
@@ -391,10 +392,12 @@ Notation:
       vmBulkPaused, vmBulkSuspended, vmBulkCrashed, vmBulkDeleted)
       are generated
       if vmBulkNotificationsEnabled is true(1).
-      The transition of `vmOperState' by the write access
+      The overview of the transition of `vmOperState' by the write access
       to `vmAdminState' and the notifications generated
       by the operational state changes
-      are summarized in <xref target="vm-state" />.
+      are illustrated in <xref target="vm-state" />.
+      The detailed state transition is summarized
+      in <xref target="State_Transition_Table" />.
       Note that the notifications shown in this figure
       are per-VM notifications.
       In the case of Bulk notifications, the prefix `vm' is replaced
@@ -544,11 +547,11 @@ Notation:
     <section anchor="relationship" title="Relationship to Other MIB Modules">
       <t><xref target="RFC2790">HOST-RESOURCES-MIB</xref> defines
       the MIB objects for managing host systems.
-      Hypervisors shall implement HOST-RESOURCES-MIB.
+      Hypervisors must implement HOST-RESOURCES-MIB.
       On systems implementing HOST-RESOURCES-MIB,
       the objects of HOST-RESOURCES-MIB indicate resources
       of a hypervisor.
-      Some objects of HOST-RESOURCES-MIB shall also be used
+      Some objects of HOST-RESOURCES-MIB are used
       to indicate physical resources through indexes.
       On systems implementing HOST-RESOURCES-MIB,
       the `vmCpuPhysIndex' points to the processor's `hrDeviceIndex'
@@ -556,7 +559,7 @@ Notation:
       The `vmStorageParent' also points to the storage device's
       `hrStorageIndex' in the `hrStorageTable'.
       </t>
-      <t>HOST-RESOURCES-MIB shall be implemented on systems
+      <!--<t>HOST-RESOURCES-MIB MAY be implemented on systems
       running on virtual machines.
       It enables to manage the objects
       related to the resources of virtual machines
@@ -564,9 +567,8 @@ Notation:
       However, from the viewpoint of hypervisor operators,
       it cannot obtain the list of virtual machines controlled by a hypervisor
       and the relationship between physical and virtual resources.
-      This document defines the objects of these information.
-      <!--Since different administrative domains-->
-      </t>
+      This document defines the objects of this information.
+      </t>-->
       <t><xref target="RFC2863">IF-MIB</xref>
       defines the MIB objects for managing network interfaces.
       Both physical and virtual network interfaces
@@ -1044,7 +1046,7 @@ vmHvSoftware OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "A textual description of the hypervisor software.  This
-            value should not include its version, and it should be
+            value should not include its version as it should be
             included in `vmHvVersion'."
     ::= { vmHypervisor 1 }
 
