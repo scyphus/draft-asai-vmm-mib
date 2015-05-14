@@ -411,8 +411,8 @@ Notation:
       many notifications could be trapped if these virtual machines
       frequently change their administrative state.
       The per-VM notifications carry more detailed information,
-      but the scalability shall be a problem.
-      An implementation shall support both, either of, or none of
+      but the scalability is a problem.
+      An implementation MUST support both, either of, or none of
       per-VM notifications and bulk notifications.
       The notification filtering mechanism described
       in section 6 of <xref target="RFC3413">RFC 3413</xref>
@@ -547,7 +547,7 @@ Notation:
     <section anchor="relationship" title="Relationship to Other MIB Modules">
       <t><xref target="RFC2790">HOST-RESOURCES-MIB</xref> defines
       the MIB objects for managing host systems.
-      Hypervisors must implement HOST-RESOURCES-MIB.
+      Hypervisors MUST implement HOST-RESOURCES-MIB.
       On systems implementing HOST-RESOURCES-MIB,
       the objects of HOST-RESOURCES-MIB indicate resources
       of a hypervisor.
@@ -584,7 +584,7 @@ Notation:
       </t>
       <t>The objects related to virtual switches
       are not also included in the MIB module defined in this document
-      though virtual switches shall be placed on a hypervisor.
+      though virtual switches MAY be placed on a hypervisor.
       This is because the virtual network interfaces are
       the lowest abstraction of network resources allocated
       to a virtual machine.
@@ -703,7 +703,7 @@ VirtualMachineIndex ::= TEXTUAL-CONVENTION
     DESCRIPTION
             "A unique value, greater than zero, identifying a
             virtual machine.  The value for each virtual machine
-            must remain constant at least from one re-initialization
+            MUST remain constant at least from one re-initialization
             of the hypervisor to the next re-initialization."
     SYNTAX       Integer32 (1..2147483647)
 
@@ -714,7 +714,7 @@ VirtualMachineIndexOrZero ::= TEXTUAL-CONVENTION
             "This textual convention is an extension of the
             VirtualMachineIndex convention.  This extension permits
             the additional value of zero.  The meaning of the value
-            zero is object-specific and must therefore be defined as
+            zero is object-specific and MUST therefore be defined as
             part of the description of any object which uses this
             syntax.  Examples of the usage of zero might include
             situations where a virtual machine is unknown, or when
@@ -922,7 +922,7 @@ VirtualMachineCpuIndex ::= TEXTUAL-CONVENTION
     DESCRIPTION
             "A unique value for each virtual machine, greater than
             zero, identifying a virtual CPU assigned to a virtual
-            machine.  The value for each virtual CPU must remain
+            machine.  The value for each virtual CPU MUST remain
             constant at least from one re-initialization of the
             hypervisor to the next re-initialization."
      SYNTAX      Integer32 (1..2147483647)
@@ -934,7 +934,7 @@ VirtualMachineStorageIndex ::= TEXTUAL-CONVENTION
             "A unique value for each virtual machine, greater than
             zero, identifying a virtual storage device allocated to
             a virtual machine.  The value for each virtual storage
-            device must remain constant at least from one
+            device MUST remain constant at least from one
             re-initialization of the hypervisor to the next
             re-initialization."
      SYNTAX      Integer32 (1..2147483647)
@@ -1011,7 +1011,7 @@ VirtualMachineNetworkIndex ::= TEXTUAL-CONVENTION
             "A unique value for each virtual machine, greater than
             zero, identifying a virtual network interface allocated
             to the virtual machine.  The value for each virtual
-            network interface must remain constant at least from one
+            network interface MUST remain constant at least from one
             re-initialization of the hypervisor to the next
             re-initialization."
      SYNTAX      Integer32 (1..2147483647)
@@ -1046,7 +1046,7 @@ vmHvSoftware OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "A textual description of the hypervisor software.  This
-            value should not include its version as it should be
+            value SHOULD not include its version as it SHOULD be
             included in `vmHvVersion'."
     ::= { vmHypervisor 1 }
 
@@ -1160,7 +1160,7 @@ vmIndex OBJECT-TYPE
             "A unique value, greater than zero, identifying the
             virtual machine. The value assigned to a given virtual
             machine may not persist across re-initialization of the
-            hypervisor.  A command generator must use the vmUUID to
+            hypervisor.  A command generator MUST use the vmUUID to
             identify a given virtual machine of interest."
     ::= { vmEntry 1 }
 
@@ -1179,7 +1179,7 @@ vmUUID OBJECT-TYPE
     DESCRIPTION
             "The virtual machine's 128-bit UUID or the zero-length
             string when a UUID is not available.  The UUID if set
-            must uniquely identify a virtual machine from all other
+            MUST uniquely identify a virtual machine from all other
             virtual machines in an administrative region.  A
             zero-length octet string is returned if no UUID
             information is known."
@@ -1416,7 +1416,7 @@ vmCpuPhysIndex OBJECT-TYPE
     DESCRIPTION
             "A value identifying a physical CPU on the hypervisor.
             On systems implementing the HOST-RESOURCES-MIB, the
-            value must be the same value that is used as the index
+            value MUST be the same value that is used as the index
             in the hrProcessorTable (hrDeviceIndex)."
     ::= { vmCpuAffinityEntry 2 }
 
@@ -1436,7 +1436,7 @@ vmCpuAffinity OBJECT-TYPE
 
 -- The virtual storage devices on each virtual machine.  This
 -- document defines some overlapped objects with hrStorage in
--- HOST-RESOURCES-MIB [RFC2790], because virtual resources shall be
+-- HOST-RESOURCES-MIB [RFC2790], because virtual resources are
 -- allocated from the hypervisor's resources, which is the `host
 -- resources'
 vmStorageTable OBJECT-TYPE
@@ -1587,7 +1587,7 @@ vmStorageDefinedSize OBJECT-TYPE
     DESCRIPTION
             "The defined virtual storage size defined in the unit
             designated by vmStorageSizeUnit.  If this information is
-            not available, this value shall be -1."
+            not available, this value MUST be -1."
     ::= { vmStorageEntry 11 }
 
 vmStorageAllocatedSize OBJECT-TYPE
@@ -1602,7 +1602,7 @@ vmStorageAllocatedSize OBJECT-TYPE
             are supposed to equal.  This value MUST NOT be different
             from vmStorageDefinedSize when vmStorageSourceType is
             `block' or `raw'.  If this information is not available,
-            this value shall be -1."
+            this value MUST be -1."
     ::= { vmStorageEntry 12 }
 
 vmStorageReadIOs OBJECT-TYPE
@@ -1668,7 +1668,7 @@ vmStorageReadLatency OBJECT-TYPE
             precision system time stamp of when the request is
             received from the virtual machine with the request, the
             difference between this initial timestamp and the time
-            at which the requested operation has completed should be
+            at which the requested operation has completed SHOULD be
             converted to microseconds and accumulated.
             Discontinuities in the value of this counter can occur at
             re-initialization of the hypervisor, and administrative
@@ -1686,7 +1686,7 @@ vmStorageWriteLatency OBJECT-TYPE
             precision system time stamp of when the request is
             received from the virtual machine with the request, the
             difference between this initial timestamp and the time
-            at which the requested operation has completed should be
+            at which the requested operation has completed SHOULD be
             converted to microseconds and accumulated.
             Discontinuities in the value of this counter can occur
             at re-initialization of the hypervisor, and
@@ -1740,7 +1740,7 @@ vmNetworkIfIndex OBJECT-TYPE
     DESCRIPTION
             "The value of ifIndex which corresponds to this virtual
             network interface.  If this device is not represented in
-            the ifTable, then this value shall be zero."
+            the ifTable, then this value MUST be zero."
     ::= { vmNetworkEntry 2 }
 
 vmNetworkParent OBJECT-TYPE
@@ -2134,7 +2134,7 @@ vmFullCompliances MODULE-COMPLIANCE
     GROUP  vmPerVMNotificationOptionalGroup
     DESCRIPTION
             "Support for per-VM notifications is optional.  If not
-            implemented then vmPerVMNotificationsEnabled must report
+            implemented then vmPerVMNotificationsEnabled MUST report
             false(2)."
     GROUP  vmBulkNotificationsVariablesGroup
     DESCRIPTION
@@ -2143,7 +2143,7 @@ vmFullCompliances MODULE-COMPLIANCE
     GROUP  vmBulkNotificationOptionalGroup
     DESCRIPTION
             "Support for bulk notifications is optional.  If not
-            implemented then vmBulkNotificationsEnabled must report
+            implemented then vmBulkNotificationsEnabled MUST report
             false(2)."
 
     ::= { vmCompliances 1 }
@@ -2360,7 +2360,7 @@ END
       in scenarios that DO NOT use SNMPv3 strong security,
       i.e. authentication and encryption.
       When SNMPv3 strong security is not used,
-      these objects should have access of read-only, not read-write.
+      these objects SHOULD have access of read-only, not read-write.
       </t>
 
       <t>There are a number of managed objects in this MIB that may contain
