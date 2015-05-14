@@ -333,13 +333,22 @@
       <figure align="center" anchor="vm-state"
               title="State transition of a virtual machine">
         <artwork align="center"><![CDATA[
-!: Notification
-+-------------+   + - - - - - - +
-| finite      |   | transient   |
-| vmOperState |   | vmOperState |
-+-------------+   + - - - - - - +
+Notation:
 
-================================================================
+    +-------------+
+    | vmOperState | : Finite state; the first line presents the
+    |             |   `vmOperState', and the second line presents a
+    +-------------+   notification generated if applicable.
+
+    + - - - - - - +
+    | vmOperState | : Transient state; first line presents the
+    |             |   `vmOperState', and the second line presents a
+    + - - - - - - +   notification generated if applicable.
+
+    !               : Notification; a text followed by the symbol "!"
+                      denotes a notification generated.
+
+=====================================================================
 
 +--------------+   + - - - - - - - +     +-------------+
 |  suspended   |<--|  suspending   |     |   paused    |
