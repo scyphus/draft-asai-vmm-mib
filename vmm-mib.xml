@@ -265,7 +265,7 @@
       as shown in <xref target="environment" />.
       Since the virtual resources allocated to virtual machines
       are managed by the hypervisor,
-      the MIB objects are managed at a hypervisor.
+      the MIB objects are managed at the hypervisor.
       In case that the objects are accessed through the SNMP,
       an SNMP agent is launched at the hypervisor
       to provide access to the objects.
@@ -296,7 +296,7 @@
       to many hypervisors for the management of virtual machines
       controlled by a hypervisor.
       2) This document clarifies the relationship
-      between other MIB modules for managing host computers and
+      with other MIB modules for managing host computers and
       network devices.
       </t>
 
