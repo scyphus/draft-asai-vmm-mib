@@ -418,11 +418,6 @@ Notation:
       in section 6 of <xref target="RFC3413">RFC 3413</xref>
       is used by the management applications to control the notifications.
       </t>
-      <t>The MIB module provides a few writable objects that can be used to
-      make non-persistent changes, e.g., changing the memory allocation or
-      the CPU allocation.  It is not the goal of this MIB module to provide
-      a configuration interface for virtual machines since other protocols
-      and data modeling languages are more suitable for this task.</t>
       <t>The OID tree structure of the MIB module is shown below.</t>
       <figure><artwork><![CDATA[
 --vmMIB (1.3.6.1.2.1.yyy)
