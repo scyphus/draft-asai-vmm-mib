@@ -459,7 +459,7 @@ Notation:
       to the physical network interface.
       </t>
       <t>The objects related to virtual switches
-      are not also included in the MIB module defined in this document
+      are not included in the MIB module defined in this document
       though virtual switches MAY be placed on a hypervisor.
       This is because the virtual network interfaces are
       the lowest abstraction of network resources allocated
@@ -620,20 +620,12 @@ VirtualMachineAdminState ::= TEXTUAL-CONVENTION
             shutdown(4)   The administrative state of the virtual
                           machine indicating the virtual machine
                           is currently offline or should be taken
-                          shutting down.
-
-            destroy(5)    The administrative state of the virtual
-                          machine indicating the virtual machine
-                          should be forcibly shutdown.  After the
-                          destroy operation, the administrative
-                          state should be automatically changed to
-                          shutdown(4)."
+                          shutting down."
     SYNTAX       INTEGER {
                     running(1),
                     suspended(2),
                     paused(3),
-                    shutdown(4),
-                    destroy(5)
+                    shutdown(4)
                  }
 
 VirtualMachineOperState ::= TEXTUAL-CONVENTION
@@ -2304,7 +2296,6 @@ END
 	<c>suspending</c> <c>(suspend operation completed)</c> <c>suspended</c> <c>vmSuspended | vmBulkSuspended</c>
 	<c>running</c> <c>suspended</c> <c>suspending</c> <c>vmSuspending | vmBulkSuspending</c>
 	<c></c> <c>shutdown</c> <c>shuttingdown</c> <c>vmShuttingdown | vmBulkShuttingdown</c>
-	<c></c> <c>destroy</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
 	<c></c> <c>(migration to other hypervisor initiated)</c> <c>migrating</c> <c>vmMigrating | vmBulkMingrating</c>
 	<c>resuming</c> <c>(resume opeartion completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
 	<c>paused</c> <c>running</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
