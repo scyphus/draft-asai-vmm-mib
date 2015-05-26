@@ -1314,7 +1314,7 @@ VmStorageEntry ::=
                                 SnmpAdminString,
         vmStorageResourceID     SnmpAdminString,
         vmStorageAccess         VirtualMachineStorageAccess,
-        vmStorageMediaType      IANAMachineStorageMediaType,
+        vmStorageMediaType      IANAStorageMediaType,
         vmStorageMediaTypeString
                                 SnmpAdminString,
         vmStorageSizeUnit       Integer32,
@@ -1398,7 +1398,7 @@ vmStorageAccess OBJECT-TYPE
     ::= { vmStorageEntry 7 }
 
 vmStorageMediaType OBJECT-TYPE
-    SYNTAX       IANAMachineStorageMediaType
+    SYNTAX       IANAStorageMediaType
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION

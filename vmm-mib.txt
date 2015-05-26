@@ -1528,7 +1528,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                                    SnmpAdminString,
            vmStorageResourceID     SnmpAdminString,
            vmStorageAccess         VirtualMachineStorageAccess,
-           vmStorageMediaType      IANAMachineStorageMediaType,
+           vmStorageMediaType      IANAStorageMediaType,
            vmStorageMediaTypeString
                                    SnmpAdminString,
            vmStorageSizeUnit       Integer32,
@@ -1626,7 +1626,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
    vmStorageMediaType OBJECT-TYPE
-       SYNTAX       IANAMachineStorageMediaType
+       SYNTAX       IANAStorageMediaType
        MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
