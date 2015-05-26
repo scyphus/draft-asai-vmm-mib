@@ -650,7 +650,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
            FROM UUID-TC-MIB
        InterfaceIndexOrZero
            FROM IF-MIB
-       VirtualMachineStorageMediaType
+       IANAStorageMediaType
            FROM IANA-STORAGE-MEDIA-TYPE-MIB;
 
    vmMIB MODULE-IDENTITY
@@ -1596,7 +1596,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                                    SnmpAdminString,
            vmStorageResourceID     SnmpAdminString,
            vmStorageAccess         VirtualMachineStorageAccess,
-           vmStorageMediaType      VirtualMachineStorageMediaType,
+           vmStorageMediaType      IANAMachineStorageMediaType,
            vmStorageMediaTypeString
                                    SnmpAdminString,
            vmStorageSizeUnit       Integer32,
@@ -1696,7 +1696,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        ::= { vmStorageEntry 7 }
 
    vmStorageMediaType OBJECT-TYPE
-       SYNTAX       VirtualMachineStorageMediaType
+       SYNTAX       IANAMachineStorageMediaType
        MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
@@ -2587,11 +2587,11 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
    The MIB module in this document uses the following IANA-assigned
    OBJECT IDENTIFIER values recorded in the SMI Numbers registry:
 
-         Descriptor        OBJECT IDENTIFIER value
-         ----------        -----------------------
+         Descriptor                OBJECT IDENTIFIER value
+         ----------                -----------------------
 
-         vmMIB             { mib-2 TBD }
-         vmStorageTCMIB    { mib-2 TBD }
+         vmMIB                     { mib-2 TBD }
+         IANAStorageMediaTypeMIB   { mib-2 TBD }
 
 
 
