@@ -73,16 +73,16 @@ Table of Contents
    2.  The Internet-Standard Management Framework . . . . . . . . . .  4
    3.  Overview and Objectives  . . . . . . . . . . . . . . . . . . .  5
    4.  Structure of the VM-MIB Module . . . . . . . . . . . . . . . .  7
-   5.  Relationship to Other MIB Modules  . . . . . . . . . . . . . . 13
-   6.  Definitions  . . . . . . . . . . . . . . . . . . . . . . . . . 14
-   7.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 50
-   8.  Security Considerations  . . . . . . . . . . . . . . . . . . . 51
-   9.  Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . 52
-   10. References . . . . . . . . . . . . . . . . . . . . . . . . . . 53
-     10.1.  Normative References  . . . . . . . . . . . . . . . . . . 53
-     10.2.  Informative References  . . . . . . . . . . . . . . . . . 54
-   Appendix A.  State Transition Table  . . . . . . . . . . . . . . . 55
-   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . . 57
+   5.  Relationship to Other MIB Modules  . . . . . . . . . . . . . . 10
+   6.  Definitions  . . . . . . . . . . . . . . . . . . . . . . . . . 11
+   7.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 47
+   8.  Security Considerations  . . . . . . . . . . . . . . . . . . . 48
+   9.  Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . 49
+   10. References . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+     10.1.  Normative References  . . . . . . . . . . . . . . . . . . 50
+     10.2.  Informative References  . . . . . . . . . . . . . . . . . 51
+   Appendix A.  State Transition Table  . . . . . . . . . . . . . . . 52
+   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . . 54
 
 
 
@@ -478,197 +478,29 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
    filtering mechanism described in section 6 of RFC 3413 [RFC3413] is
    used by the management applications to control the notifications.
 
-   The OID tree structure of the MIB module is shown below.
 
-   --vmMIB (1.3.6.1.2.1.yyy)
-     +--vmNotifications(0)
-     |  +--vmRunning(1) [vmName, vmUUID, vmOperState]
-     |  +--vmShuttingdown(2) [vmName, vmUUID, vmOperState]
-     |  +--vmShutdown(3) [vmName, vmUUID, vmOperState]
-     |  +--vmPaused(4) [vmName, vmUUID, vmOperState]
-     |  +--vmSuspending(5) [vmName, vmUUID, vmOperState]
-     |  +--vmSuspended(6) [vmName, vmUUID, vmOperState]
-     |  +--vmResuming(7) [vmName, vmUUID, vmOperState]
-     |  +--vmMigrating(8) [vmName, vmUUID, vmOperState]
-     |  +--vmCrashed(9) [vmName, vmUUID, vmOperState]
-     |  +--vmDeleted(10) [vmName, vmUUID, vmOperState, vmPersistent]
-     |  +--vmBulkRunning(11) [vmAffectedVMs]
-     |  +--vmBulkShuttingdown(12) [vmAffectedVMs]
-     |  +--vmBulkShutdown(13) [vmAffectedVMs]
-     |  +--vmBulkPaused(14) [vmAffectedVMs]
-     |  +--vmBulkSuspending(15) [vmAffectedVMs]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 Asai, et al.            Expires November 27, 2015               [Page 9]
-
-Internet-Draft       Virtual Machine Monitoring MIB             May 2015
-
-
-     |  +--vmBulkSuspended(16) [vmAffectedVMs]
-     |  +--vmBulkResuming(17) [vmName, vmUUID, vmOperState]
-     |  +--vmBulkMigrating(18) [vmAffectedVMs]
-     |  +--vmBulkCrashed(19) [vmAffectedVMs]
-     |  +--vmBulkDeleted(20) [vmAffectedVMs]
-     +--vmObjects(1)
-     |  +--vmHypervisor(1)
-     |  |  +-- r-n SnmpAdminString    vmHvSoftware(1)
-     |  |  +-- r-n SnmpAdminString    vmHvVersion(2)
-     |  |  +-- r-n OBJECT IDENTIFIER  vmHvObjectID(3)
-     |  |  +-- r-n TimeTicks          vmHvUpTime(4)
-     |  +-- r-n Integer32  vmNumber(2)
-     |  +-- r-n TimeTicks  vmTableLastChange(3)
-     |  +--vmTable(4)
-     |  |  +--vmEntry(1) [vmIndex]
-     |  |     +-- --- VirtualMachineIndex  vmIndex(1)
-     |  |     +-- r-n SnmpAdminString      vmName(2)
-     |  |     +-- r-n UUIDorZero           vmUUID(3)
-     |  |     +-- r-n SnmpAdminString      vmOSType(4)
-     |  |     +-- r-n VirtualMachineAdminState
-     |  |     |                            vmAdminState(5)
-     |  |     +-- r-n VirtualMachineOperState
-     |  |     |                            vmOperState(6)
-     |  |     +-- r-n VirtualMachineAutoStart
-     |  |     |                            vmAutoStart(7)
-     |  |     +-- r-n VirtualMachinePersistent
-     |  |     |                            vmPersistent(8)
-     |  |     +-- r-n Integer32            vmCurCpuNumber(9)
-     |  |     +-- r-n Integer32            vmMinCpuNumber(10)
-     |  |     +-- r-n Integer32            vmMaxCpuNumber(11)
-     |  |     +-- r-n Integer32            vmMemUnit(12)
-     |  |     +-- r-n Integer32            vmCurMem(13)
-     |  |     +-- r-n Integer32            vmMinMem(14)
-     |  |     +-- r-n Integer32            vmMaxMem(15)
-     |  |     +-- r-n TimeTicks            vmUpTime(16)
-     |  |     +-- r-n Counter64            vmCpuTime(17)
-     |  +--vmCpuTable(5)
-     |  |  +--vmCpuEntry(1) [vmIndex, vmCpuIndex]
-     |  |     +-- --- VirtualMachineCpuIndex
-     |  |     |                            vmCpuIndex(1)
-     |  |     +-- r-n Counter64            vmCpuCoreTime(2)
-     |  +--vmCpuAffinityTable(6)
-     |  |  +--vmCpuAffinityEntry(1) [vmIndex,
-     |  |     |                      vmCpuIndex,
-     |  |     |                      vmCpuPhysIndex]
-     |  |     +-- --- Integer32            vmCpuPhysIndex(1)
-     |  |     +-- r-n Integer32            vmCpuAffinity(2)
-     |  +--vmStorageTable(7)
-
-
-
-Asai, et al.            Expires November 27, 2015              [Page 10]
-
-Internet-Draft       Virtual Machine Monitoring MIB             May 2015
-
-
-     |  |  +--vmStorageEntry(1) [vmStorageVmIndex, vmStorageIndex]
-     |  |     +-- --- VirtualMachineIndexOrZero
-     |  |     |                            vmStorageVmIndex(1)
-     |  |     +-- --- VirtualMachineStorageIndex
-     |  |     |                            vmStorageIndex(2)
-     |  |     +-- r-n Integer32            vmStorageParent(3)
-     |  |     +-- r-n VirtualMachineStorageSourceType
-     |  |     |                            vmStorageSourceType(4)
-     |  |     +-- r-n SnmpAdminString      vmStorageSourceTypeString(5)
-     |  |     +-- r-n SnmpAdminString      vmStorageResourceID(6)
-     |  |     +-- r-n VirtualMachineStorageAccess
-     |  |     |                            vmStorageAccess(7)
-     |  |     +-- r-n VirtualMachineStorageMediaType
-     |  |     |                            vmStorageMediaType(8)
-     |  |     +-- r-n SnmpAdminString      vmStorageMediaTypeString(9)
-     |  |     +-- r-n Integer32            vmStorageSizeUnit(10)
-     |  |     +-- r-n Integer32            vmStorageDefinedSize(11)
-     |  |     +-- r-n Integer32            vmStorageAllocatedSize(12)
-     |  |     +-- r-n Counter64            vmStorageReadIOs(13)
-     |  |     +-- r-n Counter64            vmStorageWriteIOs(14)
-     |  |     +-- r-n Counter64            vmStorageReadOctets(15)
-     |  |     +-- r-n Counter64            vmStorageWriteOctets(16)
-     |  |     +-- r-n Counter64            vmStorageReadLatency(17)
-     |  |     +-- r-n Counter64            vmStorageWriteLatency(18)
-     |  +--vmNetworkTable(8)
-     |  |  +--vmNetworkEntry(1) [vmIndex, vmNetworkIndex]
-     |  |     +-- --- VirtualMachineNetworkIndex
-     |  |     |                            vmNetworkIndex(1)
-     |  |     +-- r-n InterfaceIndexOrZero vmNetworkIfIndex(2)
-     |  |     +-- r-n InterfaceIndexOrZero vmNetworkParent(3)
-     |  |     +-- r-n SnmpAdminString      vmNetworkModel(4)
-     |  |     +-- r-n PhysAddress          vmNetworkPhysAddress(5)
-     |  +-- rwn TruthValue           vmPerVMNotificationsEnabled(9)
-     |  +-- rwn TruthValue           vmBulkNotificationsEnabled(10)
-     |  +-- --n VirtualMachineList   vmAffectedVMs(11)
-     +--vmConformance(2)
-        +--vmCompliances(1)
-        |  +--vmFullCompliances(1)
-        |  +--vmReadOnlyCompliances(2)
-        +--vmGroups(2)
-           +--vmHypervisorGroup(1)
-           +--vmVirtualMachineGroup(2)
-           +--vmCpuGroup(3)
-           +--vmCpuAffinityGroup(4)
-           +--vmStorageGroup(5)
-           +--vmNetworkGroup(6)
-           +--vmPerVMNotificationOptionalGroup(7)
-           +--vmBulkNotificationsVariablesGroup(8)
-
-
-
-Asai, et al.            Expires November 27, 2015              [Page 11]
-
-Internet-Draft       Virtual Machine Monitoring MIB             May 2015
-
-
-           +--vmBulkNotificationOptionalGroup(9)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Asai, et al.            Expires November 27, 2015              [Page 12]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -724,7 +556,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 13]
+Asai, et al.            Expires November 27, 2015              [Page 10]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -749,7 +581,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
            FROM IF-MIB;
 
    vmMIB MODULE-IDENTITY
-       LAST-UPDATED "201410260000Z"        -- 26 October 2014
+       LAST-UPDATED "201505260000Z"        -- 26 May 2015
        ORGANIZATION "IETF Operations and Management Area Working Group"
        CONTACT-INFO
                "
@@ -780,7 +612,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 14]
+Asai, et al.            Expires November 27, 2015              [Page 11]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -805,7 +637,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                `yyy' is temporary one, and it must be assigned by IANA
                when this becomes an official document.
 
-               Copyright (c) 2014 IETF Trust and the persons identified
+               Copyright (c) 2015 IETF Trust and the persons identified
                as authors of the code.  All rights reserved.
 
                Redistribution and use in source and binary forms, with
@@ -815,7 +647,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                IETF Trust's Legal Provisions Relating to IETF Documents
                (http://trustee.ietf.org/license-info)."
 
-       REVISION "201410260000Z"        -- 26 October 2014
+       REVISION "201505260000Z"        -- 26 May 2015
        DESCRIPTION
                "The original version of this MIB, published as
                RFCXXXX."
@@ -836,7 +668,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 15]
+Asai, et al.            Expires November 27, 2015              [Page 12]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -892,7 +724,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 16]
+Asai, et al.            Expires November 27, 2015              [Page 13]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -948,7 +780,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 17]
+Asai, et al.            Expires November 27, 2015              [Page 14]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1004,7 +836,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 18]
+Asai, et al.            Expires November 27, 2015              [Page 15]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1060,7 +892,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 19]
+Asai, et al.            Expires November 27, 2015              [Page 16]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1116,7 +948,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 20]
+Asai, et al.            Expires November 27, 2015              [Page 17]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1172,7 +1004,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 21]
+Asai, et al.            Expires November 27, 2015              [Page 18]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1228,7 +1060,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 22]
+Asai, et al.            Expires November 27, 2015              [Page 19]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1284,7 +1116,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 23]
+Asai, et al.            Expires November 27, 2015              [Page 20]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1340,7 +1172,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 24]
+Asai, et al.            Expires November 27, 2015              [Page 21]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1396,7 +1228,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 25]
+Asai, et al.            Expires November 27, 2015              [Page 22]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1452,7 +1284,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 26]
+Asai, et al.            Expires November 27, 2015              [Page 23]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1508,7 +1340,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 27]
+Asai, et al.            Expires November 27, 2015              [Page 24]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1564,7 +1396,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 28]
+Asai, et al.            Expires November 27, 2015              [Page 25]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1620,7 +1452,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 29]
+Asai, et al.            Expires November 27, 2015              [Page 26]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1676,7 +1508,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 30]
+Asai, et al.            Expires November 27, 2015              [Page 27]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1732,7 +1564,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 31]
+Asai, et al.            Expires November 27, 2015              [Page 28]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1788,7 +1620,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 32]
+Asai, et al.            Expires November 27, 2015              [Page 29]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1844,7 +1676,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 33]
+Asai, et al.            Expires November 27, 2015              [Page 30]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1900,7 +1732,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 34]
+Asai, et al.            Expires November 27, 2015              [Page 31]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -1956,7 +1788,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 35]
+Asai, et al.            Expires November 27, 2015              [Page 32]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2012,7 +1844,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 36]
+Asai, et al.            Expires November 27, 2015              [Page 33]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2068,7 +1900,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 37]
+Asai, et al.            Expires November 27, 2015              [Page 34]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2124,7 +1956,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 38]
+Asai, et al.            Expires November 27, 2015              [Page 35]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2180,7 +2012,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 39]
+Asai, et al.            Expires November 27, 2015              [Page 36]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2236,7 +2068,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 40]
+Asai, et al.            Expires November 27, 2015              [Page 37]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2292,7 +2124,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 41]
+Asai, et al.            Expires November 27, 2015              [Page 38]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2348,7 +2180,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 42]
+Asai, et al.            Expires November 27, 2015              [Page 39]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2404,7 +2236,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 43]
+Asai, et al.            Expires November 27, 2015              [Page 40]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2460,7 +2292,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 44]
+Asai, et al.            Expires November 27, 2015              [Page 41]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2516,7 +2348,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 45]
+Asai, et al.            Expires November 27, 2015              [Page 42]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2572,7 +2404,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 46]
+Asai, et al.            Expires November 27, 2015              [Page 43]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2628,7 +2460,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 47]
+Asai, et al.            Expires November 27, 2015              [Page 44]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2684,7 +2516,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 48]
+Asai, et al.            Expires November 27, 2015              [Page 45]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2740,7 +2572,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 49]
+Asai, et al.            Expires November 27, 2015              [Page 46]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2796,7 +2628,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 50]
+Asai, et al.            Expires November 27, 2015              [Page 47]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2852,7 +2684,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 51]
+Asai, et al.            Expires November 27, 2015              [Page 48]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2908,7 +2740,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 52]
+Asai, et al.            Expires November 27, 2015              [Page 49]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2964,7 +2796,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 53]
+Asai, et al.            Expires November 27, 2015              [Page 50]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -3020,7 +2852,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 54]
+Asai, et al.            Expires November 27, 2015              [Page 51]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -3076,7 +2908,7 @@ Appendix A.  State Transition Table
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 55]
+Asai, et al.            Expires November 27, 2015              [Page 52]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -3132,7 +2964,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 56]
+Asai, et al.            Expires November 27, 2015              [Page 53]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -3188,7 +3020,7 @@ Authors' Addresses
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 57]
+Asai, et al.            Expires November 27, 2015              [Page 54]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -3244,5 +3076,5 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 58]
+Asai, et al.            Expires November 27, 2015              [Page 55]
 
