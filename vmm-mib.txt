@@ -2580,9 +2580,10 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 7.  IANA Considerations
 
    This document defines the first version of the IANA-maintained IANA-
-   ENTITY-MIB module, which allows new physical classes to be added to
-   the enumeration in IANAPhysicalClass.  An Expert Review, as defined
-   in RFC 5226 [RFC5226], is REQUIRED for each modification.
+   STORAGE-MEDIA-TYPE-MIB module, which allows new storage media types
+   to be added to the enumeration in IANAStorageMediaType.  An Expert
+   Review, as defined in RFC 5226 [RFC5226], is REQUIRED for each
+   modification.
 
    The MIB module in this document uses the following IANA-assigned
    OBJECT IDENTIFIER values recorded in the SMI Numbers registry:
@@ -2592,7 +2593,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
          vmMIB                     { mib-2 TBD }
          IANAStorageMediaTypeMIB   { mib-2 TBD }
-
 
 
 
