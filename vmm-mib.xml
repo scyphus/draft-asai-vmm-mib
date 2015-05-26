@@ -2261,6 +2261,7 @@ END
       ----------        -----------------------
 
       vmMIB             { mib-2 TBD }
+      vmStorageTCMIB    { mib-2 TBD }
       ]]></artwork></figure>
     </section>
 
