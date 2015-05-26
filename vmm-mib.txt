@@ -2637,9 +2637,11 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
    There are two objects defined in this MIB,
    vmPerVMNotificationsEnabled and vmBulkNotificationsEnabled, that have
-   a MAX-ACCESS clause of read-write.  Such objects may be considered
-   sensitive or vulnerable in some network environments.  The support
-   for SET operations in a non-secure environment without proper
+   a MAX-ACCESS clause of read-write.  Enabling notifications can lead
+   to a noticeable number of notifications if many virtual machines
+   change their state concurrently.  Hence, such objects may be
+   considered sensitive or vulnerable in some network environments.  The
+   support for SET operations in a non-secure environment without proper
    protection can have a negative effect on the management system.  It
    is recommended that attention be given to these objects in scenarios
    that DO NOT use SNMPv3 strong security, i.e. authentication and
@@ -2678,8 +2680,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
    configured to give access to the objects only to those principals
    (users) that have legitimate rights to indeed GET or SET (change/
    create/delete) them.
-
-
 
 
 

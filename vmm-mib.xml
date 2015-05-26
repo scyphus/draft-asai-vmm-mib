@@ -2185,9 +2185,11 @@ END
     <section anchor="Security" title="Security Considerations">
       <t>There are two objects defined in this MIB,
       vmPerVMNotificationsEnabled and vmBulkNotificationsEnabled, that
-      have a MAX-ACCESS clause of read-write<!--and/or read-create-->. Such
-      objects may be considered sensitive or vulnerable in some network
-      environments.  The support for SET operations in a non-secure
+      have a MAX-ACCESS clause of read-write. Enabling notifications can
+      lead to a noticeable number of notifications if many virtual
+      machines change their state concurrently. Hence, such objects may
+      be considered sensitive or vulnerable in some network environments.
+      The support for SET operations in a non-secure
       environment without proper protection can
       have a negative effect on the management system.
       It is recommended that attention be given to these objects
