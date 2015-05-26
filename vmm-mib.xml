@@ -860,12 +860,16 @@ VirtualMachineStorageMediaType ::= TEXTUAL-CONVENTION
 
             hardDisk(3)    The media type is hard disk.
 
-            opticalDisk(4) The media type is optical disk."
+            opticalDisk(4) The media type is optical disk.
+
+            floppyDisk(5)  The media type is floppy disk."
+
     SYNTAX       INTEGER {
                     other(1),
                     unknown(2),
                     hardDisk(3),
-                    opticalDisk(4)
+                    opticalDisk(4),
+                    floppyDisk(5)
                  }
 
 VirtualMachineNetworkIndex ::= TEXTUAL-CONVENTION
