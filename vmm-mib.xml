@@ -14,6 +14,7 @@
 <!ENTITY RFC4122 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4122.xml">
 <!--<!ENTITY RFC4188 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4188.xml">-->
 <!--<!ENTITY RFC4363 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4363.xml">-->
+<!ENTITY RFC5226 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5226.xml">
 <!ENTITY RFC6933 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6933.xml">
 ]>
 
@@ -483,7 +484,7 @@ Notation:
 
     <section anchor="definition" title="Definitions">
       <figure><artwork><![CDATA[
-VM-STORAGE-TC-MIB DEFINITIONS ::= BEGIN
+IANA-STORAGE-MEDIA-TYPE-MIB DEFINITIONS ::= BEGIN
 
 IMPORTS 
     MODULE-IDENTITY, mib-2
@@ -491,48 +492,11 @@ IMPORTS
     TEXTUAL-CONVENTION
         FROM SNMPv2-TC;
 
-vmStorageTCMIB MODULE-IDENTITY
+ianaStorageMediaTypeMIB MODULE-IDENTITY
     LAST-UPDATED "201505260000Z"        -- 26 May 2015
-    ORGANIZATION "IETF Operations and Management Area Working Group"
+    ORGANIZATION "IANA"
     CONTACT-INFO
-            "
-            WG E-mail: opsawg@ietf.org
-            Mailing list subscription info:
-              https://www.ietf.org/mailman/listinfo/opsawg
-
-            Hirochika Asai
-            The University of Tokyo
-            7-3-1 Hongo
-            Bunkyo-ku, Tokyo  113-8656
-            JP
-            Phone: +81 3 5841 6748
-            Email: panda@hongo.wide.ad.jp
-
-            Michael MacFaden
-            VMware Inc.
-            Email: mrm@vmware.com
-
-            Juergen Schoenwaelder
-            Jacobs University
-            Campus Ring 1
-            Bremen 28759
-            Germany
-            Email: j.schoenwaelder@jacobs-university.de
-
-            Keiichi Shima
-            IIJ Innovation Institute Inc.
-            3-13 Kanda-Nishikicho
-            Chiyoda-ku, Tokyo  101-0054
-            JP
-            Email: keiichi@iijlab.net
-
-            Tina Tsou
-            Huawei Technologies (USA)
-            2330 Central Expressway
-            Santa Clara  CA 95050
-            USA
-            Email: tina.tsou.zouting@huawei.com
-            "
+            "TBD"
 
     DESCRIPTION
             "This MIB module defines Textual Conventions
@@ -555,7 +519,7 @@ vmStorageTCMIB MODULE-IDENTITY
                RFCXXXX."
        ::= { mib-2 zzz }
 
-VirtualMachineStorageMediaType ::= TEXTUAL-CONVENTION
+IANAStorageMediaType ::= TEXTUAL-CONVENTION
     STATUS       current
     DESCRIPTION
             "The media type of a virtual storage device:
@@ -601,7 +565,7 @@ IMPORTS
     InterfaceIndexOrZero
         FROM IF-MIB
     VirtualMachineStorageMediaType
-        FROM VM-STORAGE-TC-MIB;
+        FROM IANA-STORAGE-MEDIA-TYPE-MIB;
 
 vmMIB MODULE-IDENTITY
     LAST-UPDATED "201505260000Z"        -- 26 May 2015
@@ -2253,6 +2217,10 @@ END
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
+      <t> This document defines the first version of the IANA-maintained
+      IANA-ENTITY-MIB module, which allows new physical classes to be added
+      to the enumeration in IANAPhysicalClass.  An Expert Review, as
+      defined in <xref target="RFC5226">RFC 5226</xref>, is REQUIRED for each modification.</t>
       <t>The MIB module in this document uses the following IANA-assigned
       OBJECT IDENTIFIER values recorded in the SMI Numbers registry:
       </t>
@@ -2349,6 +2317,7 @@ END
       &RFC3415;
       &RFC3418;
       &RFC4122;
+      &RFC5226;
       &RFC6933;
     </references>
     <references title="Informative References">
