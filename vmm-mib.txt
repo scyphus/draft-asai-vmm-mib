@@ -579,8 +579,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
        DESCRIPTION
                "This MIB module defines Textual Conventions
-               representing the media type of a virtual storage
-               device.
+               representing the media type of a storage device.
 
                Copyright (c) 2015 IETF Trust and the persons identified
                as authors of the code.  All rights reserved.
@@ -601,7 +600,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
    IANAStorageMediaType ::= TEXTUAL-CONVENTION
        STATUS       current
        DESCRIPTION
-               "The media type of a virtual storage device:
+               "The media type of a storage device:
 
                unknown(1)     The media type is unknown, e.g., because
                               the implementation failed to obtain the
@@ -609,6 +608,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
                other(2)       The media type is other than those
                               defined in this conversion.
+
 
 
 

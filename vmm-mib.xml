@@ -500,8 +500,7 @@ ianaStorageMediaTypeMIB MODULE-IDENTITY
 
     DESCRIPTION
             "This MIB module defines Textual Conventions
-            representing the media type of a virtual storage
-            device.
+            representing the media type of a storage device.
 
             Copyright (c) 2015 IETF Trust and the persons identified
             as authors of the code.  All rights reserved.
@@ -522,7 +521,7 @@ ianaStorageMediaTypeMIB MODULE-IDENTITY
 IANAStorageMediaType ::= TEXTUAL-CONVENTION
     STATUS       current
     DESCRIPTION
-            "The media type of a virtual storage device:
+            "The media type of a storage device:
 
             unknown(1)     The media type is unknown, e.g., because
                            the implementation failed to obtain the
