@@ -1139,8 +1139,8 @@ vmMemUnit OBJECT-TYPE
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The multiplication unit for vmCurMem, vmMinMem, and
-            vmMaxMem.  For example, when this value is 1024, the
+            "The multiplication unit in byte for vmCurMem, vmMinMem,
+            and vmMaxMem.  For example, when this value is 1024, the
             memory size unit for vmCurMem, vmMinMem, and vmMaxMem is
             KiB."
     ::= { vmEntry 12 }
@@ -1442,10 +1442,11 @@ vmStorageSizeUnit OBJECT-TYPE
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The multiplication unit for vmStorageDefinedSize and
-            vmStorageAllocatedSize.  For example, when this value is
-            1048576, the storage size unit for vmStorageDefinedSize
-            and vmStorageAllocatedSize is MiB."
+            "The multiplication unit in byte for
+            vmStorageDefinedSize and vmStorageAllocatedSize.  For
+            example, when this value is 1048576, the storage size
+            unit for vmStorageDefinedSize and vmStorageAllocatedSize
+            is MiB."
     ::= { vmStorageEntry 10 }
 
 vmStorageDefinedSize OBJECT-TYPE

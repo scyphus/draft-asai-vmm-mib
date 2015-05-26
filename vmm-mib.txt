@@ -1323,8 +1323,8 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
-               "The multiplication unit for vmCurMem, vmMinMem, and
-               vmMaxMem.  For example, when this value is 1024, the
+               "The multiplication unit in byte for vmCurMem, vmMinMem,
+               and vmMaxMem.  For example, when this value is 1024, the
                memory size unit for vmCurMem, vmMinMem, and vmMaxMem is
                KiB."
        ::= { vmEntry 12 }
@@ -1682,10 +1682,11 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
        DESCRIPTION
-               "The multiplication unit for vmStorageDefinedSize and
-               vmStorageAllocatedSize.  For example, when this value is
-               1048576, the storage size unit for vmStorageDefinedSize
-               and vmStorageAllocatedSize is MiB."
+               "The multiplication unit in byte for
+               vmStorageDefinedSize and vmStorageAllocatedSize.  For
+               example, when this value is 1048576, the storage size
+               unit for vmStorageDefinedSize and vmStorageAllocatedSize
+               is MiB."
        ::= { vmStorageEntry 10 }
 
    vmStorageDefinedSize OBJECT-TYPE
@@ -1728,7 +1729,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
    vmStorageWriteIOs OBJECT-TYPE
        SYNTAX       Counter64
-       MAX-ACCESS   read-only
 
 
 
@@ -1737,6 +1737,7 @@ Asai, et al.            Expires November 27, 2015              [Page 31]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
                "The number of write I/O requests.
@@ -1784,7 +1785,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                precision system time stamp of when the request is
                received from the virtual machine with the request, the
                difference between this initial timestamp and the time
-               at which the requested operation has completed SHOULD be
 
 
 
@@ -1793,6 +1793,7 @@ Asai, et al.            Expires November 27, 2015              [Page 32]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+               at which the requested operation has completed SHOULD be
                converted to microseconds and accumulated.
                Discontinuities in the value of this counter can occur at
                re-initialization of the hypervisor, and administrative
@@ -1840,7 +1841,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        ::= { vmNetworkTable 1 }
 
    VmNetworkEntry ::=
-       SEQUENCE {
 
 
 
@@ -1849,6 +1849,7 @@ Asai, et al.            Expires November 27, 2015              [Page 33]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       SEQUENCE {
            vmNetworkIndex          VirtualMachineNetworkIndex,
            vmNetworkIfIndex        InterfaceIndexOrZero,
            vmNetworkParent         InterfaceIndexOrZero,
@@ -1896,7 +1897,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                `virtio' when the emulation driver model is virtio."
        ::= { vmNetworkEntry 4 }
 
-   vmNetworkPhysAddress OBJECT-TYPE
 
 
 
@@ -1905,6 +1905,7 @@ Asai, et al.            Expires November 27, 2015              [Page 34]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+   vmNetworkPhysAddress OBJECT-TYPE
        SYNTAX       PhysAddress
        MAX-ACCESS   read-only
        STATUS       current
@@ -1952,7 +1953,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                        vmName,
                        vmUUID,
                        vmOperState
-                    }
 
 
 
@@ -1961,6 +1961,7 @@ Asai, et al.            Expires November 27, 2015              [Page 35]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+                    }
        STATUS       current
        DESCRIPTION
                "This notification is generated when the operational
@@ -2008,7 +2009,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                "This notification is generated when the operational
                state of a virtual machine has been changed to
                paused(8) from some other state.  The other state is
-               indicated by the included value of vmOperState."
 
 
 
@@ -2017,6 +2017,7 @@ Asai, et al.            Expires November 27, 2015              [Page 36]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+               indicated by the included value of vmOperState."
        ::= { vmNotifications 4 }
 
    vmSuspending NOTIFICATION-TYPE
@@ -2064,7 +2065,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
    vmMigrating NOTIFICATION-TYPE
        OBJECTS      {
                        vmName,
-                       vmUUID,
 
 
 
@@ -2073,6 +2073,7 @@ Asai, et al.            Expires November 27, 2015              [Page 37]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+                       vmUUID,
                        vmOperState
                     }
        STATUS       current
@@ -2120,7 +2121,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        DESCRIPTION
                "This notification is generated when the operational
                state of one or more virtual machine has been changed to
-               running(4) from a all prior states except for
 
 
 
@@ -2129,6 +2129,7 @@ Asai, et al.            Expires November 27, 2015              [Page 38]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+               running(4) from a all prior states except for
                running(4).  Management stations are encouraged to
                subsequently poll the subset of virtual machines of
                interest for vmOperState."
@@ -2175,7 +2176,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                the subset of virtual machines of interest for
                vmOperState."
        ::= { vmNotifications 14 }
-
 
 
 
