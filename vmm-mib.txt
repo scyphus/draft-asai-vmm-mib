@@ -1216,7 +1216,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                "The virtual machine's 128-bit UUID or the zero-length
                string when a UUID is not available.  The UUID if set
                MUST uniquely identify a virtual machine from all other
-               virtual machines in an administrative region.  A
+               virtual machines in an administrative domain.  A
                zero-length octet string is returned if no UUID
                information is known."
        ::= { vmEntry 3 }
@@ -1248,7 +1248,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
-               "The administrative power state of the virtual machine."
+               "The administrative state of the virtual machine."
        ::= { vmEntry 5 }
 
    vmOperState OBJECT-TYPE
