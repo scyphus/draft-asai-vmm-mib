@@ -1924,4 +1924,1157 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        STATUS       current
        DESCRIPTION
                "Indicates if notification generator will send
-               notifications per set of virtu
+               notifications per set of virtual machines.  Changes to
+               this object MUST NOT persist across re-initialization of
+               the management system, e.g., SNMP agent."
+       ::= { vmObjects 10 }
+
+   vmAffectedVMs OBJECT-TYPE
+       SYNTAX       VirtualMachineList
+       MAX-ACCESS   accessible-for-notify
+       STATUS       current
+       DESCRIPTION
+               "A complete list of virtual machines whose state has
+               changed.  This object is the only object sent with bulk
+               notifications."
+       ::= { vmObjects 11 }
+
+   vmRunning NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of a virtual machine has been changed to
+               running(4) from some other state.  The other state is
+               indicated by the included value of vmOperState."
+       ::= { vmNotifications 1 }
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 35]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+   vmShuttingdown NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of a virtual machine has been changed to
+               shuttingdown(10) from some other state.  The other state
+               is indicated by the included value of vmOperState."
+       ::= { vmNotifications 2 }
+
+   vmShutdown NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of a virtual machine has been changed to
+               shutdown(11) from some other state.  The other state is
+               indicated by the included value of vmOperState."
+       ::= { vmNotifications 3 }
+
+   vmPaused NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of a virtual machine has been changed to
+               paused(8) from some other state.  The other state is
+               indicated by the included value of vmOperState."
+       ::= { vmNotifications 4 }
+
+   vmSuspending NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState
+                    }
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 36]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of a virtual machine has been changed to
+               suspending(5) from some other state.  The other state is
+               indicated by the included value of vmOperState."
+       ::= { vmNotifications 5 }
+
+   vmSuspended NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of a virtual machine has been changed to
+               suspended(6) from some other state.  The other state is
+               indicated by the included value of vmOperState."
+       ::= { vmNotifications 6 }
+
+   vmResuming NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of a virtual machine has been changed to
+               resuming(7) from some other state.  The other state is
+               indicated by the included value of vmOperState."
+       ::= { vmNotifications 7 }
+
+   vmMigrating NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of a virtual machine has been changed to
+               migrating(9) from some other state.  The other state is
+               indicated by the included value of vmOperState."
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 37]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+       ::= { vmNotifications 8 }
+
+   vmCrashed NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when a virtual machine
+               has been crashed.  The previos state of the virtual
+               machine is indicated by the included value of
+               vmOperState."
+       ::= { vmNotifications 9 }
+
+   vmDeleted NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
+                       vmUUID,
+                       vmOperState,
+                       vmPersistent
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when a virtual machine
+               has been deleted. The prior state of the virtual
+               machine is indicated by the included value of
+               vmOperState."
+       ::= { vmNotifications 10 }
+
+   vmBulkRunning NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmAffectedVMs
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of one or more virtual machine has been changed to
+               running(4) from a all prior states except for
+               running(4).  Management stations are encouraged to
+               subsequently poll the subset of virtual machines of
+               interest for vmOperState."
+       ::= { vmNotifications 11 }
+
+   vmBulkShuttingdown NOTIFICATION-TYPE
+       OBJECTS      {
+                      vmAffectedVMs
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 38]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of one or more virtual machine has been changed to
+               shuttingdown(10) from a state other than
+               shuttingdown(10).  Management stations are encouraged to
+               subsequently poll the subset of virtual machines of
+               interest for vmOperState."
+       ::= { vmNotifications 12 }
+
+   vmBulkShutdown NOTIFICATION-TYPE
+       OBJECTS      {
+                      vmAffectedVMs
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of one or more virtual machine has been changed to
+               shutdown(11) from a state other than shutdown(11).
+               Management stations are encouraged to subsequently poll
+               the subset of virtual machines of interest for
+               vmOperState."
+       ::= { vmNotifications 13 }
+
+   vmBulkPaused NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmAffectedVMs
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of one or more virtual machines have been changed
+               to paused(8) from a state other than paused(8).
+               Management stations are encouraged to subsequently poll
+               the subset of virtual machines of interest for
+               vmOperState."
+       ::= { vmNotifications 14 }
+
+
+   vmBulkSuspending NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmAffectedVMs
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of one or more virtual machines have been changed
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 39]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+               to suspending(5) from a state other than suspending(5).
+               Management stations are encouraged to subsequently poll
+               the subset of virtual machines of interest for
+               vmOperState."
+       ::= { vmNotifications 15 }
+
+   vmBulkSuspended NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmAffectedVMs
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of one or more virtual machines have been changed
+               to suspended(6) from a state other than suspended(6).
+               Management stations are encouraged to subsequently poll
+               the subset of virtual machines of interest for
+               vmOperState."
+       ::= { vmNotifications 16 }
+
+   vmBulkResuming NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmAffectedVMs
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of one or more virtual machines have been changed
+               to resuming(7) from a state other than resuming(7).
+               Management stations are encouraged to subsequently poll
+               the subset of virtual machines of interest for
+               vmOperState."
+       ::= { vmNotifications 17 }
+
+   vmBulkMigrating NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmAffectedVMs
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
+               state of one or more virtual machines have been changed
+               to migrating(9) from a state other than migrating(9).
+               Management stations are encouraged to subsequently poll
+               the subset of virtual machines of interest for
+               vmOperState."
+       ::= { vmNotifications 18 }
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 40]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+   vmBulkCrashed NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmAffectedVMs
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when one or more virtual
+               machines have been crashed.  Management stations are
+               encouraged to subsequently poll the subset of virtual
+               machines of interest for vmOperState."
+       ::= { vmNotifications 19 }
+
+   vmBulkDeleted NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmAffectedVMs
+                    }
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when one or more virtual
+               machines have been deleted.  Management stations are
+               encouraged to subsequently poll the subset of virtual
+               machines of interest for vmOperState."
+       ::= { vmNotifications 20 }
+
+   -- Compliance definitions:
+   vmCompliances  OBJECT IDENTIFIER ::= { vmConformance 1 }
+   vmGroups       OBJECT IDENTIFIER ::= { vmConformance 2 }
+
+   vmFullCompliances MODULE-COMPLIANCE
+       STATUS       current
+       DESCRIPTION
+               "Compliance statement for implementations supporting
+               read/write access, according to the object definitions."
+       MODULE     -- this module
+       MANDATORY-GROUPS {
+           vmHypervisorGroup,
+           vmVirtualMachineGroup,
+           vmCpuGroup,
+           vmCpuAffinityGroup,
+           vmStorageGroup,
+           vmNetworkGroup
+       }
+       GROUP  vmPerVMNotificationOptionalGroup
+       DESCRIPTION
+               "Support for per-VM notifications is optional.  If not
+               implemented then vmPerVMNotificationsEnabled MUST report
+               false(2)."
+       GROUP  vmBulkNotificationsVariablesGroup
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 41]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+       DESCRIPTION
+               "Necessary only if vmPerVMNotificationOptionalGroup is
+               implemented."
+       GROUP  vmBulkNotificationOptionalGroup
+       DESCRIPTION
+               "Support for bulk notifications is optional.  If not
+               implemented then vmBulkNotificationsEnabled MUST report
+               false(2)."
+
+       ::= { vmCompliances 1 }
+
+   vmReadOnlyCompliances MODULE-COMPLIANCE
+       STATUS       current
+       DESCRIPTION
+               "Compliance statement for implementations supporting
+               only readonly access."
+       MODULE     -- this module
+       MANDATORY-GROUPS {
+           vmHypervisorGroup,
+           vmVirtualMachineGroup,
+           vmCpuGroup,
+           vmCpuAffinityGroup,
+           vmStorageGroup,
+           vmNetworkGroup
+       }
+
+       OBJECT vmPerVMNotificationsEnabled
+       MIN-ACCESS   read-only
+       DESCRIPTION
+               "Write access is not required."
+
+       OBJECT vmBulkNotificationsEnabled
+       MIN-ACCESS   read-only
+       DESCRIPTION
+               "Write access is not required."
+       ::= { vmCompliances 2 }
+
+   vmHypervisorGroup OBJECT-GROUP
+       OBJECTS {
+           vmHvSoftware,
+           vmHvVersion,
+           vmHvObjectID,
+           vmHvUpTime,
+           vmNumber,
+           vmTableLastChange,
+           vmPerVMNotificationsEnabled,
+           vmBulkNotificationsEnabled
+       }
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 42]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+       STATUS       current
+       DESCRIPTION
+               "A collection of objects providing insight into the
+               hypervisor itself."
+        ::= { vmGroups 1 }
+
+   vmVirtualMachineGroup OBJECT-GROUP
+       OBJECTS {
+           -- vmIndex
+           vmName,
+           vmUUID,
+           vmOSType,
+           vmAdminState,
+           vmOperState,
+           vmAutoStart,
+           vmPersistent,
+           vmCurCpuNumber,
+           vmMinCpuNumber,
+           vmMaxCpuNumber,
+           vmMemUnit,
+           vmCurMem,
+           vmMinMem,
+           vmMaxMem,
+           vmUpTime,
+           vmCpuTime
+       }
+       STATUS       current
+       DESCRIPTION
+               "A collection of objects providing insight into the
+               virtual machines) controlled by a hypervisor."
+       ::= { vmGroups 2 }
+
+   vmCpuGroup OBJECT-GROUP
+       OBJECTS {
+           -- vmCpuIndex,
+           vmCpuCoreTime
+       }
+       STATUS       current
+       DESCRIPTION
+               "A collection of objects providing insight into the
+               virtual machines) controlled by a hypervisor."
+       ::= { vmGroups 3 }
+
+   vmCpuAffinityGroup OBJECT-GROUP
+       OBJECTS {
+           -- vmCpuPhysIndex,
+           vmCpuAffinity
+       }
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 43]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+       STATUS       current
+       DESCRIPTION
+               "A collection of objects providing insight into the
+               virtual machines) controlled by a hypervisor."
+       ::= { vmGroups 4 }
+
+   vmStorageGroup OBJECT-GROUP
+       OBJECTS {
+           -- vmStorageVmIndex,
+           -- vmStorageIndex,
+           vmStorageParent,
+           vmStorageSourceType,
+           vmStorageSourceTypeString,
+           vmStorageResourceID,
+           vmStorageAccess,
+           vmStorageMediaType,
+           vmStorageMediaTypeString,
+           vmStorageSizeUnit,
+           vmStorageDefinedSize,
+           vmStorageAllocatedSize,
+           vmStorageReadIOs,
+           vmStorageWriteIOs,
+           vmStorageReadOctets,
+           vmStorageWriteOctets,
+           vmStorageReadLatency,
+           vmStorageWriteLatency
+       }
+       STATUS       current
+       DESCRIPTION
+               "A collection of objects providing insight into the
+               virtual storage devices controlled by a hypervisor."
+       ::= { vmGroups 5 }
+
+   vmNetworkGroup OBJECT-GROUP
+       OBJECTS {
+           -- vmNetworkIndex,
+           vmNetworkIfIndex,
+           vmNetworkParent,
+           vmNetworkModel,
+           vmNetworkPhysAddress
+       }
+       STATUS       current
+       DESCRIPTION
+               "A collection of objects providing insight into the
+               virtual network interfaces controlled by a hypervisor."
+       ::= { vmGroups 6 }
+
+   vmPerVMNotificationOptionalGroup NOTIFICATION-GROUP
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 44]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+       NOTIFICATIONS {
+           vmRunning,
+           vmShuttingdown,
+           vmShutdown,
+           vmPaused,
+           vmSuspending,
+           vmSuspended,
+           vmResuming,
+           vmMigrating,
+           vmCrashed,
+           vmDeleted
+       }
+       STATUS       current
+       DESCRIPTION
+               "A collection of notifications for per-VM notification
+               of changes to virtual machine state (vmOperState) as
+               reported by a hypervisor."
+       ::= { vmGroups 7 }
+
+   vmBulkNotificationsVariablesGroup OBJECT-GROUP
+       OBJECTS {
+           vmAffectedVMs
+       }
+       STATUS       current
+       DESCRIPTION
+               "The variables used in vmBulkNotificationOptionalGroup
+               virtual network interfaces controlled by a hypervisor."
+       ::= { vmGroups 8 }
+
+   vmBulkNotificationOptionalGroup NOTIFICATION-GROUP
+       NOTIFICATIONS {
+           vmBulkRunning,
+           vmBulkShuttingdown,
+           vmBulkShutdown,
+           vmBulkPaused,
+           vmBulkSuspending,
+           vmBulkSuspended,
+           vmBulkResuming,
+           vmBulkMigrating,
+           vmBulkCrashed,
+           vmBulkDeleted
+       }
+       STATUS       current
+       DESCRIPTION
+               "A collection of notifications for bulk notification of
+               changes to virtual machine state (vmOperState) as
+               reported by a given hypervisor."
+       ::= { vmGroups 9 }
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 45]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+   END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 46]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+7.  IANA Considerations
+
+   The MIB module in this document uses the following IANA-assigned
+   OBJECT IDENTIFIER values recorded in the SMI Numbers registry:
+
+         Descriptor        OBJECT IDENTIFIER value
+         ----------        -----------------------
+
+         vmMIB             { mib-2 TBD }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 47]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+8.  Security Considerations
+
+   There are two objects defined in this MIB,
+   vmPerVMNotificationsEnabled and vmBulkNotificationsEnabled, that have
+   a MAX-ACCESS clause of read-write.  Such objects may be considered
+   sensitive or vulnerable in some network environments.  The support
+   for SET operations in a non-secure environment without proper
+   protection can have a negative effect on the management system.  It
+   is recommended that attention be given to these objects in scenarios
+   that DO NOT use SNMPv3 strong security, i.e. authentication and
+   encryption.  When SNMPv3 strong security is not used, these objects
+   SHOULD have access of read-only, not read-write.
+
+   There are a number of managed objects in this MIB that may contain
+   sensitive information.  The objects in the vmHvSoftware and
+   vmHvVersion list information about the hypervisor's software and
+   version.  Some may wish not to disclose to others which software they
+   are running.  Further, an inventory of the running software and
+   versions may be helpful to an attacker who hopes to exploit software
+   bugs in certain applications.  Moreover, the objects in the vmTable,
+   vmCpuTable, vmCpuAffinityTable, vmStorageTable and vmNetworkTable
+   list information about the virtual machines and their virtual
+   resource allocation.  Some may wish not to disclose to others how
+   many and what virtual machines they are operating.
+
+   It is thus important to control even GET access to these objects and
+   possibly to even encrypt the values of these object when sending them
+   over the network via SNMP.  Not all versions of SNMP provide features
+   for such a secure environment.
+
+   SNMPv1 by itself is not a secure environment.  Even if the network
+   itself is secure (for example by using IPsec), even then, there is no
+   control as to who on the secure network is allowed to access and GET/
+   SET (read/change/create/delete) the objects in this MIB.
+
+   It is recommended that the implementers consider the security
+   features as provided by the SNMPv3 framework.  Specifically, the use
+   of the User-based Security Model [RFC3414] and the View-based Access
+   Control Model [RFC3415] is recommended.
+
+   It is then a customer/user responsibility to ensure that the SNMP
+   entity giving access to an instance of this MIB, is properly
+   configured to give access to the objects only to those principals
+   (users) that have legitimate rights to indeed GET or SET (change/
+   create/delete) them.
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 48]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+9.  Acknowledgements
+
+   The authors like to thank Joe Marcus Clarke, Randy Presuhn, David
+   Black, Joel Jaeggli, Tom Petch, Andy Bierman, C. M. Heard, and Ian
+   West for providing helpful comments during the development of this
+   specification.
+
+   Juergen Schoenwaelder was partly funded by Flamingo, a Network of
+   Excellence project (ICT-318488) supported by the European Commission
+   under its Seventh Framework Programme.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 49]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+10.  References
+
+10.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119, March 1997.
+
+   [RFC2578]  McCloghrie, K., Ed., Perkins, D., Ed., and J.
+              Schoenwaelder, Ed., "Structure of Management Information
+              Version 2 (SMIv2)", STD 58, RFC 2578, April 1999.
+
+   [RFC2579]  McCloghrie, K., Ed., Perkins, D., Ed., and J.
+              Schoenwaelder, Ed., "Textual Conventions for SMIv2",
+              STD 58, RFC 2579, April 1999.
+
+   [RFC2580]  McCloghrie, K., Perkins, D., and J. Schoenwaelder,
+              "Conformance Statements for SMIv2", STD 58, RFC 2580,
+              April 1999.
+
+   [RFC2790]  Waldbusser, S. and P. Grillo, "Host Resources MIB",
+              RFC 2790, March 2000.
+
+   [RFC2863]  McCloghrie, K. and F. Kastenholz, "The Interfaces Group
+              MIB", RFC 2863, June 2000.
+
+   [RFC3413]  Levi, D., Meyer, P., and B. Stewart, "Simple Network
+              Management Protocol (SNMP) Applications", STD 62,
+              RFC 3413, December 2002.
+
+   [RFC3414]  Blumenthal, U. and B. Wijnen, "User-based Security Model
+              (USM) for version 3 of the Simple Network Management
+              Protocol (SNMPv3)", STD 62, RFC 3414, December 2002.
+
+   [RFC3415]  Wijnen, B., Presuhn, R., and K. McCloghrie, "View-based
+              Access Control Model (VACM) for the Simple Network
+              Management Protocol (SNMP)", STD 62, RFC 3415,
+              December 2002.
+
+   [RFC3418]  Presuhn, R., "Management Information Base (MIB) for the
+              Simple Network Management Protocol (SNMP)", STD 62,
+              RFC 3418, December 2002.
+
+   [RFC4122]  Leach, P., Mealling, M., and R. Salz, "A Universally
+              Unique IDentifier (UUID) URN Namespace", RFC 4122,
+              July 2005.
+
+   [RFC6933]  Bierman, A., Romascanu, D., Quittek, J., and M.
+              Chandramouli, "Entity MIB (Version 4)", RFC 6933,
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 50]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+              May 2013.
+
+10.2.  Informative References
+
+   [RFC3410]  Case, J., Mundy, R., Partain, D., and B. Stewart,
+              "Introduction and Applicability Statements for Internet-
+              Standard Management Framework", RFC 3410, December 2002.
+
+   [IEEE8021-BRIDGE-MIB]
+              IEEE, "IEEE8021-BRIDGE-MIB", <http://www.ieee802.org/1/
+              files/public/MIBs/IEEE8021-BRIDGE-MIB-200810150000Z.txt>.
+
+   [IEEE8021-Q-BRIDGE-MIB]
+              IEEE, "IEEE8021-BRIDGE-MIB", <http://www.ieee802.org/1/
+              files/public/MIBs/
+              IEEE8021-Q-BRIDGE-MIB-200810150000Z.txt>.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 51]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+Appendix A.  State Transition Table
+
+   +--------------+----------------+--------------+--------------------+
+   |     State    |    Change to   |  Next state  |    Notification    |
+   |              |  vmAdminState  |              |                    |
+   |              |     at the     |              |                    |
+   |              |  hypervisor or |              |                    |
+   |              |     (Event)    |              |                    |
+   +--------------+----------------+--------------+--------------------+
+   |   suspended  |     running    |   resuming   |    vmResuming |    |
+   |              |                |              |   vmBulkResuming   |
+   |              |                |              |                    |
+   |  suspending  |    (suspend    |   suspended  |    vmSuspended |   |
+   |              |    operation   |              |   vmBulkSuspended  |
+   |              |   completed)   |              |                    |
+   |              |                |              |                    |
+   |    running   |    suspended   |  suspending  |   vmSuspending |   |
+   |              |                |              |  vmBulkSuspending  |
+   |              |                |              |                    |
+   |              |    shutdown    | shuttingdown |  vmShuttingdown |  |
+   |              |                |              | vmBulkShuttingdown |
+   |              |                |              |                    |
+   |              |     destroy    |   shutdown   |    vmShutdown |    |
+   |              |                |              |   vmBulkShutdown   |
+   |              |                |              |                    |
+   |              |  (migration to |   migrating  |    vmMigrating |   |
+   |              |      other     |              |  vmBulkMingrating  |
+   |              |   hypervisor   |              |                    |
+   |              |   initiated)   |              |                    |
+   |              |                |              |                    |
+   |   resuming   |     (resume    |    running   |     vmRunning |    |
+   |              |    opeartion   |              |    vmBulkRunning   |
+   |              |   completed)   |              |                    |
+   |              |                |              |                    |
+   |    paused    |     running    |    running   |     vmRunning |    |
+   |              |                |              |    vmBulkRunning   |
+   |              |                |              |                    |
+   | shuttingdown |    (shutdown   |   shutdown   |    vmShutdown |    |
+   |              |    operation   |              |   vmBulkShutdown   |
+   |              |   completed)   |              |                    |
+   |              |                |              |                    |
+   |   shutdown   |     running    |    running   |     vmRunning |    |
+   |              |                |              |    vmBulkRunning   |
+   |              |                |              |                    |
+
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 52]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+   |              | (if this state |   migrating  |    vmMigrating |   |
+   |              |    entry is    |              |   vmBulkMigrating  |
+   |              |  created by a  |              |                    |
+   |              |    migration   |              |                    |
+   |              |  operation (*) |              |                    |
+   |              |                |              |                    |
+   |              |    (deletion   |  (no state)  |     vmDeleted |    |
+   |              |    operation   |              |    vmBulkDeleted   |
+   |              |   completed)   |              |                    |
+   |              |                |              |                    |
+   |   migrating  |   (migration   |    running   |     vmRunning |    |
+   |              |   from other   |              |    vmBulkRunning   |
+   |              |   hypervisor   |              |                    |
+   |              |   completed)   |              |                    |
+   |              |                |              |                    |
+   |              |  (migration to |   shutdown   |    vmShutdown |    |
+   |              |      other     |              |   vmBulkShutdown   |
+   |              |   hypervisor   |              |                    |
+   |              |   completed)   |              |                    |
+   |              |                |              |                    |
+   |   preparing  |  (preparation  |   shutdown   |    vmShutdown |    |
+   |              |   completed)   |              |   vmBulkShutdown   |
+   |              |                |              |                    |
+   |    crashed   |        -       |       -      |          -         |
+   |              |                |              |                    |
+   |              |    (crashed)   |    crashed   |     vmCrashed |    |
+   |              |                |              |    vmBulkCrashed   |
+   |              |                |              |                    |
+   |  (no state)  |  (preparation  |   preparing  |          -         |
+   |              |   initiated)   |              |                    |
+   |              |                |              |                    |
+   |              |  (migrate from | shutdown (*) |    vmShutdown |    |
+   |              |      other     |              |   vmBulkShutdown   |
+   |              |   hypervisor   |              |                    |
+   |              |   initiated)   |              |                    |
+   +--------------+----------------+--------------+--------------------+
+
+                  State transition table for vmOperState
+
+
+
+
+
+
+
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 53]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+Authors' Addresses
+
+   Hirochika Asai
+   The University of Tokyo
+   7-3-1 Hongo
+   Bunkyo-ku, Tokyo  113-8656
+   JP
+
+   Phone: +81 3 5841 6748
+   Email: panda@hongo.wide.ad.jp
+
+
+   Michael MacFaden
+   VMware Inc.
+
+   Email: mrm@vmware.com
+
+
+   Juergen Schoenwaelder
+   Jacobs University
+   Campus Ring 1
+   Bremen 28759
+   Germany
+
+   Email: j.schoenwaelder@jacobs-university.de
+
+
+   Keiichi Shima
+   IIJ Innovation Institute Inc.
+   2-10-2 Fujimi
+   Chiyoda-ku, Tokyo  102-0071
+   JP
+
+   Email: keiichi@iijlab.net
+
+
+   Tina Tsou
+   Huawei Technologies (USA)
+   2330 Central Expressway
+   Santa Clara  CA 95050
+   USA
+
+   Email: tina.tsou.zouting@huawei.com
+
+
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 54]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
+   Yuji Sekiya
+   The University of Tokyo
+   2-11-16 Yayoi
+   Bunkyo-ku, Tokyo  113-8658
+   JP
+
+   Email: sekiya@wide.ad.jp
+
+
+   Cathy Zhou
+   Huawei Technologies
+   Bantian, Longgang District
+   Shenzhen  518129
+   P.R. China
+
+   Email: cathyzhou@huawei.com
+
+
+   Hiroshi Esaki
+   The University of Tokyo
+   7-3-1 Hongo
+   Bunkyo-ku, Tokyo  113-8656
+   JP
+
+   Phone: +81 3 5841 6748
+   Email: hiroshi@wide.ad.jp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 55]
+
