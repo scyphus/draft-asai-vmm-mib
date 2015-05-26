@@ -351,32 +351,32 @@ Notation:
 
 =====================================================================
 
-+--------------+   + - - - - - - - +     +-------------+
-|  suspended   |<--|  suspending   |     |   paused    |
-| !vmSuspended |   | !vmSuspending |     |  !vmPaused  |
-+--------------+   + - - - - - - - +     +-------------+
++---------------+   + - - - - - - - -+     +------------+
+|  suspended(6) |<--|  suspending(5) |     |  paused(8) |
+| !vmSuspended  |   | !vmSuspending  |     | !vmPaused  |
++---------------+   + - - - - - - - -+     +------------+
       |                ^                    ^
       |                |                    |
       v                |                    |
-+ - - - - - - +   +-------------+<----------+    + - - - - - - -+
-|  resuming   |-->|   running   |<-------------->|  migrating   |
-| !vmResuming |   |  !vmRunning |                | !vmMigrating |
-+ - - - - - - +   +-------------+                + - - - - - - -+
++ - - - - - - -+   +-------------+<----------+    + - - - - - - - +
+|  resuming(7) |-->|  running(4) |<-------------->|  migrating(9) |
+| !vmResuming  |   | !vmRunning  |                | !vmMigrating  |
++ - - - - - - -+   +-------------+                + - - - - - - - +
                        |      ^                        ^
                        |      |                        |
                        |      +-------------------+    |
                        |                          |    |
                        v                          v    v
-                + - - - - - - - - +          +-------------+
-                |  shuttingdown   |--------->|  shutdown   |
-                | !vmShuttingdown |          | !vmShutdown |
-                + - - - - - - - - +          +-------------+
+                + - - - - - - - - - +          +---------------+
+                |  shuttingdown(10) |--------->|  shutdown(11) |
+                | !vmShuttingdown   |          | !vmShutdown   |
+                + - - - - - - - - - +          +---------------+
                                                  ^      |
                                                  |      v !vmDeleted
-                 +------------+     + - - - - - - +    (Deleted from
-                 |  crashed   |     |  preparing  |     vmTable)
-                 | !vmCrashed |     |             |
-                 +------------+     + - - - - - - +
+                +--------------+   + - - - - - - - -+  (Deleted from
+                |  crashed(12) |   |  preparing(3)  |   vmTable)
+                | !vmCrashed   |   |                |
+                +--------------+   + - - - - - - - -+
 ]]></artwork>
         <postamble>The overview of the state transition of a virtual machine</postamble>
       </figure>
