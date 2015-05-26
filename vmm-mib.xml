@@ -832,14 +832,18 @@ VirtualMachineStorageAccess ::= TEXTUAL-CONVENTION
     DESCRIPTION
             "The access permission of a virtual storage:
 
-            readwrite(1)   The virtual storage is a read-write
+            unknown(1)     The access permission of the virtual
+                           storage is unknown.
+
+            readwrite(2)   The virtual storage is a read-write
                            device.
 
-            readonly(2)    The virtual storage is a read-only
+            readonly(3)    The virtual storage is a read-only
                            device."
     SYNTAX       INTEGER {
-                    readwrite(1),
-                    readonly(2)
+                    unknown(1),
+                    readwrite(2),
+                    readonly(3)
                  }
 
 VirtualMachineStorageMediaType ::= TEXTUAL-CONVENTION
