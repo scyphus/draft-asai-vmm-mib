@@ -373,10 +373,10 @@ Notation:
                 + - - - - - - - - +          +-------------+
                                                  ^      |
                                                  |      v !vmDeleted
-+ - - - - - -+   +------------+     + - - - - - - +    (Deleted from
-|  blocked   |   |  crashed   |     |  preparing  |     vmTable)
-| !vmBlocked |   | !vmCrashed |     |             |
-+ - - - - - -+   +------------+     + - - - - - - +
+                 +------------+     + - - - - - - +    (Deleted from
+                 |  crashed   |     |  preparing  |     vmTable)
+                 | !vmCrashed |     |             |
+                 +------------+     + - - - - - - +
 ]]></artwork>
         <postamble>The overview of the state transition of a virtual machine</postamble>
       </figure>
@@ -431,19 +431,17 @@ Notation:
   |  +--vmResuming(7) [vmName, vmUUID, vmOperState]
   |  +--vmMigrating(8) [vmName, vmUUID, vmOperState]
   |  +--vmCrashed(9) [vmName, vmUUID, vmOperState]
-  |  +--vmBlocked(10) [vmName, vmUUID, vmOperState]
-  |  +--vmDeleted(11) [vmName, vmUUID, vmOperState, vmPersistent]
-  |  +--vmBulkRunning(12) [vmAffectedVMs]
+  |  +--vmDeleted(10) [vmName, vmUUID, vmOperState, vmPersistent]
+  |  +--vmBulkRunning(11) [vmAffectedVMs]
+  |  +--vmBulkShuttingdown(12) [vmAffectedVMs]
   |  +--vmBulkShutdown(13) [vmAffectedVMs]
-  |  +--vmBulkShuttingdown(14) [vmAffectedVMs]
-  |  +--vmBulkPaused(15) [vmAffectedVMs]
-  |  +--vmBulkSuspending(16) [vmAffectedVMs]
-  |  +--vmBulkSuspended(17) [vmAffectedVMs]
-  |  +--vmBulkResuming(18) [vmName, vmUUID, vmOperState]
-  |  +--vmBulkMigrating(19) [vmAffectedVMs]
-  |  +--vmBulkCrashed(20) [vmAffectedVMs]
-  |  +--vmBulkBlocked(21) [vmAffectedVMs]
-  |  +--vmBulkDeleted(22) [vmAffectedVMs]
+  |  +--vmBulkPaused(14) [vmAffectedVMs]
+  |  +--vmBulkSuspending(15) [vmAffectedVMs]
+  |  +--vmBulkSuspended(16) [vmAffectedVMs]
+  |  +--vmBulkResuming(17) [vmName, vmUUID, vmOperState]
+  |  +--vmBulkMigrating(18) [vmAffectedVMs]
+  |  +--vmBulkCrashed(19) [vmAffectedVMs]
+  |  +--vmBulkDeleted(20) [vmAffectedVMs]
   +--vmObjects(1)
   |  +--vmHypervisor(1)
   |  |  +-- r-n SnmpAdminString    vmHvSoftware(1)
@@ -781,26 +779,19 @@ VirtualMachineOperState ::= TEXTUAL-CONVENTION
             running(4)     The operational state of the virtual
                            machine indicating the virtual machine is
                            currently executed but it is not in the
-                           process of preparing(3), suspending(6),
-                           resuming(8), migrating(10), and
-                           shuttingdown(11).
+                           process of preparing(3), suspending(5),
+                           resuming(7), migrating(9), and
+                           shuttingdown(10).
 
-            blocked(5)     The operational state of the virtual
-                           machine indicating the execution of the
-                           virtual machine is currently blocked,
-                           e.g., waiting for some action of the
-                           hypervisor to finish.  This is a
-                           transient state from/to other states.
-
-            suspending(6)  The operational state of the virtual
+            suspending(5)  The operational state of the virtual
                            machine indicating the virtual machine is
                            currently in the process of suspending
                            to save its memory and CPU execution
                            state to persistent store.  This is a
                            transient state from running(4) to
-                           suspended(7).
+                           suspended(6).
 
-            suspended(7)   The operational state of the virtual
+            suspended(6)   The operational state of the virtual
                            machine indicating the virtual machine is
                            currently suspended, which means the
                            memory and CPU execution state of the
@@ -809,38 +800,38 @@ VirtualMachineOperState ::= TEXTUAL-CONVENTION
                            machine is not scheduled to execute by
                            the hypervisor.
 
-            resuming(8)    The operational state of the virtual
+            resuming(7)    The operational state of the virtual
                            machine indicating the virtual machine is
                            currently in the process of resuming
                            to restore its memory and CPU execution
                            state from persistent store.  This is a
-                           transient state from suspended(7) to
+                           transient state from suspended(6) to
                            running(4).
 
-            paused(9)      The operational state of the virtual
+            paused(8)      The operational state of the virtual
                            machine indicating the virtual machine is
                            resident in memory but no longer
                            scheduled to execute by the hypervisor.
 
-            migrating(10)  The operational state of the virtual
+            migrating(9)   The operational state of the virtual
                            machine indicating the virtual machine is
                            currently in the process of migration
                            from/to another hypervisor.
 
-            shuttingdown(11)
+            shuttingdown(10)
                            The operational state of the virtual
                            machine indicating the virtual machine is
                            currently in the process of shutting
                            down.  This is a transient state from
-                           running(4) to shutdown(12).
+                           running(4) to shutdown(11).
 
-            shutdown(12)   The operational state of the virtual
+            shutdown(11)   The operational state of the virtual
                            machine indicating the virtual machine is
                            down, and CPU execution is no longer
                            scheduled by the hypervisor and its
                            memory is not resident in the hypervisor.
 
-            crashed(13)    The operational state of the virtual
+            crashed(12)    The operational state of the virtual
                            machine indicating the virtual machine
                            has crashed."
     SYNTAX       INTEGER {
@@ -848,15 +839,14 @@ VirtualMachineOperState ::= TEXTUAL-CONVENTION
                     other(2),
                     preparing(3),
                     running(4),
-                    blocked(5),
-                    suspending(6),
-                    suspended(7),
-                    resuming(8),
-                    paused(9),
-                    migrating(10),
-                    shuttingdown(11),
-                    shutdown(12),
-                    crashed(13)
+                    suspending(5),
+                    suspended(6),
+                    resuming(7),
+                    paused(8),
+                    migrating(9),
+                    shuttingdown(10),
+                    shutdown(11),
+                    crashed(12)
                  }
 
 VirtualMachineAutoStart ::= TEXTUAL-CONVENTION
@@ -1816,20 +1806,6 @@ vmRunning NOTIFICATION-TYPE
             indicated by the included value of vmOperState."
     ::= { vmNotifications 1 }
 
-vmShutdown NOTIFICATION-TYPE
-    OBJECTS      {
-                    vmName,
-                    vmUUID,
-                    vmOperState
-                 }
-    STATUS       current
-    DESCRIPTION
-            "This notification is generated when the operational
-            state of a virtual machine has been changed to
-            shutdown(12) from some other state.  The other state is
-            indicated by the included value of vmOperState."
-    ::= { vmNotifications 2 }
-
 vmShuttingdown NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
@@ -1840,8 +1816,22 @@ vmShuttingdown NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            shuttingdown(11) from some other state.  The other state
+            shuttingdown(10) from some other state.  The other state
             is indicated by the included value of vmOperState."
+    ::= { vmNotifications 2 }
+
+vmShutdown NOTIFICATION-TYPE
+    OBJECTS      {
+                    vmName,
+                    vmUUID,
+                    vmOperState
+                 }
+    STATUS       current
+    DESCRIPTION
+            "This notification is generated when the operational
+            state of a virtual machine has been changed to
+            shutdown(11) from some other state.  The other state is
+            indicated by the included value of vmOperState."
     ::= { vmNotifications 3 }
 
 vmPaused NOTIFICATION-TYPE
@@ -1854,7 +1844,7 @@ vmPaused NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            paused(9) from some other state.  The other state is
+            paused(8) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 4 }
 
@@ -1868,7 +1858,7 @@ vmSuspending NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            suspending(6) from some other state.  The other state is
+            suspending(5) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 5 }
 
@@ -1882,7 +1872,7 @@ vmSuspended NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            suspended(7) from some other state.  The other state is
+            suspended(6) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 6 }
 
@@ -1896,7 +1886,7 @@ vmResuming NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            resuming(8) from some other state.  The other state is
+            resuming(7) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 7 }
 
@@ -1910,7 +1900,7 @@ vmMigrating NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            migrating(10) from some other state.  The other state is
+            migrating(9) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 8 }
 
@@ -1928,20 +1918,6 @@ vmCrashed NOTIFICATION-TYPE
             vmOperState."
     ::= { vmNotifications 9 }
 
-vmBlocked NOTIFICATION-TYPE
-    OBJECTS      {
-                    vmName,
-                    vmUUID,
-                    vmOperState
-                 }
-    STATUS       current
-    DESCRIPTION
-            "This notification is generated when the operational
-            state of a virtual machine has been changed to
-            blocked(5).  The previos state of the virtual machine is
-            indicated by the included value of vmOperState."
-    ::= { vmNotifications 10 }
-
 vmDeleted NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
@@ -1955,7 +1931,7 @@ vmDeleted NOTIFICATION-TYPE
             has been deleted. The prior state of the virtual
             machine is indicated by the included value of
             vmOperState."
-    ::= { vmNotifications 11 }
+    ::= { vmNotifications 10 }
 
 vmBulkRunning NOTIFICATION-TYPE
     OBJECTS      {
@@ -1969,7 +1945,7 @@ vmBulkRunning NOTIFICATION-TYPE
             running(4).  Management stations are encouraged to
             subsequently poll the subset of virtual machines of
             interest for vmOperState."
-    ::= { vmNotifications 12 }
+    ::= { vmNotifications 11 }
 
 vmBulkShuttingdown NOTIFICATION-TYPE
     OBJECTS      {
@@ -1979,11 +1955,11 @@ vmBulkShuttingdown NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machine has been changed to
-            shuttingdown(11) from a state other than
-            shuttingdown(11).  Management stations are encouraged to
+            shuttingdown(10) from a state other than
+            shuttingdown(10).  Management stations are encouraged to
             subsequently poll the subset of virtual machines of
             interest for vmOperState."
-    ::= { vmNotifications 13 }
+    ::= { vmNotifications 12 }
 
 vmBulkShutdown NOTIFICATION-TYPE
     OBJECTS      {
@@ -1993,11 +1969,11 @@ vmBulkShutdown NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machine has been changed to
-            shutdown(12) from a state other than shutdown(12).
+            shutdown(11) from a state other than shutdown(11).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 14 }
+    ::= { vmNotifications 13 }
 
 vmBulkPaused NOTIFICATION-TYPE
     OBJECTS      {
@@ -2007,11 +1983,11 @@ vmBulkPaused NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to paused(9) from a state other than paused(9).
+            to paused(8) from a state other than paused(8).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 15 }
+    ::= { vmNotifications 14 }
 
 
 vmBulkSuspending NOTIFICATION-TYPE
@@ -2022,11 +1998,11 @@ vmBulkSuspending NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to suspending(6) from a state other than suspending(6).
+            to suspending(5) from a state other than suspending(5).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 16 }
+    ::= { vmNotifications 15 }
 
 vmBulkSuspended NOTIFICATION-TYPE
     OBJECTS      {
@@ -2036,11 +2012,11 @@ vmBulkSuspended NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to suspended(7) from a state other than suspended(7).
+            to suspended(6) from a state other than suspended(6).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 17 }
+    ::= { vmNotifications 16 }
 
 vmBulkResuming NOTIFICATION-TYPE
     OBJECTS      {
@@ -2050,11 +2026,11 @@ vmBulkResuming NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to resuming(8) from a state other than resuming(8).
+            to resuming(7) from a state other than resuming(7).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 18 }
+    ::= { vmNotifications 17 }
 
 vmBulkMigrating NOTIFICATION-TYPE
     OBJECTS      {
@@ -2064,11 +2040,11 @@ vmBulkMigrating NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to migrating(10) from a state other than migrating(10).
+            to migrating(9) from a state other than migrating(9).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 19 }
+    ::= { vmNotifications 18 }
 
 vmBulkCrashed NOTIFICATION-TYPE
     OBJECTS      {
@@ -2080,21 +2056,7 @@ vmBulkCrashed NOTIFICATION-TYPE
             machines have been crashed.  Management stations are
             encouraged to subsequently poll the subset of virtual
             machines of interest for vmOperState."
-    ::= { vmNotifications 20 }
-
-vmBulkBlocked NOTIFICATION-TYPE
-    OBJECTS      {
-                    vmAffectedVMs
-                 }
-    STATUS       current
-    DESCRIPTION
-            "This notification is generated when the operational
-            state of one or more virtual machines have been changed
-            to blocked(5) from a state other than blocked(5).
-            Management stations are encouraged to subsequently poll
-            the subset of virtual machines of interest for
-            vmOperState."
-    ::= { vmNotifications 21 }
+    ::= { vmNotifications 19 }
 
 vmBulkDeleted NOTIFICATION-TYPE
     OBJECTS      {
@@ -2106,7 +2068,7 @@ vmBulkDeleted NOTIFICATION-TYPE
             machines have been deleted.  Management stations are
             encouraged to subsequently poll the subset of virtual
             machines of interest for vmOperState."
-    ::= { vmNotifications 22 }
+    ::= { vmNotifications 20 }
 
 -- Compliance definitions:
 vmCompliances  OBJECT IDENTIFIER ::= { vmConformance 1 }
@@ -2286,7 +2248,6 @@ vmPerVMNotificationOptionalGroup NOTIFICATION-GROUP
         vmResuming,
         vmMigrating,
         vmCrashed,
-        vmBlocked,
         vmDeleted
     }
     STATUS       current
@@ -2317,7 +2278,6 @@ vmBulkNotificationOptionalGroup NOTIFICATION-GROUP
         vmBulkResuming,
         vmBulkMigrating,
         vmBulkCrashed,
-        vmBulkBlocked,
         vmBulkDeleted
     }
     STATUS       current
@@ -2472,9 +2432,7 @@ END
 	<c>migrating</c> <c>(migration from other hypervisor completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
 	<c></c> <c>(migration to other hypervisor completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
 	<c>preparing</c> <c>(preparation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
-	<c>blocked</c> <c>(blocking operation completed)</c> <c>(previous state)</c> <c>-</c>
 	<c>crashed</c> <c>-</c> <c>-</c> <c>-</c>
-	<c>(any)</c> <c>(blocking operation initiated)</c> <c>blocked</c> <c>vmBlocked | vmBulkBlocked</c>
 	<c></c> <c>(crashed)</c> <c>crashed</c> <c>vmCrashed | vmBulkCrashed</c>
 	<c>(no state)</c> <c>(preparation initiated)</c> <c>preparing</c> <c>-</c>
 	<c></c> <c>(migrate from other hypervisor initiated)</c> <c>shutdown (*)</c> <c>vmShutdown | vmBulkShutdown</c>
