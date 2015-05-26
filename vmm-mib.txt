@@ -75,16 +75,16 @@ Table of Contents
    4.  Structure of the VM-MIB Module . . . . . . . . . . . . . . . .  7
    5.  Relationship to Other MIB Modules  . . . . . . . . . . . . . . 10
    6.  Definitions  . . . . . . . . . . . . . . . . . . . . . . . . . 11
-   7.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 47
-   8.  Security Considerations  . . . . . . . . . . . . . . . . . . . 48
-   9.  Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . 49
-   10. References . . . . . . . . . . . . . . . . . . . . . . . . . . 50
-     10.1.  Normative References  . . . . . . . . . . . . . . . . . . 50
-     10.2.  Informative References  . . . . . . . . . . . . . . . . . 51
-   Appendix A.  State Transition Table  . . . . . . . . . . . . . . . 52
-   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . . 54
-
-
+     6.1.  IANA-STORAGE-MEDIA-TYPE-MIB  . . . . . . . . . . . . . . . 11
+     6.2.  VM-MIB . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+   7.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 48
+   8.  Security Considerations  . . . . . . . . . . . . . . . . . . . 49
+   9.  Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . 50
+   10. References . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+     10.1. Normative References . . . . . . . . . . . . . . . . . . . 51
+     10.2. Informative References . . . . . . . . . . . . . . . . . . 52
+   Appendix A.  State Transition Table  . . . . . . . . . . . . . . . 53
+   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . . 55
 
 
 
@@ -563,6 +563,8 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 6.  Definitions
 
+6.1.  IANA-STORAGE-MEDIA-TYPE-MIB
+
    IANA-STORAGE-MEDIA-TYPE-MIB DEFINITIONS ::= BEGIN
 
    IMPORTS
@@ -607,8 +609,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                               media type from the hypervisor.
 
                other(2)       The media type is other than those
-                              defined in this conversion.
-
 
 
 
@@ -616,6 +616,8 @@ Asai, et al.            Expires November 27, 2015              [Page 11]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
+
+                              defined in this conversion.
 
                hardDisk(3)    The media type is hard disk.
 
@@ -633,6 +635,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
    END
 
+6.2.  VM-MIB
 
    VM-MIB DEFINITIONS ::= BEGIN
 
@@ -662,9 +665,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                Mailing list subscription info:
                  https://www.ietf.org/mailman/listinfo/opsawg
 
-               Hirochika Asai
-               The University of Tokyo
-               7-3-1 Hongo
 
 
 
@@ -673,6 +673,9 @@ Asai, et al.            Expires November 27, 2015              [Page 12]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+               Hirochika Asai
+               The University of Tokyo
+               7-3-1 Hongo
                Bunkyo-ku, Tokyo  113-8656
                JP
                Phone: +81 3 5841 6748
@@ -718,9 +721,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                subject to the license terms contained in, the
                Simplified BSD License set forth in Section 4.c of the
                IETF Trust's Legal Provisions Relating to IETF Documents
-               (http://trustee.ietf.org/license-info)."
-
-       REVISION "201505260000Z"        -- 26 May 2015
 
 
 
@@ -729,6 +729,9 @@ Asai, et al.            Expires November 27, 2015              [Page 13]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+               (http://trustee.ietf.org/license-info)."
+
+       REVISION "201505260000Z"        -- 26 May 2015
        DESCRIPTION
                "The original version of this MIB, published as
                RFCXXXX."
@@ -774,9 +777,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                running(1)    The administrative state of the virtual
                              machine indicating the virtual machine
                              is currently online or should be brought
-                             online.
-
-               suspended(2)  The administrative state of the virtual
 
 
 
@@ -785,6 +785,9 @@ Asai, et al.            Expires November 27, 2015              [Page 14]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+                             online.
+
+               suspended(2)  The administrative state of the virtual
                              machine where its memory and CPU execution
                              state has been saved to persistent store
                              and will be restored at next running(1).
@@ -830,9 +833,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
                running(4)     The operational state of the virtual
                               machine indicating the virtual machine is
-                              currently executed but it is not in the
-                              process of preparing(3), suspending(5),
-                              resuming(7), migrating(9), and
 
 
 
@@ -841,6 +841,9 @@ Asai, et al.            Expires November 27, 2015              [Page 15]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+                              currently executed but it is not in the
+                              process of preparing(3), suspending(5),
+                              resuming(7), migrating(9), and
                               shuttingdown(10).
 
                suspending(5)  The operational state of the virtual
@@ -886,9 +889,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                               running(4) to shutdown(11).
 
                shutdown(11)   The operational state of the virtual
-                              machine indicating the virtual machine is
-                              down, and CPU execution is no longer
-                              scheduled by the hypervisor and its
 
 
 
@@ -897,6 +897,9 @@ Asai, et al.            Expires November 27, 2015              [Page 16]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+                              machine indicating the virtual machine is
+                              down, and CPU execution is no longer
+                              scheduled by the hypervisor and its
                               memory is not resident in the hypervisor.
 
                crashed(12)    The operational state of the virtual
@@ -942,9 +945,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                        unknown(1),
                        enabled(2),
                        disabled(3)
-                   }
-
-   VirtualMachinePersistent ::= TEXTUAL-CONVENTION
 
 
 
@@ -953,6 +953,9 @@ Asai, et al.            Expires November 27, 2015              [Page 17]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+                   }
+
+   VirtualMachinePersistent ::= TEXTUAL-CONVENTION
        STATUS       current
        DESCRIPTION
                "This value indicates whether a virtual machine has a
@@ -998,9 +1001,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                device MUST remain constant at least from one
                re-initialization of the hypervisor to the next
                re-initialization."
-        SYNTAX      Integer32 (1..2147483647)
-
-   VirtualMachineStorageSourceType ::= TEXTUAL-CONVENTION
 
 
 
@@ -1009,6 +1009,9 @@ Asai, et al.            Expires November 27, 2015              [Page 18]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+        SYNTAX      Integer32 (1..2147483647)
+
+   VirtualMachineStorageSourceType ::= TEXTUAL-CONVENTION
        STATUS       current
        DESCRIPTION
                "The source type of a virtual storage device:
@@ -1055,9 +1058,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                        readonly(3)
                     }
 
-   VirtualMachineNetworkIndex ::= TEXTUAL-CONVENTION
-       DISPLAY-HINT "d"
-
 
 
 Asai, et al.            Expires November 27, 2015              [Page 19]
@@ -1065,6 +1065,8 @@ Asai, et al.            Expires November 27, 2015              [Page 19]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+   VirtualMachineNetworkIndex ::= TEXTUAL-CONVENTION
+       DISPLAY-HINT "d"
        STATUS       current
        DESCRIPTION
                "A unique value for each virtual machine, greater than
@@ -1111,8 +1113,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
    vmHvVersion OBJECT-TYPE
        SYNTAX       SnmpAdminString (SIZE (0..255))
-       MAX-ACCESS   read-only
-       STATUS       current
 
 
 
@@ -1121,6 +1121,8 @@ Asai, et al.            Expires November 27, 2015              [Page 20]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       MAX-ACCESS   read-only
+       STATUS       current
        DESCRIPTION
                "A textual description of the version of the hypervisor
                software."
@@ -1167,8 +1169,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        STATUS       current
        DESCRIPTION
                "The number of virtual machines (regardless of their
-               current state) present on this hypervisor."
-       ::= { vmObjects 2 }
 
 
 
@@ -1176,6 +1176,9 @@ Asai, et al.            Expires November 27, 2015              [Page 21]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
+
+               current state) present on this hypervisor."
+       ::= { vmObjects 2 }
 
    vmTableLastChange  OBJECT-TYPE
        SYNTAX       TimeTicks
@@ -1222,9 +1225,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
            vmCurMem                Integer32,
            vmMinMem                Integer32,
            vmMaxMem                Integer32,
-           vmUpTime                TimeTicks,
-           vmCpuTime               Counter64
-       }
 
 
 
@@ -1232,6 +1232,10 @@ Asai, et al.            Expires November 27, 2015              [Page 22]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
+
+           vmUpTime                TimeTicks,
+           vmCpuTime               Counter64
+       }
 
    vmIndex OBJECT-TYPE
        SYNTAX       VirtualMachineIndex
@@ -1277,10 +1281,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                assumes to be running when the virtual machine is
                started.  This may differ from the actual operating
                system in case the virtual machine boots into a
-               different operating system."
-       ::= { vmEntry 4 }
-
-   vmAdminState OBJECT-TYPE
 
 
 
@@ -1289,6 +1289,10 @@ Asai, et al.            Expires November 27, 2015              [Page 23]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+               different operating system."
+       ::= { vmEntry 4 }
+
+   vmAdminState OBJECT-TYPE
        SYNTAX       VirtualMachineAdminState
        MAX-ACCESS   read-only
        STATUS       current
@@ -1334,10 +1338,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                virtual machine."
        ::= { vmEntry 9 }
 
-   vmMinCpuNumber OBJECT-TYPE
-       SYNTAX       Integer32 (-1|0..2147483647)
-       MAX-ACCESS   read-only
-
 
 
 Asai, et al.            Expires November 27, 2015              [Page 24]
@@ -1345,6 +1345,9 @@ Asai, et al.            Expires November 27, 2015              [Page 24]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+   vmMinCpuNumber OBJECT-TYPE
+       SYNTAX       Integer32 (-1|0..2147483647)
+       MAX-ACCESS   read-only
        STATUS       current
        DESCRIPTION
                "The minimum number of virtual CPUs that are assigned to
@@ -1390,9 +1393,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        STATUS       current
        DESCRIPTION
                "The minimum memory size defined to the virtual machine
-               in the unit designated by vmMemUnit.  The value -1
-               indicates that there is no hard boundary for the minimum
-               memory size."
 
 
 
@@ -1401,6 +1401,9 @@ Asai, et al.            Expires November 27, 2015              [Page 25]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+               in the unit designated by vmMemUnit.  The value -1
+               indicates that there is no hard boundary for the minimum
+               memory size."
        ::= { vmEntry 14 }
 
    vmMaxMem OBJECT-TYPE
@@ -1446,9 +1449,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        MAX-ACCESS   not-accessible
        STATUS       current
        DESCRIPTION
-               "The table of virtual CPUs provided by the hypervisor."
-       ::= { vmObjects 5 }
-
 
 
 
@@ -1456,6 +1456,9 @@ Asai, et al.            Expires November 27, 2015              [Page 26]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
+
+               "The table of virtual CPUs provided by the hypervisor."
+       ::= { vmObjects 5 }
 
    vmCpuEntry OBJECT-TYPE
        SYNTAX       VmCpuEntry
@@ -1502,9 +1505,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        SYNTAX       SEQUENCE OF VmCpuAffinityEntry
        MAX-ACCESS   not-accessible
        STATUS       current
-       DESCRIPTION
-               "A list of CPU affinity entries of a virtual CPU."
-       ::= { vmObjects 6 }
 
 
 
@@ -1512,6 +1512,10 @@ Asai, et al.            Expires November 27, 2015              [Page 27]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
+
+       DESCRIPTION
+               "A list of CPU affinity entries of a virtual CPU."
+       ::= { vmObjects 6 }
 
    vmCpuAffinityEntry OBJECT-TYPE
        SYNTAX       VmCpuAffinityEntry
@@ -1557,10 +1561,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
    -- The virtual storage devices on each virtual machine.  This
    -- document defines some overlapped objects with hrStorage in
    -- HOST-RESOURCES-MIB [RFC2790], because virtual resources are
-   -- allocated from the hypervisor's resources, which is the `host
-   -- resources'
-   vmStorageTable OBJECT-TYPE
-       SYNTAX       SEQUENCE OF VmStorageEntry
 
 
 
@@ -1569,6 +1569,10 @@ Asai, et al.            Expires November 27, 2015              [Page 28]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+   -- allocated from the hypervisor's resources, which is the `host
+   -- resources'
+   vmStorageTable OBJECT-TYPE
+       SYNTAX       SEQUENCE OF VmStorageEntry
        MAX-ACCESS   not-accessible
        STATUS       current
        DESCRIPTION
@@ -1613,10 +1617,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
    vmStorageVmIndex OBJECT-TYPE
        SYNTAX       VirtualMachineIndexOrZero
        MAX-ACCESS   not-accessible
-       STATUS       current
-       DESCRIPTION
-               "This value identifies the virtual machine (guest) this
-               storage device has been allocated to.  The value zero
 
 
 
@@ -1625,6 +1625,10 @@ Asai, et al.            Expires November 27, 2015              [Page 29]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       STATUS       current
+       DESCRIPTION
+               "This value identifies the virtual machine (guest) this
+               storage device has been allocated to.  The value zero
                indicates that the storage device is currently not
                allocated to any virtual machines."
        ::= { vmStorageEntry 1 }
@@ -1669,10 +1673,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        ::= { vmStorageEntry 5 }
 
    vmStorageResourceID OBJECT-TYPE
-       SYNTAX       SnmpAdminString (SIZE (0..255))
-       MAX-ACCESS   read-only
-       STATUS       current
-       DESCRIPTION
 
 
 
@@ -1681,6 +1681,10 @@ Asai, et al.            Expires November 27, 2015              [Page 30]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       SYNTAX       SnmpAdminString (SIZE (0..255))
+       MAX-ACCESS   read-only
+       STATUS       current
+       DESCRIPTION
                "A textual string that represents the resource
                identifier of the virtual storage.  For example, this
                contains the path to the disk image file that
@@ -1725,10 +1729,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                is MiB."
        ::= { vmStorageEntry 10 }
 
-   vmStorageDefinedSize OBJECT-TYPE
-       SYNTAX       Integer32 (-1|0..2147483647)
-       MAX-ACCESS   read-only
-       STATUS       current
 
 
 
@@ -1737,6 +1737,10 @@ Asai, et al.            Expires November 27, 2015              [Page 31]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+   vmStorageDefinedSize OBJECT-TYPE
+       SYNTAX       Integer32 (-1|0..2147483647)
+       MAX-ACCESS   read-only
+       STATUS       current
        DESCRIPTION
                "The defined virtual storage size defined in the unit
                designated by vmStorageSizeUnit.  If this information is
@@ -1781,10 +1785,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                Discontinuities in the value of this counter can occur
                at re-initialization of the hypervisor, and
                administrative state (vmAdminState) changes of the
-               virtual machine."
-       ::= { vmStorageEntry 14 }
-
-   vmStorageReadOctets OBJECT-TYPE
 
 
 
@@ -1793,6 +1793,10 @@ Asai, et al.            Expires November 27, 2015              [Page 32]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+               virtual machine."
+       ::= { vmStorageEntry 14 }
+
+   vmStorageReadOctets OBJECT-TYPE
        SYNTAX       Counter64
        MAX-ACCESS   read-only
        STATUS       current
@@ -1837,10 +1841,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        ::= { vmStorageEntry 17 }
 
    vmStorageWriteLatency OBJECT-TYPE
-       SYNTAX       Counter64
-       MAX-ACCESS   read-only
-       STATUS       current
-       DESCRIPTION
 
 
 
@@ -1849,6 +1849,10 @@ Asai, et al.            Expires November 27, 2015              [Page 33]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       SYNTAX       Counter64
+       MAX-ACCESS   read-only
+       STATUS       current
+       DESCRIPTION
                "The total number of microseconds write requests have
                been queued for this device.
                This would typically be implemented by storing the high
@@ -1893,10 +1897,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
            vmNetworkPhysAddress    PhysAddress
        }
 
-   vmNetworkIndex OBJECT-TYPE
-       SYNTAX       VirtualMachineNetworkIndex
-       MAX-ACCESS   not-accessible
-       STATUS       current
 
 
 
@@ -1905,6 +1905,10 @@ Asai, et al.            Expires November 27, 2015              [Page 34]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+   vmNetworkIndex OBJECT-TYPE
+       SYNTAX       VirtualMachineNetworkIndex
+       MAX-ACCESS   not-accessible
+       STATUS       current
        DESCRIPTION
                "A unique value identifying a virtual network interface
                allocated to the virtual machine."
@@ -1950,10 +1954,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        ::= { vmNetworkEntry 5 }
 
 
-   -- Notification definitions:
-
-   vmPerVMNotificationsEnabled OBJECT-TYPE
-
 
 
 Asai, et al.            Expires November 27, 2015              [Page 35]
@@ -1961,6 +1961,9 @@ Asai, et al.            Expires November 27, 2015              [Page 35]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+   -- Notification definitions:
+
+   vmPerVMNotificationsEnabled OBJECT-TYPE
        SYNTAX       TruthValue
        MAX-ACCESS   read-write
        STATUS       current
@@ -2006,9 +2009,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                indicated by the included value of vmOperState."
        ::= { vmNotifications 1 }
 
-   vmShuttingdown NOTIFICATION-TYPE
-       OBJECTS      {
-                       vmName,
 
 
 
@@ -2017,6 +2017,9 @@ Asai, et al.            Expires November 27, 2015              [Page 36]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+   vmShuttingdown NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmName,
                        vmUUID,
                        vmOperState
                     }
@@ -2062,9 +2065,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                        vmUUID,
                        vmOperState
                     }
-       STATUS       current
-       DESCRIPTION
-               "This notification is generated when the operational
 
 
 
@@ -2073,6 +2073,9 @@ Asai, et al.            Expires November 27, 2015              [Page 37]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       STATUS       current
+       DESCRIPTION
+               "This notification is generated when the operational
                state of a virtual machine has been changed to
                suspending(5) from some other state.  The other state is
                indicated by the included value of vmOperState."
@@ -2118,9 +2121,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                state of a virtual machine has been changed to
                migrating(9) from some other state.  The other state is
                indicated by the included value of vmOperState."
-       ::= { vmNotifications 8 }
-
-   vmCrashed NOTIFICATION-TYPE
 
 
 
@@ -2129,6 +2129,9 @@ Asai, et al.            Expires November 27, 2015              [Page 38]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       ::= { vmNotifications 8 }
+
+   vmCrashed NOTIFICATION-TYPE
        OBJECTS      {
                        vmName,
                        vmUUID,
@@ -2174,9 +2177,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
    vmBulkShuttingdown NOTIFICATION-TYPE
        OBJECTS      {
                       vmAffectedVMs
-                    }
-       STATUS       current
-       DESCRIPTION
 
 
 
@@ -2185,6 +2185,9 @@ Asai, et al.            Expires November 27, 2015              [Page 39]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+                    }
+       STATUS       current
+       DESCRIPTION
                "This notification is generated when the operational
                state of one or more virtual machine has been changed to
                shuttingdown(10) from a state other than
@@ -2230,9 +2233,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        DESCRIPTION
                "This notification is generated when the operational
                state of one or more virtual machines have been changed
-               to suspending(5) from a state other than suspending(5).
-               Management stations are encouraged to subsequently poll
-               the subset of virtual machines of interest for
 
 
 
@@ -2241,6 +2241,9 @@ Asai, et al.            Expires November 27, 2015              [Page 40]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+               to suspending(5) from a state other than suspending(5).
+               Management stations are encouraged to subsequently poll
+               the subset of virtual machines of interest for
                vmOperState."
        ::= { vmNotifications 15 }
 
@@ -2286,9 +2289,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                vmOperState."
        ::= { vmNotifications 18 }
 
-   vmBulkCrashed NOTIFICATION-TYPE
-       OBJECTS      {
-                       vmAffectedVMs
 
 
 
@@ -2297,6 +2297,9 @@ Asai, et al.            Expires November 27, 2015              [Page 41]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+   vmBulkCrashed NOTIFICATION-TYPE
+       OBJECTS      {
+                       vmAffectedVMs
                     }
        STATUS       current
        DESCRIPTION
@@ -2342,9 +2345,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                implemented then vmPerVMNotificationsEnabled MUST report
                false(2)."
        GROUP  vmBulkNotificationsVariablesGroup
-       DESCRIPTION
-               "Necessary only if vmPerVMNotificationOptionalGroup is
-               implemented."
 
 
 
@@ -2353,6 +2353,9 @@ Asai, et al.            Expires November 27, 2015              [Page 42]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       DESCRIPTION
+               "Necessary only if vmPerVMNotificationOptionalGroup is
+               implemented."
        GROUP  vmBulkNotificationOptionalGroup
        DESCRIPTION
                "Support for bulk notifications is optional.  If not
@@ -2398,9 +2401,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
            vmPerVMNotificationsEnabled,
            vmBulkNotificationsEnabled
        }
-       STATUS       current
-       DESCRIPTION
-               "A collection of objects providing insight into the
 
 
 
@@ -2409,6 +2409,9 @@ Asai, et al.            Expires November 27, 2015              [Page 43]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       STATUS       current
+       DESCRIPTION
+               "A collection of objects providing insight into the
                hypervisor itself."
         ::= { vmGroups 1 }
 
@@ -2454,9 +2457,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
            -- vmCpuPhysIndex,
            vmCpuAffinity
        }
-       STATUS       current
-       DESCRIPTION
-               "A collection of objects providing insight into the
 
 
 
@@ -2465,6 +2465,9 @@ Asai, et al.            Expires November 27, 2015              [Page 44]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       STATUS       current
+       DESCRIPTION
+               "A collection of objects providing insight into the
                virtual machines) controlled by a hypervisor."
        ::= { vmGroups 4 }
 
@@ -2510,9 +2513,6 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
        ::= { vmGroups 6 }
 
    vmPerVMNotificationOptionalGroup NOTIFICATION-GROUP
-       NOTIFICATIONS {
-           vmRunning,
-           vmShuttingdown,
 
 
 
@@ -2521,6 +2521,9 @@ Asai, et al.            Expires November 27, 2015              [Page 45]
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
+       NOTIFICATIONS {
+           vmRunning,
+           vmShuttingdown,
            vmShutdown,
            vmPaused,
            vmSuspending,
@@ -2567,12 +2570,65 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
                reported by a given hypervisor."
        ::= { vmGroups 9 }
 
+
+
+Asai, et al.            Expires November 27, 2015              [Page 46]
+
+Internet-Draft       Virtual Machine Monitoring MIB             May 2015
+
+
    END
 
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 46]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Asai, et al.            Expires November 27, 2015              [Page 47]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2628,7 +2684,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 47]
+Asai, et al.            Expires November 27, 2015              [Page 48]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2684,7 +2740,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 48]
+Asai, et al.            Expires November 27, 2015              [Page 49]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2740,7 +2796,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 49]
+Asai, et al.            Expires November 27, 2015              [Page 50]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2796,7 +2852,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 50]
+Asai, et al.            Expires November 27, 2015              [Page 51]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2852,7 +2908,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 51]
+Asai, et al.            Expires November 27, 2015              [Page 52]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2908,7 +2964,7 @@ Appendix A.  State Transition Table
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 52]
+Asai, et al.            Expires November 27, 2015              [Page 53]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -2964,7 +3020,7 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 53]
+Asai, et al.            Expires November 27, 2015              [Page 54]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -3020,7 +3076,7 @@ Authors' Addresses
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 54]
+Asai, et al.            Expires November 27, 2015              [Page 55]
 
 Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
@@ -3076,5 +3132,5 @@ Internet-Draft       Virtual Machine Monitoring MIB             May 2015
 
 
 
-Asai, et al.            Expires November 27, 2015              [Page 55]
+Asai, et al.            Expires November 27, 2015              [Page 56]
 

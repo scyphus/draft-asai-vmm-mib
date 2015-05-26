@@ -483,6 +483,7 @@ Notation:
     </section>
 
     <section anchor="definition" title="Definitions">
+    <section title="IANA-STORAGE-MEDIA-TYPE-MIB">
       <figure><artwork><![CDATA[
 IANA-STORAGE-MEDIA-TYPE-MIB DEFINITIONS ::= BEGIN
 
@@ -545,8 +546,10 @@ IANAStorageMediaType ::= TEXTUAL-CONVENTION
                  }
 
 END
-
-
+      ]]></artwork></figure>
+    </section>
+    <section title="VM-MIB">
+      <figure><artwork><![CDATA[
 VM-MIB DEFINITIONS ::= BEGIN
 
 IMPORTS
@@ -2213,6 +2216,7 @@ vmBulkNotificationOptionalGroup NOTIFICATION-GROUP
 
 END
       ]]></artwork></figure>
+    </section>
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
