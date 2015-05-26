@@ -564,7 +564,7 @@ IMPORTS
         FROM UUID-TC-MIB
     InterfaceIndexOrZero
         FROM IF-MIB
-    VirtualMachineStorageMediaType
+    IANAStorageMediaType
         FROM IANA-STORAGE-MEDIA-TYPE-MIB;
 
 vmMIB MODULE-IDENTITY
@@ -1377,7 +1377,7 @@ VmStorageEntry ::=
                                 SnmpAdminString,
         vmStorageResourceID     SnmpAdminString,
         vmStorageAccess         VirtualMachineStorageAccess,
-        vmStorageMediaType      VirtualMachineStorageMediaType,
+        vmStorageMediaType      IANAMachineStorageMediaType,
         vmStorageMediaTypeString
                                 SnmpAdminString,
         vmStorageSizeUnit       Integer32,
@@ -1461,7 +1461,7 @@ vmStorageAccess OBJECT-TYPE
     ::= { vmStorageEntry 7 }
 
 vmStorageMediaType OBJECT-TYPE
-    SYNTAX       VirtualMachineStorageMediaType
+    SYNTAX       IANAMachineStorageMediaType
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
@@ -2225,11 +2225,11 @@ END
       OBJECT IDENTIFIER values recorded in the SMI Numbers registry:
       </t>
       <figure><artwork><![CDATA[
-      Descriptor        OBJECT IDENTIFIER value
-      ----------        -----------------------
+      Descriptor                OBJECT IDENTIFIER value
+      ----------                -----------------------
 
-      vmMIB             { mib-2 TBD }
-      vmStorageTCMIB    { mib-2 TBD }
+      vmMIB                     { mib-2 TBD }
+      IANAStorageMediaTypeMIB   { mib-2 TBD }
       ]]></artwork></figure>
     </section>
 
