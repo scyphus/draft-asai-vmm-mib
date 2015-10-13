@@ -214,10 +214,6 @@ Original:
 |  +-----------------------+                                       |
 +------------------------------------------------------------------+
 ]]></artwork>
-        <postamble>A hypervisor allocates virtual resources
-        such as virtual CPUs, virtual memory,
-        virtual storage devices, and virtual network interfaces
-        to virtual machines from physical resources.</postamble>
       </figure>
       <t>On the common implementations of hypervisors,
       a hypervisor allocates virtual resources from physical resources:
@@ -336,7 +332,6 @@ Notation:
                 | !vmCrashed   |   |                |
                 +--------------+   + - - - - - - - -+
 ]]></artwork>
-        <postamble>The overview of the state transition of a virtual machine.</postamble>
       </figure>
       <t>The 'vmAdminState' and 'vmOperState'
       textual conventions define an administrative state
@@ -429,29 +424,6 @@ Notation:
 
     <section anchor="definition" title="Definitions">
     <section title="VM-MIB">
-
-<!-- [rfced] When trying to parse VM-MIB using SMICng,
-we get the following error. Should the following change 
-be made (which yields successful parsing) or a different 
-change?
-
-E: f(rfc7666a.mi2), (770,36) Item "vmCpuAffinity" in sequence
-"VmCpuAffinityEntry" has conflicting syntax specified
-
-ORIGINAL
-   VmCpuAffinityEntry ::=
-       SEQUENCE {
-           vmCpuPhysIndex          Integer32,
-           vmCpuAffinity           Integer32
-       }
-
-PERHAPS
-   VmCpuAffinityEntry ::=
-       SEQUENCE {
-           vmCpuPhysIndex          Integer32,
-           vmCpuAffinity           INTEGER
-       }
--->
 
       <figure><artwork><![CDATA[
 VM-MIB DEFINITIONS ::= BEGIN
@@ -1217,7 +1189,7 @@ vmCpuAffinityEntry OBJECT-TYPE
 VmCpuAffinityEntry ::=
     SEQUENCE {
         vmCpuPhysIndex          Integer32,
-        vmCpuAffinity           Integer32
+        vmCpuAffinity           INTEGER
     }
 
 vmCpuPhysIndex OBJECT-TYPE
@@ -2215,13 +2187,6 @@ END
 
     <section anchor="Security" title="Security Considerations">
 
-<!-- [rfced] The text of the Security Considerations does not 
-match the text here:
-http://trac.tools.ietf.org/area/ops/trac/wiki/mib-security
-
-Please let us know whether that is intentional.
--->
-
       <t>
 	This MIB module is typically implemented on the hypervisor not
 	inside a virtual machine.  Virtual machines, possibly under
@@ -2293,8 +2258,6 @@ Please let us know whether that is intentional.
   <back>
 
 
-<!--[rfced] May the references be alphabetized?-->
-
     <references title="Normative References">
       &RFC2119;
       &RFC2578;
@@ -2305,24 +2268,10 @@ Please let us know whether that is intentional.
       &RFC3413;
       &RFC3414;
       &RFC3415;
-      &RFC3418;
-
-<!-- [rfced] RFC 3418 is mentioned in a couple DESCRIPTION clauses
-in the MIB. It's listed as a normative reference, but it's not cited
-in the body of the document. Please let us know where a citation 
-can be added; otherwise, it will be removed from the normative references.
-
-(FYI, within the DESCRIPTION clauses, the square brackets were removed
-"[RFC3418]" -> "(RFC 3418)" because a MIB module is self-contained, 
-i.e., doesn't contain citations.)
--->
-
       &RFC5226;
       &RFC6933;
     </references>
     <references title="Informative References">
-      &RFC3410;
-
       <reference anchor="IEEE8021-BRIDGE-MIB"
                  target="http://www.ieee802.org/1/files/public/MIBs/IEEE8021-BRIDGE-MIB-200810150000Z.txt">
         <front>
@@ -2343,7 +2292,10 @@ i.e., doesn't contain citations.)
           </author>
 	  <date month="October" year="2008"/>
         </front>
+
       </reference>
+
+      &RFC3410;
 
     </references>
 
