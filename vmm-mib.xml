@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
-<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY RFC2578 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2578.xml">
-<!ENTITY RFC2579 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2579.xml">
-<!ENTITY RFC2580 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2580.xml">
-<!ENTITY RFC2790 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2790.xml">
-<!ENTITY RFC2863 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2863.xml">
-<!ENTITY RFC3410 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3410.xml">
-<!ENTITY RFC3413 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3413.xml">
-<!ENTITY RFC3414 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3414.xml">
-<!ENTITY RFC3415 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3415.xml">
-<!ENTITY RFC3418 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3418.xml">
-<!ENTITY RFC4122 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4122.xml">
-<!--<!ENTITY RFC4188 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4188.xml">-->
-<!--<!ENTITY RFC4363 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4363.xml">-->
-<!ENTITY RFC6933 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6933.xml">
+<!ENTITY RFC2119 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC2578 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2578.xml">
+<!ENTITY RFC2579 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2579.xml">
+<!ENTITY RFC2580 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2580.xml">
+<!ENTITY RFC2790 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2790.xml">
+<!ENTITY RFC2863 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2863.xml">
+<!ENTITY RFC3410 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3410.xml">
+<!ENTITY RFC3413 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3413.xml">
+<!ENTITY RFC3414 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3414.xml">
+<!ENTITY RFC3415 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3415.xml">
+<!ENTITY RFC3418 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3418.xml">
+<!ENTITY RFC4122 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4122.xml">
+<!--<!ENTITY RFC4188 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4188.xml">-->
+<!--<!ENTITY RFC4363 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4363.xml">-->
+<!ENTITY RFC5226 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5226.xml">
+<!ENTITY RFC6933 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6933.xml">
 ]>
 
 
@@ -30,7 +31,7 @@
 
 <!--ipr="noDerivativeWorks2026", full2026, trust200902-->
 <!-- trust200902, noDerivativeWorks2026 -->
-<rfc docName="draft-ietf-opsawg-vmm-mib-00" ipr="trust200902" category="std">
+<rfc docName="draft-ietf-opsawg-vmm-mib-03" ipr="trust200902" category="std">
 
   <front>
     <title abbrev="Virtual Machine Monitoring MIB">
@@ -71,28 +72,14 @@
       </address>
     </author>
 
-    <author fullname="Yuji Sekiya" initials="Y.S." surname="Sekiya" role="notfirstpage">
-      <organization abbrev="Univ. of Tokyo">The University of Tokyo</organization>
-      <address>
-        <postal>
-          <street>2-11-16 Yayoi</street>
-          <city>Bunkyo-ku</city>
-          <region>Tokyo</region>
-          <code>113-8658</code>
-          <country>JP</country>
-        </postal>
-        <email>sekiya@wide.ad.jp</email>
-      </address>
-    </author>
-
     <author fullname="Keiichi Shima" initials="K.S." surname="Shima">
       <organization abbrev="IIJ Innovation Institute Inc.">IIJ Innovation Institute Inc.</organization>
       <address>
         <postal>
-          <street>3-13 Kanda-Nishikicho</street>
+          <street>2-10-2 Fujimi</street>
           <city>Chiyoda-ku</city>
           <region>Tokyo</region>
-          <code>101-0054</code>
+          <code>102-0071</code>
           <country>JP</country>
         </postal>
         <email>keiichi@iijlab.net</email>
@@ -108,6 +95,20 @@
           <country>USA</country>
         </postal>
         <email>tina.tsou.zouting@huawei.com</email>
+      </address>
+    </author>
+
+    <author fullname="Yuji Sekiya" initials="Y.S." surname="Sekiya" role="notfirstpage">
+      <organization abbrev="Univ. of Tokyo">The University of Tokyo</organization>
+      <address>
+        <postal>
+          <street>2-11-16 Yayoi</street>
+          <city>Bunkyo-ku</city>
+          <region>Tokyo</region>
+          <code>113-8658</code>
+          <country>JP</country>
+        </postal>
+        <email>sekiya@wide.ad.jp</email>
       </address>
     </author>
 
@@ -139,7 +140,7 @@
       </address>
     </author>
 
-    <date month="February" year="2014" />
+    <date month="May" year="2015" />
 
     <!-- Meta-data Declarations -->
     <area>Operations and Management</area>
@@ -173,8 +174,9 @@
       a hypervisor as well as hypervisor's hardware
       and software information.
       </t>
-      <t>The design of this MIB module has been derived from enterprise
-      specific MIB modules, namely a MIB module for managing guests of the
+      <t>The design of this MIB module has been derived from
+      product-specific MIB modules, namely a MIB module
+      for managing guests of the
       Xen hypervisor, a MIB module for managing virtual machines controlled
       by the VMware hypervisor, and a MIB module using the libvirt
       programming interface to access different hypervisors.
@@ -218,13 +220,13 @@
       system and software information of a hypervisor,
       the list of virtual machines controlled by the hypervisor,
       and information of virtual resources
-      allocated by the hypervisor to virtual machines.
+      allocated to virtual machines by the hypervisor.
       This document specifies four specific types
-      of virtual resources that are common to many hypervisors;
+      of virtual resources that are common to many hypervisor implementations;
       processors (CPUs), memory, network interfaces (NICs),
       and storage devices.
-      The objects are independent of the hypervisors
-      or operating systems running on virtual machines.
+      These managed objects are independent of the families
+      of hypervisors or operating systems running on virtual machines.
       </t>
 
       <figure align="center" anchor="environment"
@@ -247,9 +249,9 @@
 +- - - - - - - |        | - /________/| - *\_______/* - |     | - -+
 | Hypervisor   |  CPU   |   | Memory |/   | Storage |   | NIC |    |
 |              +--------+   +--------+     \_______/    +-----+    |
-|                    +-----------------------+                     |
-|                    ||     MIB objects     ||                     |
-|                    +-----------------------+                     |
+|  +-----------------------+                                       |
+|  ||     MIB objects     ||                                       |
+|  +-----------------------+                                       |
 +------------------------------------------------------------------+
 ]]></artwork>
         <postamble>A hypervisor allocates virtual resources
@@ -264,8 +266,8 @@
       as shown in <xref target="environment" />.
       Since the virtual resources allocated to virtual machines
       are managed by the hypervisor,
-      the MIB objects are managed at a hypervisor.
-      If the objects are accessed through the SNMP,
+      the MIB objects are managed at the hypervisor.
+      In case that the objects are accessed through the SNMP,
       an SNMP agent is launched at the hypervisor
       to provide access to the objects.
       </t>
@@ -295,15 +297,15 @@
       to many hypervisors for the management of virtual machines
       controlled by a hypervisor.
       2) This document clarifies the relationship
-      between other MIB modules for managing host computers and
+      with other MIB modules for managing host computers and
       network devices.
       </t>
 
 
     </section>
     <section anchor="overview" title="Structure of the VM-MIB Module">
-      <t>The MIB module is organized into a group of scalars and tables.  The
-      scalars below `hypervisor' provide basic information about the
+      <t>The MIB module is organized into a group of scalars and tables.
+      The scalars below `vmHypervisor' provide basic information about the
       hypervisor.  The `vmTable' lists the virtual machines (guests)
       that are known to the hypervisor.
       The `vmCpuTable' provides the mapping table of virtual CPUs
@@ -325,7 +327,7 @@
       in the `ifTable' of <xref target="RFC2863">IF-MIB</xref>.
       In case that an entry in the `vmNetworkTable'
       has a corresponding parent physical network interface
-      managed in `ifTable' of IF-MIB,
+      managed in the `ifTable' of IF-MIB,
       the entry contains a pointer `vmNetworkParent'
       to the physical network interface.
       </t>
@@ -333,43 +335,51 @@
       <figure align="center" anchor="vm-state"
               title="State transition of a virtual machine">
         <artwork align="center"><![CDATA[
-*: `vmAdminState' write access
-!: Notification
-+-------------+   + - - - - - - +
-| finite      |   | transient   |
-| vmOperState |   | vmOperState |
-+-------------+   + - - - - - - +
+Notation:
 
-================================================================
+    +-------------+
+    | vmOperState | : Finite state; the first line presents the
+    |             |   `vmOperState', and the second line presents a
+    +-------------+   notification generated if applicable.
 
-+--------------+   + - - - - - - - +     +-------------+
-|  suspended   |<--|  suspending   |     |   paused    |
-| !vmSuspended |   | !vmSuspending |     |  !vmPaused  |
-+--------------+   + - - - - - - - +     +-------------+
-      |                ^ *suspended         ^ *paused
+    + - - - - - - +
+    | vmOperState | : Transient state; first line presents the
+    |             |   `vmOperState', and the second line presents a
+    + - - - - - - +   notification generated if applicable.
+
+    !               : Notification; a text followed by the symbol "!"
+                      denotes a notification generated.
+
+=====================================================================
+
++---------------+   + - - - - - - - -+     +------------+
+|  suspended(6) |<--|  suspending(5) |     |  paused(8) |
+| !vmSuspended  |   | !vmSuspending  |     | !vmPaused  |
++---------------+   + - - - - - - - -+     +------------+
+      |                ^                    ^
       |                |                    |
-      v  *running      |         *running   |
-+ - - - - - - +   +-------------+<----------+    + - - - - - - -+
-|  resuming   |-->|   running   |<-------------->|  migrating   |
-| !vmResuming |   |  !vmRunning |                | !vmMigrating |
-+ - - - - - - +   +-------------+                + - - - - - - -+
-                       |      ^ *running               ^
+      v                |                    |
++ - - - - - - -+   +-------------+<----------+    + - - - - - - - +
+|  resuming(7) |-->|  running(4) |<-------------->|  migrating(9) |
+| !vmResuming  |   | !vmRunning  |                | !vmMigrating  |
++ - - - - - - -+   +-------------+                + - - - - - - - +
+                       |      ^                        ^
                        |      |                        |
                        |      +-------------------+    |
                        |                          |    |
-                       v *shutdown       *destroy v    v
-                + - - - - - - - - +          +-------------+
-                |  shuttingdown   |--------->|  shutdown   |
-                | !vmShuttingdown |          | !vmShutdown |
-                + - - - - - - - - +          +-------------+
+                       v                          v    v
+                + - - - - - - - - - +          +---------------+
+                |  shuttingdown(10) |--------->|  shutdown(11) |
+                | !vmShuttingdown   |          | !vmShutdown   |
+                + - - - - - - - - - +          +---------------+
                                                  ^      |
                                                  |      v !vmDeleted
-+ - - - - - -+   +------------+     + - - - - - - +    (Deleted from
-|  blocked   |   |  crashed   |     |  preparing  |     vmTable)
-| !vmBlocked |   | !vmCrashed |     |             |
-+ - - - - - -+   +------------+     + - - - - - - +
+                +--------------+   + - - - - - - - -+  (Deleted from
+                |  crashed(12) |   |  preparing(3)  |   vmTable)
+                | !vmCrashed   |   |                |
+                +--------------+   + - - - - - - - -+
 ]]></artwork>
-        <postamble>The state transition of a virtual machine</postamble>
+        <postamble>The overview of the state transition of a virtual machine</postamble>
       </figure>
       <t>The `vmAdminState' and `vmOperState'
       textual conventions define an administrative state
@@ -383,10 +393,12 @@
       vmBulkPaused, vmBulkSuspended, vmBulkCrashed, vmBulkDeleted)
       are generated
       if vmBulkNotificationsEnabled is true(1).
-      The transition of `vmOperState' by the write access
+      The overview of the transition of `vmOperState' by the write access
       to `vmAdminState' and the notifications generated
       by the operational state changes
-      are summarized in <xref target="vm-state" />.
+      are illustrated in <xref target="vm-state" />.
+      The detailed state transition is summarized
+      in <xref target="State_Transition_Table" />.
       Note that the notifications shown in this figure
       are per-VM notifications.
       In the case of Bulk notifications, the prefix `vm' is replaced
@@ -400,143 +412,23 @@
       many notifications could be trapped if these virtual machines
       frequently change their administrative state.
       The per-VM notifications carry more detailed information,
-      but the scalability shall be a problem.
-      An implementation shall support both, either of, or none of
+      but the scalability is a problem.
+      An implementation MUST support both, either of, or none of
       per-VM notifications and bulk notifications.
       The notification filtering mechanism described
       in section 6 of <xref target="RFC3413">RFC 3413</xref>
       is used by the management applications to control the notifications.
       </t>
-      <t>The MIB module provides a few writable objects that can be used to
-      make non-persistent changes, e.g., changing the memory allocation or
-      the CPU allocation.  It is not the goal of this MIB module to provide
-      a configuration interface for virtual machines since other protocols
-      and data modeling languages are more suitable for this task.</t>
-      <t>The OID tree structure of the MIB module is shown below.</t>
-      <figure><artwork><![CDATA[
---vmMIB (1.3.6.1.2.1.yyy)
-  +--vmNotifications(0)
-  |  +--vmRunning(1) [vmName, vmUUID, vmOperState]
-  |  +--vmShuttingdown(2) [vmName, vmUUID, vmOperState]
-  |  +--vmShutdown(3) [vmName, vmUUID, vmOperState]
-  |  +--vmPaused(4) [vmName, vmUUID, vmOperState]
-  |  +--vmSuspending(5) [vmName, vmUUID, vmOperState]
-  |  +--vmSuspended(6) [vmName, vmUUID, vmOperState]
-  |  +--vmResuming(7) [vmName, vmUUID, vmOperState]
-  |  +--vmMigrating(8) [vmName, vmUUID, vmOperState]
-  |  +--vmCrashed(9) [vmName, vmUUID, vmOperState]
-  |  +--vmBlocked(10) [vmName, vmUUID, vmOperState]
-  |  +--vmDeleted(11) [vmName, vmUUID, vmOperState, vmPersistent]
-  |  +--vmBulkRunning(12) [vmAffectedVMs]
-  |  +--vmBulkShutdown(13) [vmAffectedVMs]
-  |  +--vmBulkShuttingdown(14) [vmAffectedVMs]
-  |  +--vmBulkPaused(15) [vmAffectedVMs]
-  |  +--vmBulkSuspending(16) [vmAffectedVMs]
-  |  +--vmBulkSuspended(17) [vmAffectedVMs]
-  |  +--vmBulkResuming(18) [vmName, vmUUID, vmOperState]
-  |  +--vmBulkMigrating(19) [vmAffectedVMs]
-  |  +--vmBulkCrashed(20) [vmAffectedVMs]
-  |  +--vmBulkBlocked(21) [vmAffectedVMs]
-  |  +--vmBulkDeleted(22) [vmAffectedVMs]
-  +--vmObjects(1)
-  |  +--vmHypervisor(1)
-  |  |  +-- r-n SnmpAdminString    vmHvSoftware(1)
-  |  |  +-- r-n SnmpAdminString    vmHvVersion(2)
-  |  |  +-- r-n OBJECT IDENTIFIER  vmHvObjectID(3)
-  |  |  +-- r-n TimeTicks          vmHvUpTime(4)
-  |  +-- r-n Integer32  vmNumber(2)
-  |  +-- r-n TimeTicks  vmTableLastChange(3)
-  |  +--vmTable(4)
-  |  |  +--vmEntry(1) [vmIndex]
-  |  |     +-- --- VirtualMachineIndex  vmIndex(1)
-  |  |     +-- r-n SnmpAdminString      vmName(2)
-  |  |     +-- r-n UUIDorZero           vmUUID(3)
-  |  |     +-- r-n SnmpAdminString      vmOSType(4)
-  |  |     +-- rwn VirtualMachineAdminState
-  |  |     |                            vmAdminState(5)
-  |  |     +-- r-n VirtualMachineOperState
-  |  |     |                            vmOperState(6)
-  |  |     +-- r-n VirtualMachineAutoStart
-  |  |     |                            vmAutoStart(7)
-  |  |     +-- r-n VirtualMachinePersistent
-  |  |     |                            vmPersistent(8)
-  |  |     +-- rwn Integer32            vmCurCpuNumber(9)
-  |  |     +-- rwn Integer32            vmMinCpuNumber(10)
-  |  |     +-- rwn Integer32            vmMaxCpuNumber(11)
-  |  |     +-- r-n Integer32            vmMemUnit(12)
-  |  |     +-- rwn Integer32            vmCurMem(13)
-  |  |     +-- rwn Integer32            vmMinMem(14)
-  |  |     +-- rwn Integer32            vmMaxMem(15)
-  |  |     +-- r-n TimeTicks            vmUpTime(16)
-  |  |     +-- r-n Counter64            vmCpuTime(17)
-  |  +--vmCpuTable(5)
-  |  |  +--vmCpuEntry(1) [vmIndex, vmCpuIndex]
-  |  |     +-- --- VirtualMachineCpuIndex
-  |  |     |                            vmCpuIndex(1)
-  |  |     +-- r-n Counter64            vmCpuCoreTime(2)
-  |  +--vmCpuAffinityTable(6)
-  |  |  +--vmCpuAffinityEntry(1) [vmIndex,
-  |  |     |                      vmCpuIndex,
-  |  |     |                      vmCpuPhysIndex]
-  |  |     +-- --- Integer32            vmCpuPhysIndex(1)
-  |  |     +-- rwn Integer32            vmCpuAffinity(2)
-  |  +--vmStorageTable(7)
-  |  |  +--vmStorageEntry(1) [vmStorageVmIndex, vmStorageIndex]
-  |  |     +-- --- VirtualMachineIndexOrZero
-  |  |     |                            vmStorageVmIndex(1)
-  |  |     +-- --- VirtualMachineStorageIndex
-  |  |     |                            vmStorageIndex(2)
-  |  |     +-- r-n Integer32            vmStorageParent(3)
-  |  |     +-- r-n VirtualMachineStorageSourceType
-  |  |     |                            vmStorageSourceType(4)
-  |  |     +-- r-n SnmpAdminString      vmStorageSourceTypeString(5)
-  |  |     +-- r-n SnmpAdminString      vmStorageResourceID(6)
-  |  |     +-- r-n VirtualMachineStorageAccess
-  |  |     |                            vmStorageAccess(7)
-  |  |     +-- r-n VirtualMachineStorageMediaType
-  |  |     |                            vmStorageMediaType(8)
-  |  |     +-- r-n SnmpAdminString      vmStorageMediaTypeString(9)
-  |  |     +-- r-n Integer32            vmStorageSizeUnit(10)
-  |  |     +-- r-n Integer32            vmStorageDefinedSize(11)
-  |  |     +-- r-n Integer32            vmStorageAllocatedSize(12)
-  |  |     +-- r-n Counter64            vmStorageReadIOs(13)
-  |  |     +-- r-n Counter64            vmStorageWriteIOs(14)
-  |  +--vmNetworkTable(8)
-  |  |  +--vmNetworkEntry(1) [vmIndex, vmNetworkIndex]
-  |  |     +-- --- VirtualMachineNetworkIndex
-  |  |     |                            vmNetworkIndex(1)
-  |  |     +-- r-n InterfaceIndexOrZero vmNetworkIfIndex(2)
-  |  |     +-- r-n InterfaceIndexOrZero vmNetworkParent(3)
-  |  |     +-- r-n SnmpAdminString      vmNetworkModel(4)
-  |  |     +-- r-n PhysAddress          vmNetworkPhysAddress(5)
-  |  +-- rwn TruthValue           vmPerVMNotificationsEnabled(9)
-  |  +-- rwn TruthValue           vmBulkNotificationsEnabled(10)
-  |  +-- --n VirtualMachineList   vmAffectedVMs(11)
-  +--vmConformance(2)
-     +--vmCompliances(1)
-     |  +--vmFullCompliances(1)
-     |  +--vmReadOnlyCompliances(2)
-     +--vmGroups(2)
-        +--vmHypervisorGroup(1)
-        +--vmVirtualMachineGroup(2)
-        +--vmCpuGroup(3)
-        +--vmCpuAffinityGroup(4)
-        +--vmStorageGroup(5)
-        +--vmNetworkGroup(6)
-        +--vmPerVMNotificationOptionalGroup(7)
-        +--vmBulkNotificationsVariablesGroup(8)
-        +--vmBulkNotificationOptionalGroup(9)
-        ]]></artwork></figure>
     </section>
 
     <section anchor="relationship" title="Relationship to Other MIB Modules">
       <t><xref target="RFC2790">HOST-RESOURCES-MIB</xref> defines
       the MIB objects for managing host systems.
-      Hypervisors shall implement HOST-RESOURCES-MIB.
+      Hypervisors MUST implement HOST-RESOURCES-MIB.
       On systems implementing HOST-RESOURCES-MIB,
       the objects of HOST-RESOURCES-MIB indicate resources
       of a hypervisor.
-      Some objects of HOST-RESOURCES-MIB shall also be used
+      Some objects of HOST-RESOURCES-MIB are used
       to indicate physical resources through indexes.
       On systems implementing HOST-RESOURCES-MIB,
       the `vmCpuPhysIndex' points to the processor's `hrDeviceIndex'
@@ -544,7 +436,7 @@
       The `vmStorageParent' also points to the storage device's
       `hrStorageIndex' in the `hrStorageTable'.
       </t>
-      <t>HOST-RESOURCES-MIB shall be implemented on systems
+      <!--<t>HOST-RESOURCES-MIB MAY be implemented on systems
       running on virtual machines.
       It enables to manage the objects
       related to the resources of virtual machines
@@ -552,9 +444,8 @@
       However, from the viewpoint of hypervisor operators,
       it cannot obtain the list of virtual machines controlled by a hypervisor
       and the relationship between physical and virtual resources.
-      This document defines the objects of these information.
-      <!--Since different administrative domains-->
-      </t>
+      This document defines the objects of this information.
+      </t>-->
       <t><xref target="RFC2863">IF-MIB</xref>
       defines the MIB objects for managing network interfaces.
       Both physical and virtual network interfaces
@@ -569,15 +460,15 @@
       to the physical network interface.
       </t>
       <t>The objects related to virtual switches
-      are not also included in the MIB module defined in this document
-      though virtual switches shall be placed on a hypervisor.
+      are not included in the MIB module defined in this document
+      though virtual switches MAY be placed on a hypervisor.
       This is because the virtual network interfaces are
       the lowest abstraction of network resources allocated
       to a virtual machine.
       Instead of including the objects related to virtual switches,
-      for example, IEEE8021-BRIDGE-MIB
+      for example, <xref target="IEEE8021-BRIDGE-MIB">IEEE8021-BRIDGE-MIB</xref>
       <!--<xref target="RFC4188">BRIDGE-MIB</xref>-->
-      and IEEE8021-Q-BRIDGE-MIB
+      and <xref target="IEEE8021-Q-BRIDGE-MIB">IEEE8021-Q-BRIDGE-MIB</xref>
       <!--<xref target="RFC4363">Q-BRIDGE-MIB</xref>--> could be used.</t>
 
       <t>The other objects related to virtual machines
@@ -592,6 +483,7 @@
     </section>
 
     <section anchor="definition" title="Definitions">
+    <section title="VM-MIB">
       <figure><artwork><![CDATA[
 VM-MIB DEFINITIONS ::= BEGIN
 
@@ -608,10 +500,12 @@ IMPORTS
     UUIDorZero
         FROM UUID-TC-MIB
     InterfaceIndexOrZero
-        FROM IF-MIB;
+        FROM IF-MIB
+    IANAStorageMediaType
+        FROM IANA-STORAGE-MEDIA-TYPE-MIB;
 
 vmMIB MODULE-IDENTITY
-    LAST-UPDATED "201402080000Z"        -- 8 February 2014
+    LAST-UPDATED "201505260000Z"        -- 26 May 2015
     ORGANIZATION "IETF Operations and Management Area Working Group"
     CONTACT-INFO
             "
@@ -659,7 +553,7 @@ vmMIB MODULE-IDENTITY
             `yyy' is temporary one, and it must be assigned by IANA
             when this becomes an official document.
 
-            Copyright (c) 2014 IETF Trust and the persons identified
+            Copyright (c) 2015 IETF Trust and the persons identified
             as authors of the code.  All rights reserved.
 
             Redistribution and use in source and binary forms, with
@@ -669,7 +563,7 @@ vmMIB MODULE-IDENTITY
             IETF Trust's Legal Provisions Relating to IETF Documents
             (http://trustee.ietf.org/license-info)."
 
-    REVISION "201402080000Z"        -- 8 February 2014
+    REVISION "201505260000Z"        -- 26 May 2015
     DESCRIPTION
             "The original version of this MIB, published as
             RFCXXXX."
@@ -689,7 +583,7 @@ VirtualMachineIndex ::= TEXTUAL-CONVENTION
     DESCRIPTION
             "A unique value, greater than zero, identifying a
             virtual machine.  The value for each virtual machine
-            must remain constant at least from one re-initialization
+            MUST remain constant at least from one re-initialization
             of the hypervisor to the next re-initialization."
     SYNTAX       Integer32 (1..2147483647)
 
@@ -700,7 +594,7 @@ VirtualMachineIndexOrZero ::= TEXTUAL-CONVENTION
             "This textual convention is an extension of the
             VirtualMachineIndex convention.  This extension permits
             the additional value of zero.  The meaning of the value
-            zero is object-specific and must therefore be defined as
+            zero is object-specific and MUST therefore be defined as
             part of the description of any object which uses this
             syntax.  Examples of the usage of zero might include
             situations where a virtual machine is unknown, or when
@@ -730,20 +624,12 @@ VirtualMachineAdminState ::= TEXTUAL-CONVENTION
             shutdown(4)   The administrative state of the virtual
                           machine indicating the virtual machine
                           is currently offline or should be taken
-                          shutting down.
-
-            destroy(5)    The administrative state of the virtual
-                          machine indicating the virtual machine
-                          should be forcibly shutdown.  After the
-                          destroy operation, the administrative
-                          state should be automatically changed to
-                          shutdown(4)."
+                          shutting down."
     SYNTAX       INTEGER {
                     running(1),
                     suspended(2),
                     paused(3),
-                    shutdown(4),
-                    destroy(5)
+                    shutdown(4)
                  }
 
 VirtualMachineOperState ::= TEXTUAL-CONVENTION
@@ -772,26 +658,19 @@ VirtualMachineOperState ::= TEXTUAL-CONVENTION
             running(4)     The operational state of the virtual
                            machine indicating the virtual machine is
                            currently executed but it is not in the
-                           process of preparing(3), suspending(6),
-                           resuming(8), migrating(10), and
-                           shuttingdown(11).
+                           process of preparing(3), suspending(5),
+                           resuming(7), migrating(9), and
+                           shuttingdown(10).
 
-            blocked(5)     The operational state of the virtual
-                           machine indicating the execution of the
-                           virtual machine is currently blocked,
-                           e.g., waiting for some action of the
-                           hypervisor to finish.  This is a
-                           transient state from/to other states.
-
-            suspending(6)  The operational state of the virtual
+            suspending(5)  The operational state of the virtual
                            machine indicating the virtual machine is
                            currently in the process of suspending
                            to save its memory and CPU execution
                            state to persistent store.  This is a
                            transient state from running(4) to
-                           suspended(7).
+                           suspended(6).
 
-            suspended(7)   The operational state of the virtual
+            suspended(6)   The operational state of the virtual
                            machine indicating the virtual machine is
                            currently suspended, which means the
                            memory and CPU execution state of the
@@ -800,38 +679,38 @@ VirtualMachineOperState ::= TEXTUAL-CONVENTION
                            machine is not scheduled to execute by
                            the hypervisor.
 
-            resuming(8)    The operational state of the virtual
+            resuming(7)    The operational state of the virtual
                            machine indicating the virtual machine is
                            currently in the process of resuming
                            to restore its memory and CPU execution
                            state from persistent store.  This is a
-                           transient state from suspended(7) to
+                           transient state from suspended(6) to
                            running(4).
 
-            paused(9)      The operational state of the virtual
+            paused(8)      The operational state of the virtual
                            machine indicating the virtual machine is
                            resident in memory but no longer
                            scheduled to execute by the hypervisor.
 
-            migrating(10)  The operational state of the virtual
+            migrating(9)   The operational state of the virtual
                            machine indicating the virtual machine is
                            currently in the process of migration
                            from/to another hypervisor.
 
-            shuttingdown(11)
+            shuttingdown(10)
                            The operational state of the virtual
                            machine indicating the virtual machine is
                            currently in the process of shutting
                            down.  This is a transient state from
-                           running(4) to shutdown(12).
+                           running(4) to shutdown(11).
 
-            shutdown(12)   The operational state of the virtual
+            shutdown(11)   The operational state of the virtual
                            machine indicating the virtual machine is
                            down, and CPU execution is no longer
                            scheduled by the hypervisor and its
                            memory is not resident in the hypervisor.
 
-            crashed(13)    The operational state of the virtual
+            crashed(12)    The operational state of the virtual
                            machine indicating the virtual machine
                            has crashed."
     SYNTAX       INTEGER {
@@ -839,15 +718,14 @@ VirtualMachineOperState ::= TEXTUAL-CONVENTION
                     other(2),
                     preparing(3),
                     running(4),
-                    blocked(5),
-                    suspending(6),
-                    suspended(7),
-                    resuming(8),
-                    paused(9),
-                    migrating(10),
-                    shuttingdown(11),
-                    shutdown(12),
-                    crashed(13)
+                    suspending(5),
+                    suspended(6),
+                    resuming(7),
+                    paused(8),
+                    migrating(9),
+                    shuttingdown(10),
+                    shutdown(11),
+                    crashed(12)
                  }
 
 VirtualMachineAutoStart ::= TEXTUAL-CONVENTION
@@ -908,7 +786,7 @@ VirtualMachineCpuIndex ::= TEXTUAL-CONVENTION
     DESCRIPTION
             "A unique value for each virtual machine, greater than
             zero, identifying a virtual CPU assigned to a virtual
-            machine.  The value for each virtual CPU must remain
+            machine.  The value for each virtual CPU MUST remain
             constant at least from one re-initialization of the
             hypervisor to the next re-initialization."
      SYNTAX      Integer32 (1..2147483647)
@@ -920,7 +798,7 @@ VirtualMachineStorageIndex ::= TEXTUAL-CONVENTION
             "A unique value for each virtual machine, greater than
             zero, identifying a virtual storage device allocated to
             a virtual machine.  The value for each virtual storage
-            device must remain constant at least from one
+            device MUST remain constant at least from one
             re-initialization of the hypervisor to the next
             re-initialization."
      SYNTAX      Integer32 (1..2147483647)
@@ -958,36 +836,18 @@ VirtualMachineStorageAccess ::= TEXTUAL-CONVENTION
     DESCRIPTION
             "The access permission of a virtual storage:
 
-            readwrite(1)   The virtual storage is a read-write
+            unknown(1)     The access permission of the virtual
+                           storage is unknown.
+
+            readwrite(2)   The virtual storage is a read-write
                            device.
 
-            readonly(2)    The virtual storage is a read-only
+            readonly(3)    The virtual storage is a read-only
                            device."
     SYNTAX       INTEGER {
-                    readwrite(1),
-                    readonly(2)
-                 }
-
-VirtualMachineStorageMediaType ::= TEXTUAL-CONVENTION
-    STATUS       current
-    DESCRIPTION
-            "The media type of a virtual storage device:
-
-            unknown(1)     The media type is unknown, e.g., because
-                           the implementation failed to obtain the
-                           media type from the hypervisor.
-
-            other(2)       The media type is other than those
-                           defined in this conversion.
-
-            hardDisk(3)    The media type is hard disk.
-
-            opticalDisk(4) The media type is optical disk."
-    SYNTAX       INTEGER {
-                    other(1),
-                    unknown(2),
-                    hardDisk(3),
-                    opticalDisk(4)
+                    unknown(1),
+                    readwrite(2),
+                    readonly(3)
                  }
 
 VirtualMachineNetworkIndex ::= TEXTUAL-CONVENTION
@@ -997,7 +857,7 @@ VirtualMachineNetworkIndex ::= TEXTUAL-CONVENTION
             "A unique value for each virtual machine, greater than
             zero, identifying a virtual network interface allocated
             to the virtual machine.  The value for each virtual
-            network interface must remain constant at least from one
+            network interface MUST remain constant at least from one
             re-initialization of the hypervisor to the next
             re-initialization."
      SYNTAX      Integer32 (1..2147483647)
@@ -1032,7 +892,7 @@ vmHvSoftware OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "A textual description of the hypervisor software.  This
-            value should not include its version, and it should be
+            value SHOULD not include its version as it SHOULD be
             included in `vmHvVersion'."
     ::= { vmHypervisor 1 }
 
@@ -1146,7 +1006,7 @@ vmIndex OBJECT-TYPE
             "A unique value, greater than zero, identifying the
             virtual machine. The value assigned to a given virtual
             machine may not persist across re-initialization of the
-            hypervisor.  A command generator must use the vmUUID to
+            hypervisor.  A command generator MUST use the vmUUID to
             identify a given virtual machine of interest."
     ::= { vmEntry 1 }
 
@@ -1165,8 +1025,8 @@ vmUUID OBJECT-TYPE
     DESCRIPTION
             "The virtual machine's 128-bit UUID or the zero-length
             string when a UUID is not available.  The UUID if set
-            must uniquely identify a virtual machine from all other
-            virtual machines in an administrative region.  A
+            MUST uniquely identify a virtual machine from all other
+            virtual machines in an administrative domain.  A
             zero-length octet string is returned if no UUID
             information is known."
     ::= { vmEntry 3 }
@@ -1187,13 +1047,10 @@ vmOSType OBJECT-TYPE
 
 vmAdminState OBJECT-TYPE
     SYNTAX       VirtualMachineAdminState
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The administrative power state of the virtual machine.
-            Note that a virtual machine is supposed to be resumed
-            when vmAdminState of the virtual machine is changed from
-            suspended(2) or paused(3) to running(1)."
+            "The administrative state of the virtual machine."
     ::= { vmEntry 5 }
 
 vmOperState OBJECT-TYPE
@@ -1227,37 +1084,32 @@ vmPersistent OBJECT-TYPE
 
 vmCurCpuNumber OBJECT-TYPE
     SYNTAX       Integer32 (0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The number of virtual CPUs currently assigned to the
-            virtual machine.  Changes to this object MUST NOT
-            persist across re-initialization of the hypervisor."
+            virtual machine."
     ::= { vmEntry 9 }
 
 vmMinCpuNumber OBJECT-TYPE
     SYNTAX       Integer32 (-1|0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The minimum number of virtual CPUs that are assigned to
             the virtual machine when it is in a power-on state.  The
             value -1 indicates that there is no hard boundary for
-            the minimum number of virtual CPUs.  Changes to this
-            object MUST NOT persist across re-initialization of the
-            hypervisor."
+            the minimum number of virtual CPUs."
     ::= { vmEntry 10 }
 
 vmMaxCpuNumber OBJECT-TYPE
     SYNTAX       Integer32 (-1|0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The maximum number of virtual CPUs that are assigned to
             the virtual machine when it is in a power-on state.  The
-            value -1 indicates that there is no limit.  Changes to
-            this object MUST NOT persist across re-initialization of
-            the hypervisor."
+            value -1 indicates that there is no limit."
     ::= { vmEntry 11 }
 
 vmMemUnit OBJECT-TYPE
@@ -1265,45 +1117,41 @@ vmMemUnit OBJECT-TYPE
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The multiplication unit for vmCurMem, vmMinMem, and
-            vmMaxMem.  For example, when this value is 1024, the
+            "The multiplication unit in byte for vmCurMem, vmMinMem,
+            and vmMaxMem.  For example, when this value is 1024, the
             memory size unit for vmCurMem, vmMinMem, and vmMaxMem is
             KiB."
     ::= { vmEntry 12 }
 
 vmCurMem OBJECT-TYPE
     SYNTAX       Integer32 (0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The current memory size currently allocated to the
             virtual memory module in the unit designated by
-            vmMemUnit.  Changes to this object MUST NOT persist
-            across re-initialization of the hypervisor."
+            vmMemUnit."
     ::= { vmEntry 13 }
 
 vmMinMem OBJECT-TYPE
     SYNTAX       Integer32 (-1|0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The minimum memory size defined to the virtual machine
             in the unit designated by vmMemUnit.  The value -1
             indicates that there is no hard boundary for the minimum
-            memory size.  Changes to this object MUST NOT persist
-            across re-initialization of the hypervisor."
+            memory size."
     ::= { vmEntry 14 }
 
 vmMaxMem OBJECT-TYPE
     SYNTAX       Integer32 (-1|0..2147483647)
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The maximum memory size defined to the virtual machine
             in the unit designated by vmMemUnit.  The value -1
-            indicates that there is no limit.  Changes to this
-            object MUST NOT persist across re-initialization of the
-            hypervisor."
+            indicates that there is no limit."
     ::= { vmEntry 15 }
 
 
@@ -1414,7 +1262,7 @@ vmCpuPhysIndex OBJECT-TYPE
     DESCRIPTION
             "A value identifying a physical CPU on the hypervisor.
             On systems implementing the HOST-RESOURCES-MIB, the
-            value must be the same value that is used as the index
+            value MUST be the same value that is used as the index
             in the hrProcessorTable (hrDeviceIndex)."
     ::= { vmCpuAffinityEntry 2 }
 
@@ -1424,7 +1272,7 @@ vmCpuAffinity OBJECT-TYPE
                     enable(1),    -- enabled
                     disable(2)    -- disabled
                  }
-    MAX-ACCESS   read-write
+    MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
             "The CPU affinity of this virtual CPU to the physical
@@ -1434,7 +1282,7 @@ vmCpuAffinity OBJECT-TYPE
 
 -- The virtual storage devices on each virtual machine.  This
 -- document defines some overlapped objects with hrStorage in
--- HOST-RESOURCES-MIB [RFC2790], because virtual resources shall be
+-- HOST-RESOURCES-MIB [RFC2790], because virtual resources are
 -- allocated from the hypervisor's resources, which is the `host
 -- resources'
 vmStorageTable OBJECT-TYPE
@@ -1466,14 +1314,18 @@ VmStorageEntry ::=
                                 SnmpAdminString,
         vmStorageResourceID     SnmpAdminString,
         vmStorageAccess         VirtualMachineStorageAccess,
-        vmStorageMediaType      VirtualMachineStorageMediaType,
+        vmStorageMediaType      IANAStorageMediaType,
         vmStorageMediaTypeString
                                 SnmpAdminString,
         vmStorageSizeUnit       Integer32,
         vmStorageDefinedSize    Integer32,
         vmStorageAllocatedSize  Integer32,
         vmStorageReadIOs        Counter64,
-        vmStorageWriteIOs       Counter64
+        vmStorageWriteIOs       Counter64,
+        vmStorageReadOctets     Counter64,
+        vmStorageWriteOctets    Counter64,
+        vmStorageReadLatency    Counter64,
+        vmStorageWriteLatency   Counter64
     }
 
 vmStorageVmIndex OBJECT-TYPE
@@ -1546,7 +1398,7 @@ vmStorageAccess OBJECT-TYPE
     ::= { vmStorageEntry 7 }
 
 vmStorageMediaType OBJECT-TYPE
-    SYNTAX       VirtualMachineStorageMediaType
+    SYNTAX       IANAStorageMediaType
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
@@ -1568,10 +1420,11 @@ vmStorageSizeUnit OBJECT-TYPE
     MAX-ACCESS   read-only
     STATUS       current
     DESCRIPTION
-            "The multiplication unit for vmStorageDefinedSize and
-            vmStorageAllocatedSize.  For example, when this value is
-            1048576, the storage size unit for vmStorageDefinedSize
-            and vmStorageAllocatedSize is MiB."
+            "The multiplication unit in byte for
+            vmStorageDefinedSize and vmStorageAllocatedSize.  For
+            example, when this value is 1048576, the storage size
+            unit for vmStorageDefinedSize and vmStorageAllocatedSize
+            is MiB."
     ::= { vmStorageEntry 10 }
 
 vmStorageDefinedSize OBJECT-TYPE
@@ -1581,7 +1434,7 @@ vmStorageDefinedSize OBJECT-TYPE
     DESCRIPTION
             "The defined virtual storage size defined in the unit
             designated by vmStorageSizeUnit.  If this information is
-            not available, this value shall be -1."
+            not available, this value MUST be -1."
     ::= { vmStorageEntry 11 }
 
 vmStorageAllocatedSize OBJECT-TYPE
@@ -1596,7 +1449,7 @@ vmStorageAllocatedSize OBJECT-TYPE
             are supposed to equal.  This value MUST NOT be different
             from vmStorageDefinedSize when vmStorageSourceType is
             `block' or `raw'.  If this information is not available,
-            this value shall be -1."
+            this value MUST be -1."
     ::= { vmStorageEntry 12 }
 
 vmStorageReadIOs OBJECT-TYPE
@@ -1624,6 +1477,70 @@ vmStorageWriteIOs OBJECT-TYPE
             administrative state (vmAdminState) changes of the
             virtual machine."
     ::= { vmStorageEntry 14 }
+
+vmStorageReadOctets OBJECT-TYPE
+    SYNTAX       Counter64
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+            "The total number of bytes read from this device.
+
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
+    ::= { vmStorageEntry 15 }
+
+vmStorageWriteOctets OBJECT-TYPE
+    SYNTAX       Counter64
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+            "The total number of bytes written to this device.
+
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
+    ::= { vmStorageEntry 16 }
+
+vmStorageReadLatency OBJECT-TYPE
+    SYNTAX       Counter64
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+            "The total number of microseconds read requests have
+            been queued for this device.
+            This would typically be implemented by storing the high
+            precision system time stamp of when the request is
+            received from the virtual machine with the request, the
+            difference between this initial timestamp and the time
+            at which the requested operation has completed SHOULD be
+            converted to microseconds and accumulated.
+            Discontinuities in the value of this counter can occur at
+            re-initialization of the hypervisor, and administrative
+            state (vmAdminState) changes of the virtual machine."
+    ::= { vmStorageEntry 17 }
+
+vmStorageWriteLatency OBJECT-TYPE
+    SYNTAX       Counter64
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+            "The total number of microseconds write requests have
+            been queued for this device.
+            This would typically be implemented by storing the high
+            precision system time stamp of when the request is
+            received from the virtual machine with the request, the
+            difference between this initial timestamp and the time
+            at which the requested operation has completed SHOULD be
+            converted to microseconds and accumulated.
+            Discontinuities in the value of this counter can occur
+            at re-initialization of the hypervisor, and
+            administrative state (vmAdminState) changes of the
+            virtual machine."
+    ::= { vmStorageEntry 18 }
+
 
 -- The virtual network interfaces on each virtual machine.
 vmNetworkTable OBJECT-TYPE
@@ -1670,7 +1587,7 @@ vmNetworkIfIndex OBJECT-TYPE
     DESCRIPTION
             "The value of ifIndex which corresponds to this virtual
             network interface.  If this device is not represented in
-            the ifTable, then this value shall be zero."
+            the ifTable, then this value MUST be zero."
     ::= { vmNetworkEntry 2 }
 
 vmNetworkParent OBJECT-TYPE
@@ -1711,7 +1628,9 @@ vmPerVMNotificationsEnabled OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "Indicates if notification generator will send
-            notifications per virtual machine."
+            notifications per virtual machine.  Changes to this
+            object MUST NOT persist across re-initialization of
+            the management system, e.g., SNMP agent."
     ::= { vmObjects 9 }
 
 vmBulkNotificationsEnabled OBJECT-TYPE
@@ -1720,7 +1639,9 @@ vmBulkNotificationsEnabled OBJECT-TYPE
     STATUS       current
     DESCRIPTION
             "Indicates if notification generator will send
-            notifications per set of virtual machines."
+            notifications per set of virtual machines.  Changes to
+            this object MUST NOT persist across re-initialization of
+            the management system, e.g., SNMP agent."
     ::= { vmObjects 10 }
 
 vmAffectedVMs OBJECT-TYPE
@@ -1747,20 +1668,6 @@ vmRunning NOTIFICATION-TYPE
             indicated by the included value of vmOperState."
     ::= { vmNotifications 1 }
 
-vmShutdown NOTIFICATION-TYPE
-    OBJECTS      {
-                    vmName,
-                    vmUUID,
-                    vmOperState
-                 }
-    STATUS       current
-    DESCRIPTION
-            "This notification is generated when the operational
-            state of a virtual machine has been changed to
-            shutdown(12) from some other state.  The other state is
-            indicated by the included value of vmOperState."
-    ::= { vmNotifications 2 }
-
 vmShuttingdown NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
@@ -1771,8 +1678,22 @@ vmShuttingdown NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            shuttingdown(11) from some other state.  The other state
+            shuttingdown(10) from some other state.  The other state
             is indicated by the included value of vmOperState."
+    ::= { vmNotifications 2 }
+
+vmShutdown NOTIFICATION-TYPE
+    OBJECTS      {
+                    vmName,
+                    vmUUID,
+                    vmOperState
+                 }
+    STATUS       current
+    DESCRIPTION
+            "This notification is generated when the operational
+            state of a virtual machine has been changed to
+            shutdown(11) from some other state.  The other state is
+            indicated by the included value of vmOperState."
     ::= { vmNotifications 3 }
 
 vmPaused NOTIFICATION-TYPE
@@ -1785,7 +1706,7 @@ vmPaused NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            paused(9) from some other state.  The other state is
+            paused(8) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 4 }
 
@@ -1799,7 +1720,7 @@ vmSuspending NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            suspending(6) from some other state.  The other state is
+            suspending(5) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 5 }
 
@@ -1813,7 +1734,7 @@ vmSuspended NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            suspended(7) from some other state.  The other state is
+            suspended(6) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 6 }
 
@@ -1827,7 +1748,7 @@ vmResuming NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            resuming(8) from some other state.  The other state is
+            resuming(7) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 7 }
 
@@ -1841,7 +1762,7 @@ vmMigrating NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of a virtual machine has been changed to
-            migrating(10) from some other state.  The other state is
+            migrating(9) from some other state.  The other state is
             indicated by the included value of vmOperState."
     ::= { vmNotifications 8 }
 
@@ -1859,20 +1780,6 @@ vmCrashed NOTIFICATION-TYPE
             vmOperState."
     ::= { vmNotifications 9 }
 
-vmBlocked NOTIFICATION-TYPE
-    OBJECTS      {
-                    vmName,
-                    vmUUID,
-                    vmOperState
-                 }
-    STATUS       current
-    DESCRIPTION
-            "This notification is generated when the operational
-            state of a virtual machine has been changed to
-            blocked(5).  The previos state of the virtual machine is
-            indicated by the included value of vmOperState."
-    ::= { vmNotifications 10 }
-
 vmDeleted NOTIFICATION-TYPE
     OBJECTS      {
                     vmName,
@@ -1886,7 +1793,7 @@ vmDeleted NOTIFICATION-TYPE
             has been deleted. The prior state of the virtual
             machine is indicated by the included value of
             vmOperState."
-    ::= { vmNotifications 11 }
+    ::= { vmNotifications 10 }
 
 vmBulkRunning NOTIFICATION-TYPE
     OBJECTS      {
@@ -1900,7 +1807,7 @@ vmBulkRunning NOTIFICATION-TYPE
             running(4).  Management stations are encouraged to
             subsequently poll the subset of virtual machines of
             interest for vmOperState."
-    ::= { vmNotifications 12 }
+    ::= { vmNotifications 11 }
 
 vmBulkShuttingdown NOTIFICATION-TYPE
     OBJECTS      {
@@ -1910,11 +1817,11 @@ vmBulkShuttingdown NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machine has been changed to
-            shuttingdown(11) from a state other than
-            shuttingdown(11).  Management stations are encouraged to
+            shuttingdown(10) from a state other than
+            shuttingdown(10).  Management stations are encouraged to
             subsequently poll the subset of virtual machines of
             interest for vmOperState."
-    ::= { vmNotifications 13 }
+    ::= { vmNotifications 12 }
 
 vmBulkShutdown NOTIFICATION-TYPE
     OBJECTS      {
@@ -1924,11 +1831,11 @@ vmBulkShutdown NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machine has been changed to
-            shutdown(12) from a state other than shutdown(12).
+            shutdown(11) from a state other than shutdown(11).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 14 }
+    ::= { vmNotifications 13 }
 
 vmBulkPaused NOTIFICATION-TYPE
     OBJECTS      {
@@ -1938,11 +1845,11 @@ vmBulkPaused NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to paused(9) from a state other than paused(9).
+            to paused(8) from a state other than paused(8).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 15 }
+    ::= { vmNotifications 14 }
 
 
 vmBulkSuspending NOTIFICATION-TYPE
@@ -1953,11 +1860,11 @@ vmBulkSuspending NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to suspending(6) from a state other than suspending(6).
+            to suspending(5) from a state other than suspending(5).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 16 }
+    ::= { vmNotifications 15 }
 
 vmBulkSuspended NOTIFICATION-TYPE
     OBJECTS      {
@@ -1967,11 +1874,11 @@ vmBulkSuspended NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to suspended(7) from a state other than suspended(7).
+            to suspended(6) from a state other than suspended(6).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 17 }
+    ::= { vmNotifications 16 }
 
 vmBulkResuming NOTIFICATION-TYPE
     OBJECTS      {
@@ -1981,11 +1888,11 @@ vmBulkResuming NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to resuming(8) from a state other than resuming(8).
+            to resuming(7) from a state other than resuming(7).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 18 }
+    ::= { vmNotifications 17 }
 
 vmBulkMigrating NOTIFICATION-TYPE
     OBJECTS      {
@@ -1995,11 +1902,11 @@ vmBulkMigrating NOTIFICATION-TYPE
     DESCRIPTION
             "This notification is generated when the operational
             state of one or more virtual machines have been changed
-            to migrating(10) from a state other than migrating(10).
+            to migrating(9) from a state other than migrating(9).
             Management stations are encouraged to subsequently poll
             the subset of virtual machines of interest for
             vmOperState."
-    ::= { vmNotifications 19 }
+    ::= { vmNotifications 18 }
 
 vmBulkCrashed NOTIFICATION-TYPE
     OBJECTS      {
@@ -2011,21 +1918,7 @@ vmBulkCrashed NOTIFICATION-TYPE
             machines have been crashed.  Management stations are
             encouraged to subsequently poll the subset of virtual
             machines of interest for vmOperState."
-    ::= { vmNotifications 20 }
-
-vmBulkBlocked NOTIFICATION-TYPE
-    OBJECTS      {
-                    vmAffectedVMs
-                 }
-    STATUS       current
-    DESCRIPTION
-            "This notification is generated when the operational
-            state of one or more virtual machines have been changed
-            to blocked(5) from a state other than blocked(5).
-            Management stations are encouraged to subsequently poll
-            the subset of virtual machines of interest for
-            vmOperState."
-    ::= { vmNotifications 21 }
+    ::= { vmNotifications 19 }
 
 vmBulkDeleted NOTIFICATION-TYPE
     OBJECTS      {
@@ -2037,7 +1930,7 @@ vmBulkDeleted NOTIFICATION-TYPE
             machines have been deleted.  Management stations are
             encouraged to subsequently poll the subset of virtual
             machines of interest for vmOperState."
-    ::= { vmNotifications 22 }
+    ::= { vmNotifications 20 }
 
 -- Compliance definitions:
 vmCompliances  OBJECT IDENTIFIER ::= { vmConformance 1 }
@@ -2060,7 +1953,7 @@ vmFullCompliances MODULE-COMPLIANCE
     GROUP  vmPerVMNotificationOptionalGroup
     DESCRIPTION
             "Support for per-VM notifications is optional.  If not
-            implemented then vmPerVMNotificationsEnabled must report
+            implemented then vmPerVMNotificationsEnabled MUST report
             false(2)."
     GROUP  vmBulkNotificationsVariablesGroup
     DESCRIPTION
@@ -2069,7 +1962,7 @@ vmFullCompliances MODULE-COMPLIANCE
     GROUP  vmBulkNotificationOptionalGroup
     DESCRIPTION
             "Support for bulk notifications is optional.  If not
-            implemented then vmBulkNotificationsEnabled must report
+            implemented then vmBulkNotificationsEnabled MUST report
             false(2)."
 
     ::= { vmCompliances 1 }
@@ -2088,46 +1981,6 @@ vmReadOnlyCompliances MODULE-COMPLIANCE
         vmStorageGroup,
         vmNetworkGroup
     }
-
-    OBJECT vmAdminState
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmCurCpuNumber
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmMinCpuNumber
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmMaxCpuNumber
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmCurMem
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmMinMem
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmMaxMem
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
-
-    OBJECT vmCpuAffinity
-    MIN-ACCESS   read-only
-    DESCRIPTION
-            "Write access is not required."
 
     OBJECT vmPerVMNotificationsEnabled
     MIN-ACCESS   read-only
@@ -2220,7 +2073,11 @@ vmStorageGroup OBJECT-GROUP
         vmStorageDefinedSize,
         vmStorageAllocatedSize,
         vmStorageReadIOs,
-        vmStorageWriteIOs
+        vmStorageWriteIOs,
+        vmStorageReadOctets,
+        vmStorageWriteOctets,
+        vmStorageReadLatency,
+        vmStorageWriteLatency
     }
     STATUS       current
     DESCRIPTION
@@ -2253,7 +2110,6 @@ vmPerVMNotificationOptionalGroup NOTIFICATION-GROUP
         vmResuming,
         vmMigrating,
         vmCrashed,
-        vmBlocked,
         vmDeleted
     }
     STATUS       current
@@ -2284,7 +2140,6 @@ vmBulkNotificationOptionalGroup NOTIFICATION-GROUP
         vmBulkResuming,
         vmBulkMigrating,
         vmBulkCrashed,
-        vmBulkBlocked,
         vmBulkDeleted
     }
     STATUS       current
@@ -2297,26 +2152,106 @@ vmBulkNotificationOptionalGroup NOTIFICATION-GROUP
 END
       ]]></artwork></figure>
     </section>
+    <section title="IANA-STORAGE-MEDIA-TYPE-MIB">
+      <figure><artwork><![CDATA[
+IANA-STORAGE-MEDIA-TYPE-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS 
+    MODULE-IDENTITY, mib-2
+        FROM SNMPv2-SMI
+    TEXTUAL-CONVENTION
+        FROM SNMPv2-TC;
+
+ianaStorageMediaTypeMIB MODULE-IDENTITY
+    LAST-UPDATED "201505260000Z"        -- 26 May 2015
+    ORGANIZATION "IANA"
+    CONTACT-INFO
+            "TBD"
+
+    DESCRIPTION
+            "This MIB module defines Textual Conventions
+            representing the media type of a storage device.
+
+            Copyright (c) 2015 IETF Trust and the persons identified
+            as authors of the code.  All rights reserved.
+
+            Redistribution and use in source and binary forms, with
+            or without modification, is permitted pursuant to, and
+            subject to the license terms contained in, the
+            Simplified BSD License set forth in Section 4.c of the
+            IETF Trust's Legal Provisions Relating to IETF Documents
+            (http://trustee.ietf.org/license-info)."
+
+       REVISION "201505260000Z"        -- 26 May 2015
+       DESCRIPTION
+               "The original version of this MIB, published as
+               RFCXXXX."
+       ::= { mib-2 zzz }
+
+IANAStorageMediaType ::= TEXTUAL-CONVENTION
+    STATUS       current
+    DESCRIPTION
+            "The media type of a storage device:
+
+            unknown(1)     The media type is unknown, e.g., because
+                           the implementation failed to obtain the
+                           media type from the hypervisor.
+
+            other(2)       The media type is other than those
+                           defined in this conversion.
+
+            hardDisk(3)    The media type is hard disk.
+
+            opticalDisk(4) The media type is optical disk.
+
+            floppyDisk(5)  The media type is floppy disk."
+
+    SYNTAX       INTEGER {
+                    other(1),
+                    unknown(2),
+                    hardDisk(3),
+                    opticalDisk(4),
+                    floppyDisk(5)
+                 }
+
+END
+      ]]></artwork></figure>
+    </section>
+    </section>
 
     <section anchor="IANA" title="IANA Considerations">
+      <t> This document defines the first version of the IANA-maintained
+      IANA-STORAGE-MEDIA-TYPE-MIB module, which allows new storage media types to be added
+      to the enumeration in IANAStorageMediaType.  An Expert Review, as
+      defined in <xref target="RFC5226">RFC 5226</xref>, is REQUIRED for each modification.</t>
       <t>The MIB module in this document uses the following IANA-assigned
       OBJECT IDENTIFIER values recorded in the SMI Numbers registry:
       </t>
       <figure><artwork><![CDATA[
-      Descriptor        OBJECT IDENTIFIER value
-      ----------        -----------------------
+      Descriptor                OBJECT IDENTIFIER value
+      ----------                -----------------------
 
-      vmMIB             { mib-2 TBD }
+      vmMIB                     { mib-2 TBD }
+      IANAStorageMediaTypeMIB   { mib-2 TBD }
       ]]></artwork></figure>
     </section>
 
     <section anchor="Security" title="Security Considerations">
-      <t>There are a number of management objects defined in this MIB that
-      have a MAX-ACCESS clause of read-write and/or read-create. Such
-      objects may be considered sensitive or vulnerable in some network
-      environments.  The support for SET operations in a non-secure
-      environment without proper protection can have a negative effect on
-      hypervisor and virtual machine operations.</t>
+      <t>There are two objects defined in this MIB,
+      vmPerVMNotificationsEnabled and vmBulkNotificationsEnabled, that
+      have a MAX-ACCESS clause of read-write. Enabling notifications can
+      lead to a noticeable number of notifications if many virtual
+      machines change their state concurrently. Hence, such objects may
+      be considered sensitive or vulnerable in some network environments.
+      The support for SET operations in a non-secure
+      environment without proper protection can
+      have a negative effect on the management system.
+      It is recommended that attention be given to these objects
+      in scenarios that DO NOT use SNMPv3 strong security,
+      i.e. authentication and encryption.
+      When SNMPv3 strong security is not used,
+      these objects SHOULD have access of read-only, not read-write.
+      </t>
 
       <t>There are a number of managed objects in this MIB that may contain
       sensitive information.  The objects in the vmHvSoftware and vmHvVersion
@@ -2339,17 +2274,6 @@ END
       over the network via SNMP.  Not all versions of SNMP provide features
       for such a secure environment.</t>
 
-      <t>It is recommended that attention be specifically given to
-      implementing the MAX-ACCESS clause in a number of objects, including
-      vmAdminState, vmMinCpuNumber, vmMaxCpuNumber,
-      vmMinMem, vmMaxMem, and vmCpuAffinity
-      in scenarios that DO NOT use SNMPv3 strong
-      security (i.e. authentication and encryption). Extreme caution must
-      be used to minimize the risk of cascading security vulnerabilities
-      when SNMPv3 strong security is not used.
-      When SNMPv3 strong security is not used,
-      these objects should have access of read-only, not read-create.</t>
-
       <t>SNMPv1 by itself is not a secure environment. Even if the network
       itself is secure (for example by using IPsec), even then, there is
       no control as to who on the secure network is allowed to access and
@@ -2370,7 +2294,8 @@ END
 
     <section anchor="Acknowledgements" title="Acknowledgements">
       <t>The authors like to thank
-      Joe Marcus Clarke, Randy Presuhn, and David Black
+      Joe Marcus Clarke, Randy Presuhn, David Black, Joel Jaeggli,
+      Tom Petch, Andy Bierman, C. M. Heard, and Ian West
       for providing helpful comments during
       the development of this specification.</t>
       <t>Juergen Schoenwaelder was partly funded by Flamingo, a Network of
@@ -2395,23 +2320,43 @@ END
       &RFC3415;
       &RFC3418;
       &RFC4122;
+      &RFC5226;
       &RFC6933;
     </references>
     <references title="Informative References">
       &RFC3410;
+
+      <reference anchor="IEEE8021-BRIDGE-MIB"
+                 target="http://www.ieee802.org/1/files/public/MIBs/IEEE8021-BRIDGE-MIB-200810150000Z.txt">
+        <front>
+          <title>IEEE8021-BRIDGE-MIB</title>
+          <author>
+            <organization>IEEE</organization>
+          </author>
+        </front>
+      </reference>
+      <reference anchor="IEEE8021-Q-BRIDGE-MIB"
+                 target="http://www.ieee802.org/1/files/public/MIBs/IEEE8021-Q-BRIDGE-MIB-200810150000Z.txt">
+        <front>
+          <title>IEEE8021-BRIDGE-MIB</title>
+          <author>
+            <organization>IEEE</organization>
+          </author>
+        </front>
+      </reference>
+
     </references>
 
     <section anchor="State_Transition_Table" title="State Transition Table">
-      <texttable title="State transition table">
+      <texttable title="State transition table for vmOperState">
 	<ttcol align="center">State</ttcol>
-	<ttcol align="center">Action or (Event)</ttcol>
+	<ttcol align="center">Change to vmAdminState at the hypervisor or (Event)</ttcol>
 	<ttcol align="center">Next state</ttcol>
 	<ttcol align="center">Notification</ttcol>
 	<c>suspended</c> <c>running</c> <c>resuming</c> <c>vmResuming | vmBulkResuming</c>
 	<c>suspending</c> <c>(suspend operation completed)</c> <c>suspended</c> <c>vmSuspended | vmBulkSuspended</c>
 	<c>running</c> <c>suspended</c> <c>suspending</c> <c>vmSuspending | vmBulkSuspending</c>
 	<c></c> <c>shutdown</c> <c>shuttingdown</c> <c>vmShuttingdown | vmBulkShuttingdown</c>
-	<c></c> <c>destroy</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
 	<c></c> <c>(migration to other hypervisor initiated)</c> <c>migrating</c> <c>vmMigrating | vmBulkMingrating</c>
 	<c>resuming</c> <c>(resume opeartion completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
 	<c>paused</c> <c>running</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
@@ -2422,9 +2367,7 @@ END
 	<c>migrating</c> <c>(migration from other hypervisor completed)</c> <c>running</c> <c>vmRunning | vmBulkRunning</c>
 	<c></c> <c>(migration to other hypervisor completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
 	<c>preparing</c> <c>(preparation completed)</c> <c>shutdown</c> <c>vmShutdown | vmBulkShutdown</c>
-	<c>blocked</c> <c>(blocking operation completed)</c> <c>(previous state)</c> <c>-</c>
 	<c>crashed</c> <c>-</c> <c>-</c> <c>-</c>
-	<c>(any)</c> <c>(blocking operation initiated)</c> <c>blocked</c> <c>vmBlocked | vmBulkBlocked</c>
 	<c></c> <c>(crashed)</c> <c>crashed</c> <c>vmCrashed | vmBulkCrashed</c>
 	<c>(no state)</c> <c>(preparation initiated)</c> <c>preparing</c> <c>-</c>
 	<c></c> <c>(migrate from other hypervisor initiated)</c> <c>shutdown (*)</c> <c>vmShutdown | vmBulkShutdown</c>
